@@ -4,30 +4,33 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: rgb(88, 0, 88);
+    background-color: rgb(152, 73, 168);
     user-select: none;
 }
 
 .blackhole {
     position: relative;
-    min-width: 25%;
-    min-height: 25%;
+    min-width: 30%;
+    min-height: 30%;
     user-select: none;
-    animation: infinite-spin 20s linear infinite;
+    animation: infinite-spin 30s linear infinite;
     z-index: 1;
 }
 
 .blackhole-title {
     position: absolute;
     z-index: 2;
-    top: 45%;
+    top: 42%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: white;
-    font-family: 'Arial', sans-serif;
-    font-size: 4em;
+    color: rgb(255, 255, 255);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 4.5em;
     text-align: center;
     user-select: none;
+    background-color: rgba(56, 53, 53, 0.507);
+    padding: 0.2em 0.4em;
+    border-radius: 4em;
 }
 
 @keyframes infinite-spin {
