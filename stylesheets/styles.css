@@ -4,14 +4,15 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: rgb(152, 73, 168);
+    background-color: rgb(130, 73, 168);
     user-select: none;
+    flex-direction: column;
 }
 
 .blackhole {
     position: relative;
-    min-width: 30%;
-    min-height: 30%;
+    height: 70vh;
+    width: 70vh;
     user-select: none;
     animation: infinite-spin 30s linear infinite;
     z-index: 1;
@@ -33,6 +34,23 @@
     border-radius: 4em;
 }
 
+.signin-container {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.signin-fields-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.fname {
+    display: flex;
+}
+
 @keyframes infinite-spin {
     0% {
         transform: rotate(0deg);
@@ -41,3 +59,4 @@
         transform: rotate(360deg);
     }
 }
+

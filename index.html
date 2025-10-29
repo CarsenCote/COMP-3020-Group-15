@@ -1,20 +1,51 @@
 <!DOCTYPE html>
-    <html lang="en">
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Universe of Manitoba</title>
         <link rel="stylesheet" href="./stylesheets/styles.css">
         <script src="jquery-3.7.1.min.js"></script>
+        <script src="./src/main.js"></script>
     </head>
     <body>
-        <main class="main" id="content">
-            <div class="main">
-                <img class="blackhole" src="./public/blackhole.png"/>
-                    <p class="blackhole-title">Universe of Manitoba</p>
-                <img/>
-            </div>
+        <main class="main" id="main">
         </main>
-        <script src="main.js"></script>
     </body>
-    </html>
+</html>
+
+<!--Blackhole Screen Template-->
+<script id="blackhole-template" type="text/template">
+    <div class="blackhole-container">
+        <img class="blackhole" src="./public/blackhole.png"/>
+            <p class="blackhole-title">Universe of Manitoba</p>
+        <img/>
+    </div>
+</script>
+
+<!--Sign In/Sign Up Screen Template-->
+
+<script id ="signin-template" type="text/template">
+    <div class="signin-container">
+        <div class = "signin-fields-container">
+            <form class="signin-form" id="signin-form">
+                <div class="name-container">
+                    <label for="fname">
+                        First Name
+                        <input type="text" id="fname" name="fname">
+                    </label>
+                    <label for="lname">
+                        Last Name
+                        <input type="text" id="lname" name="lname">
+                    </label>
+                </div>
+                <label for="fname">
+                    E-Mail
+                    <input type="text" id="email" name="email">
+                </label>
+                <br>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</script>
