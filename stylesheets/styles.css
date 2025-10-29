@@ -1,12 +1,15 @@
 .main {
     display: flex;
-    flex-grow: 1;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
     background-color: rgb(130, 73, 168);
     user-select: none;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.blackhole-container {
+    display: flex;
+    align-items: center;
 }
 
 .blackhole {
@@ -18,10 +21,20 @@
     z-index: 1;
 }
 
+@keyframes infinite-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 .blackhole-title {
     position: absolute;
     z-index: 2;
-    top: 42%;
+    top: 44%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: rgb(255, 255, 255);
@@ -36,27 +49,78 @@
 
 .signin-container {
     display: flex;
-    flex-grow: 1;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
 }
 
 .signin-fields-container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
-.fname {
+.signin-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+
+.signin-form * {
+    flex-basis: 30px;
+}
+
+.signin-button {
+    margin-top: 10px;
+    display: flex;
+    border-radius: 40px;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    min-width: 40%;
+}
+
+.label {
+    position: absolute;
+    left: 0;
+    padding-top: 6px;
+    padding-left: 8px;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+input {
+    border: none;
+    border-radius: 20px;
+}
+
+.name-container {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+}
+
+.fname-container {
+    position: relative;
     display: flex;
 }
 
-@keyframes infinite-spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+.lname-container {
+    position: relative;
+    display: flex;
 }
 
+.email-container {
+    position: relative;
+    display: flex;
+    min-width: 100%;
+}
+
+.email-container>input {
+    display: flex;
+    min-width: 100%;
+}

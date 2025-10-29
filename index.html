@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Universe of Manitoba</title>
-        <link rel="stylesheet" href="./stylesheets/styles.css">
-        <script src="jquery-3.7.1.min.js"></script>
-        <script src="./src/main.js"></script>
-    </head>
-    <body>
-        <main class="main" id="main">
-        </main>
-    </body>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universe of Manitoba</title>
+    <link rel="stylesheet" href="./stylesheets/styles.css">
+    <script src="jquery-3.7.1.min.js"></script>
+    <script src="./src/main.js"></script>
+</head>
+
+<body>
+    <main class="main" id="main">
+    </main>
+</body>
+
 </html>
 
 <!--Blackhole Screen Template-->
@@ -24,28 +27,26 @@
 </script>
 
 <!--Sign In/Sign Up Screen Template-->
-
-<script id ="signin-template" type="text/template">
+<script id="signin-template" type="text/template">
     <div class="signin-container">
-        <div class = "signin-fields-container">
-            <form class="signin-form" id="signin-form">
-                <div class="name-container">
-                    <label for="fname">
-                        First Name
-                        <input type="text" id="fname" name="fname">
-                    </label>
-                    <label for="lname">
-                        Last Name
-                        <input type="text" id="lname" name="lname">
-                    </label>
+        <form class="signin-form" id="signin-form">
+            <div class="name-container">
+                <div class="fname-container">
+                    <input type="text" id="fname" name="fname">
+                    <label for="fname" class="label">First Name</label>
                 </div>
-                <label for="fname">
-                    E-Mail
-                    <input type="text" id="email" name="email">
-                </label>
-                <br>
-                <input type="submit" value="Submit">
-            </form>
-        </div>
+                <div class="lname-container">
+                    <input type="text" id="lname" name="lname">
+                    <label for="lname" class="label">Last Name</label>
+                </div>
+            </div>
+            <div class="email-container">
+                <input type="text" id="email" name="email">
+                <label for="email" class="label">School E-Mail</label>
+            </div>
+            <button type="submit" class="signin-button">
+                Sign in
+            </button>
+        </form>
     </div>
 </script>
