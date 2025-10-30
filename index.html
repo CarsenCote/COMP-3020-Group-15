@@ -19,6 +19,7 @@
 
 <!--Blackhole Screen Template-->
 <script id="blackhole-template" type="text/template">
+    <link rel="stylesheet" href = "./stylesheets/blackhole.css">
     <div class="blackhole-container">
         <img class="blackhole" src="./public/blackhole.png"/>
             <p class="blackhole-title">Universe of Manitoba</p>
@@ -28,20 +29,21 @@
 
 <!--Sign In/Sign Up Screen Template-->
 <script id="signin-template" type="text/template">
+    <link rel="stylesheet" href = "./stylesheets/signin.css">
     <div class="signin-container">
         <form class="signin-form" id="signin-form">
             <div class="name-container">
                 <div class="fname-container">
-                    <input type="text" id="fname" name="fname">
+                    <input type="text" id="fname" name="fname" required>
                     <label for="fname" class="label">First Name</label>
                 </div>
                 <div class="lname-container">
-                    <input type="text" id="lname" name="lname">
+                    <input type="text" id="lname" name="lname" required>
                     <label for="lname" class="label">Last Name</label>
                 </div>
             </div>
             <div class="email-container">
-                <input type="text" id="email" name="email">
+                <input type="text" id="email" name="email" required>
                 <label for="email" class="label">School E-Mail</label>
             </div>
             <button type="submit" class="signin-button">

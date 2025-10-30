@@ -1,0 +1,39 @@
+.blackhole-container {
+    display: flex;
+    align-items: center;
+}
+
+.blackhole-title {
+    position: absolute;
+    z-index: 2;
+    top: 44%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(255, 255, 255);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 4.5em;
+    text-align: center;
+    user-select: none;
+    background-color: rgba(56, 53, 53, 0.507);
+    padding: 0.2em 0.4em;
+    border-radius: 4em;
+}
+
+.blackhole {
+    position: relative;
+    height: 70vh;
+    width: 70vh;
+    user-select: none;
+    animation: infinite-spin 30s linear infinite;
+    z-index: 1;
+}
+
+@keyframes infinite-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
