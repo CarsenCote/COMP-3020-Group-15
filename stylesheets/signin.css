@@ -1,7 +1,19 @@
 .signin-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+}
+
+.signin-title {
+    color: rgb(255, 255, 255);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 4.5em;
+    text-align: center;
+    user-select: none;
+    background-color: rgba(56, 53, 53, 0.507);
+    padding: 0.4em 0.6em;
+    border-radius: 4em;
 }
 
 .signin-fields-container {
@@ -37,17 +49,19 @@
     left: 0;
     padding-top: 15px;
     padding-left: 15px;
-    font-weight: bold;
     transition: 0.1s ease;
+    font-family: 'Arial', sans-serif;
+    font-weight: 200;
 }
 
 input:focus {
     box-shadow: none;
 }
+
 input:valid + label,
 input:focus + label {
-    color: rgb(75, 75, 75);
-    transform: translate(-5px, -12px) scale(0.8);
+    color: rgb(54, 54, 54);
+    transform: translate(-5px, -12px) scale(0.77);
 }
 
 input {
@@ -81,4 +95,6 @@ input {
 
 .email-container>input {
     display: flex;
+    min-width: 100%;
+    box-sizing: border-box;
 }

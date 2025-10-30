@@ -7,6 +7,7 @@ $(function () {
     $('#main').append($('#signin-template').html());
 });
 
+// This is a callback function that is called when there is a 
 $(function () {
     $('#signin-form').on('submit', function (event) {
         event.preventDefault();
