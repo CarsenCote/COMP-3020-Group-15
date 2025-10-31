@@ -1,3 +1,6 @@
+const BLACKHOLE_TEMPLATE = 'blackhole-template';
+const CATEGORIES_TEMPLATE = 'categories-template';
+
 var userFirstName;
 var userLastName;
 var userEmail;
@@ -7,7 +10,7 @@ $(function () {
     $('#main').append($('#signin-template').html());
 });
 
-// This is a callback function that is called when there is a 
+// This is a callback function that is called when the form on the sign-in page is submitted.
 $(function () {
     $('#signin-form').on('submit', function (event) {
         event.preventDefault();
@@ -19,12 +22,32 @@ $(function () {
         userFirstName = fname;
         userLastName = lname;
         userEmail = email;
-        changeMainTemplate('blackhole-template');
+        changeMainTemplate(BLACKHOLE_TEMPLATE);
     })
 });
 
 function changeMainTemplate(templateId) {
-    $('#main').empty().append($('#' + templateId).html())
+    $('#main').empty().append($('#' + templateId).html());
+
+    // Set up event listeners based on which template was loaded
+    switch (templateId) {
+        case BLACKHOLE_TEMPLATE:
+            setupBlackholeEvents();
+            break;
+        case CATEGORIES_TEMPLATE:
+            setupCategoriesEvents();
+            break;
+    }
+}
+
+function setupBlackholeEvents() {
+    $('.blackhole-container').on('click', function () {
+        changeMainTemplate(CATEGORIES_TEMPLATE);
+    });
+}
+
+function setupCategoriesEvents() {
+    $('.categories-container')
 }
 
 
