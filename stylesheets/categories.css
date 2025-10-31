@@ -1,19 +1,32 @@
 .categories-title {
     font-size: 4em;
     font-family: 'Montserrat', sans-serif;
+    display: flex;
+    text-align: center;
 }
 
 .categories-container {
+    font-size: 1.5em;
+    font-family: 'Arial', sans-serif;
     display: flex;
     justify-content: center;
+    gap: 10px;
 }
 
 .leisure-category-container {
     display: flex;
-    padding-left: 15px;
+    position: relative;
+    justify-content: center;
+    background-color: rgba(218, 218, 218, 0.819);
+    padding: 0.4em 0.4em;
+    border-radius: 4em;
 }
 
 .science-category-container {
     display: flex;
-    padding-left: 15px;
+    position: relative;
+    justify-content: center;
+    background-color: rgba(218, 218, 218, 0.819);
+    padding: 0.4em 0.4em;
+    border-radius: 4em;
 }
