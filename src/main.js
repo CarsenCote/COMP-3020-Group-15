@@ -47,7 +47,13 @@ function setupBlackholeEvents() {
 }
 
 function setupCategoriesEvents() {
-    $('.categories-container')
+    $('.leisure-category-container').on('click', function () {
+        alert("clicked leisure category! good job, i'm proud of you :)");
+    });
+
+    $('.science-category-container').on('click', function () {
+        alert("clicked science category. nerd");
+    });
 }
 
 

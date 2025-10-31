@@ -2,3 +2,18 @@
     font-size: 4em;
     font-family: 'Montserrat', sans-serif;
 }
+
+.categories-container {
+    display: flex;
+    justify-content: center;
+}
+
+.leisure-category-container {
+    display: flex;
+    padding-left: 15px;
+}
+
+.science-category-container {
+    display: flex;
+    padding-left: 15px;
+}
