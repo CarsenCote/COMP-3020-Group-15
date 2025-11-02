@@ -1,12 +1,13 @@
 .blackhole-container {
     display: flex;
     align-items: center;
+    overflow: hidden;
 }
 
 .blackhole-title {
     position: absolute;
     z-index: 2;
-    top: 44%;
+    top: 43%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: rgb(255, 255, 255);
@@ -21,8 +22,8 @@
 
 .blackhole {
     position: relative;
-    height: 70vh;
-    width: 70vh;
+    height: 90vh;
+    width: 90vh;
     user-select: none;
     animation: infinite-spin 30s linear infinite;
     z-index: 1;
