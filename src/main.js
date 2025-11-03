@@ -1,121 +1,49 @@
-// Template classes
-
-class Template {
-
-    templateId;
-    
-    constructor(templateId) {
-        this.templateId = templateId;
-    }
-
-    setup () {
-        this.setupEventListeners();
-        this.setupElements();
-    }
-
-    setupEventListeners () {
-        
-    }
-
-    setupElements () {
-
-    }
-}
-
-class BlackHoleTemplate extends Template {
-
-    constructor(templateId) {
-        super(templateId);
-    }
-
-    setupEventListeners() {
-        
-        $('.blackhole-container').on('click', function () {
-            changeMainTemplate(CATEGORIES_TEMPLATE);
-        });
-    }
-
-    setupElements() {
-
-    }
-}
-
-class SignInTemplate extends Template {
-
-    constructor(templateId) {
-        super(templateId);
-    }
-    
-    setupEventListeners() {
-        $('#signin-form').on('submit', function (event) {
-            event.preventDefault();
-            var dataString = $(this).serialize();
-            var params = new URLSearchParams(dataString);
-            const fname = params.get('fname');
-            const lname = params.get('lname');
-            const email = params.get('email');
-            user = new User(fname, lname, email);
-            changeMainTemplate(BLACKHOLE_TEMPLATE);
-        })
-    }
-
-    setupElements() {
-
-    }
-}
-
-class CategoriesTemplate extends Template {
-
-    constructor(templateId) {
-        super(templateId);
-    }
-
-    setupEventListeners() {
-        
-    }
-
-    setupElements() {
-
-    }
-}
-
-// General classes
-
-class User {
-    firstName;
-    lastName;
-    email;
-
-    constructor(firstName, lastName, email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
-}
-
-
-
-/*
-This is the main section of code execution after classes have been declared.
-*/
 
 const BLACKHOLE_TEMPLATE = new BlackHoleTemplate('blackhole-template');
 const CATEGORIES_TEMPLATE = new CategoriesTemplate('categories-template');
-const SIGN_IN_TEMPLATE = new SignInTemplate('signin-template');
+const SIGNIN_TEMPLATE = new SignInTemplate('signin-template');
 
-var currentPage;
-var user;
+class AppState {
 
-// This function is executed when the interface is first opened and the document is ready.
+    static previousTemplate = null;
+    static currentTemplate = null;
+    static user = null;
+
+    // This function changes the main template and calls appropriate setup routines.
+    static changeMainTemplate(template) {
+        AppState.previousTemplate = AppState.currentTemplate;
+        AppState.currentTemplate = template;
+        $('#main').empty().append($('#' + template.templateId).html());
+        AppState.currentTemplate.setup();
+    }
+}
+
+window.App = {
+    State: AppState,
+    Templates: {
+        BLACKHOLE: BLACKHOLE_TEMPLATE,
+        SIGNIN: SIGNIN_TEMPLATE,
+        CATEGORIES: CATEGORIES_TEMPLATE,
+    },
+    Categories: null
+}
+
 $(function () {
-    changeMainTemplate(SIGN_IN_TEMPLATE);
+        AppState.changeMainTemplate(SIGNIN_TEMPLATE);
+        
+        console.log(data);
 });
 
-function changeMainTemplate(template) {
-    currentPage = template;
-    $('#main').empty().append($('#' + template.templateId).html());
-    currentPage.setup();
+const CATEGORIES = {
+    categories : [
+    {"id": "leisure", "name": "Leisure"},
+    {}
+    ]
 }
+
+
+
+
 
 
 
