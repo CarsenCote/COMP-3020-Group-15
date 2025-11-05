@@ -2,21 +2,21 @@
 class Template {
 
     templateId;
-    
+
     constructor(templateId) {
         this.templateId = templateId;
     }
 
-    setup () {
-        this.setupEventListeners();
+    setup() {
         this.setupElements();
+        this.setupEventListeners();
     }
 
-    setupEventListeners () {
-        
+    setupEventListeners() {
+
     }
 
-    setupElements () {
+    setupElements() {
 
     }
 }
@@ -28,14 +28,17 @@ class BlackHoleTemplate extends Template {
     }
 
     setupEventListeners() {
-        
         $('.blackhole-container').on('click', function () {
             window.App.State.changeMainTemplate(window.App.Templates.CATEGORIES);
         });
     }
 
     setupElements() {
-
+        const Categories = window.App.Categories;
+        for (var category in Categories) {
+            const categoryTemplate =
+                $('#categories-container').append($('#category-template'))
+        }
     }
 }
 
@@ -44,7 +47,7 @@ class SignInTemplate extends Template {
     constructor(templateId) {
         super(templateId);
     }
-    
+
     setupEventListeners() {
 
         // Event listener for submission of the signin form.
@@ -73,7 +76,7 @@ class CategoriesTemplate extends Template {
     }
 
     setupEventListeners() {
-        
+
     }
 
     setupElements() {

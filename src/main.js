@@ -18,6 +18,35 @@ class AppState {
     }
 }
 
+$(function () {
+    AppState.changeMainTemplate(SIGNIN_TEMPLATE);
+
+    console.log(data);
+});
+
+const CATEGORIES = [
+    {
+        "id": "leisure",
+        "name": "Leisure",
+        "description": "",
+    },
+    {
+        "id": "academic",
+        "name": "Academic",
+        "description": ""
+    },
+    {
+        "id": "advocacy",
+        "name": "Advocacy",
+        "description": ""
+    },
+    {
+        "id": "recreation",
+        "name": "Recreation",
+        "description": ""
+    }
+]
+
 window.App = {
     State: AppState,
     Templates: {
@@ -25,20 +54,7 @@ window.App = {
         SIGNIN: SIGNIN_TEMPLATE,
         CATEGORIES: CATEGORIES_TEMPLATE,
     },
-    Categories: null
-}
-
-$(function () {
-        AppState.changeMainTemplate(SIGNIN_TEMPLATE);
-        
-        console.log(data);
-});
-
-const CATEGORIES = {
-    categories : [
-    {"id": "leisure", "name": "Leisure"},
-    {}
-    ]
+    Categories: CATEGORIES
 }
 
 
