@@ -1,60 +1,65 @@
-const BLACKHOLE_TEMPLATE = 'blackhole-template';
-const CATEGORIES_TEMPLATE = 'categories-template';
 
-var userFirstName;
-var userLastName;
-var userEmail;
+const BLACKHOLE_TEMPLATE = new BlackHoleTemplate('blackhole-template');
+const CATEGORIES_TEMPLATE = new CategoriesTemplate('categories-template');
+const SIGNIN_TEMPLATE = new SignInTemplate('signin-template');
 
-// This function is executed when the interface is first opened and the document is ready.
-$(function () {
-    $('#main').append($('#signin-template').html());
-});
+class AppState {
 
-// This is a callback function that is called when the form on the sign-in page is submitted.
-$(function () {
-    $('#signin-form').on('submit', function (event) {
-        event.preventDefault();
-        var dataString = $(this).serialize();
-        var params = new URLSearchParams(dataString);
-        const fname = params.get('fname');
-        const lname = params.get('lname');
-        const email = params.get('email');
-        userFirstName = fname;
-        userLastName = lname;
-        userEmail = email;
-        changeMainTemplate(BLACKHOLE_TEMPLATE);
-    })
-});
+    static previousTemplate = null;
+    static currentTemplate = null;
+    static user = null;
 
-function changeMainTemplate(templateId) {
-    $('#main').empty().append($('#' + templateId).html());
-
-    // Set up event listeners based on which template was loaded
-    switch (templateId) {
-        case BLACKHOLE_TEMPLATE:
-            setupBlackholeEvents();
-            break;
-        case CATEGORIES_TEMPLATE:
-            setupCategoriesEvents();
-            break;
+    // This function changes the main template and calls appropriate setup routines.
+    static changeMainTemplate(template) {
+        AppState.previousTemplate = AppState.currentTemplate;
+        AppState.currentTemplate = template;
+        $('#main').empty().append($('#' + template.templateId).html());
+        AppState.currentTemplate.setup();
     }
 }
 
-function setupBlackholeEvents() {
-    $('.blackhole-container').on('click', function () {
-        changeMainTemplate(CATEGORIES_TEMPLATE);
-    });
+$(function () {
+    AppState.changeMainTemplate(SIGNIN_TEMPLATE);
+
+    console.log(data);
+});
+
+const CATEGORIES = [
+    {
+        "id": "leisure",
+        "name": "Leisure",
+        "description": "",
+    },
+    {
+        "id": "academic",
+        "name": "Academic",
+        "description": ""
+    },
+    {
+        "id": "advocacy",
+        "name": "Advocacy",
+        "description": ""
+    },
+    {
+        "id": "recreation",
+        "name": "Recreation",
+        "description": ""
+    }
+]
+
+window.App = {
+    State: AppState,
+    Templates: {
+        BLACKHOLE: BLACKHOLE_TEMPLATE,
+        SIGNIN: SIGNIN_TEMPLATE,
+        CATEGORIES: CATEGORIES_TEMPLATE,
+    },
+    Categories: CATEGORIES
 }
 
-function setupCategoriesEvents() {
-    $('.leisure-category-container').on('click', function () {
-        alert("clicked leisure category! good job, i'm proud of you :)");
-    });
 
-    $('.science-category-container').on('click', function () {
-        alert("clicked science category. nerd");
-    });
-}
+
+
 
 
 
