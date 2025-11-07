@@ -8,6 +8,7 @@ class AppState {
     static previousTemplate = null;
     static currentTemplate = null;
     static user = null;
+    static categorySelected = null;
 
     // This function changes the main template and calls appropriate setup routines.
     static changeMainTemplate(template) {
@@ -16,6 +17,22 @@ class AppState {
         $('#main').empty().append($('#' + template.templateId).html());
         AppState.currentTemplate.setup();
     }
+
+    /*
+    static selectCategory(id) {
+        var newSelection = null;
+        var i = 0;
+        while(!newSelection && i<CATEGORIES.length){
+            if(CATEGORIES[i].id = id)
+                newSelection = CATEGORIES[i]
+            
+            i++;
+        }
+
+        //TEST THIS
+        AppState.categorySelected = newSelection;
+    }
+        */
 }
 
 $(function () {

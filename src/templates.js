@@ -36,6 +36,7 @@ class BlackHoleTemplate extends Template {
     setupElements() {
         const Categories = window.App.Categories;
         for (var category in Categories) {
+            // what is this const variable for here? not following but maybe i just can't think rn lol
             const categoryTemplate =
                 $('#categories-container').append($('#category-template'))
         }
@@ -71,12 +72,18 @@ class SignInTemplate extends Template {
 
 class CategoriesTemplate extends Template {
 
+
     constructor(templateId) {
         super(templateId);
     }
 
     setupEventListeners() {
-
+        $('#advocacy-button').on('click', function (event) {
+            event.preventDefault();
+            alert("clicked advocacy")
+            //selectCategory('advocacy');
+            window.App.State.categorySelected = 'advocacy'
+        })
     }
 
     setupElements() {
