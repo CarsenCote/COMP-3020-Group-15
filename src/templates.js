@@ -23,6 +23,8 @@ class Template {
 
 class BlackHoleTemplate extends Template {
 
+    categoryContainers;
+
     constructor(templateId) {
         super(templateId);
     }
@@ -34,11 +36,7 @@ class BlackHoleTemplate extends Template {
     }
 
     setupElements() {
-        const Categories = window.App.Categories;
-        for (var category in Categories) {
-            const categoryTemplate =
-                $('#categories-container').append($('#category-template'))
-        }
+
     }
 }
 
@@ -80,6 +78,10 @@ class CategoriesTemplate extends Template {
     }
 
     setupElements() {
-
+        const Categories = window.App.Categories;
+        for (var category in Categories) {
+            const categoryTemplate =
+                $('#categories-container').append($('#category-template').html())
+        }
     }
 }
