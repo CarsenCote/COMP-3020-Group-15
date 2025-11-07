@@ -24,6 +24,16 @@ $(function () {
     console.log(data);
 });
 
+const CLUBS = [
+    {
+        "id": "sixseven",
+        "name": "Chess Club",
+        "description": ""
+    },
+
+
+]
+
 const CATEGORIES = [
     {
         "id": "leisure",
