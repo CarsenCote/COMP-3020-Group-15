@@ -17,6 +17,32 @@
     margin-bottom: 30px;
 }
 
+.club {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    box-sizing: border-box;
+    background-color: rgb(255, 255, 255);
+    max-width: 16vw;
+    max-height: 30vh;
+    min-height: 30vh;
+    padding: 40px 10px;
+    border-radius: 45%;
+    align-items: center;
+}
+
+.club:hover {
+    background-color: rgb(240, 240, 240);
+}
+
+.club:hover .club-description{
+    visibility: visible;
+    max-height: 100%;
+    color: black;
+    transition: max-height 0.5s ease-in-out;
+    transition: color 0.5s ease;
+}
+
 .club-name {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;

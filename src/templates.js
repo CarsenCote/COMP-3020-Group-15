@@ -77,10 +77,14 @@ class CategoriesTemplate extends Template {
 
     // this will get the id of whichever category is clicked - use it for club selection page? 
     // (maybe save in app state)
+
+    //TODO: clean up var names so it's not me being a fake gangsta
     setupEventListeners() {
-        $('.category').on('click', function (event) {
+        $('.category').on('click', function () {
             var anotha = $(this).attr("id");
-            alert("clicked a category " + anotha);
+            //alert("clicked a category " + anotha);
+            window.App.State.categorySelected = anotha;
+            window.App.State.changeMainTemplate(window.App.Templates.CLUBS)
         })
     }
 
@@ -118,7 +122,24 @@ class ClubsTemplate extends Template {
     }
 
     setupElements() {
-
+        const currentCategory = window.App.State.categorySelected;
+        const Clubs = window.App.Clubs;
+        for(var i=0; i<Clubs.length; i++){
+            const club = Clubs[i];
+            if(club.categoryId == currentCategory)
+            {
+                // Get the template content and create a new element from it
+                const templateHtml = $('#club-select-template').html();
+                const newClub = $(templateHtml);
+                
+                // Set the attributes and text
+                newClub.attr('id', club.id);
+                newClub.find('.club-name').text(club.name);
+                newClub.find('.club-description').text(club.description);
+                // Append the new category element
+                $('#clubs-container').append(newClub);
+            }
+        }
     }
 
 }

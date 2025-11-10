@@ -9,6 +9,7 @@ class AppState {
     static previousTemplate = null;
     static currentTemplate = null;
     static user = null;
+    static categorySelected = null;
 
     // This function changes the main template and calls appropriate setup routines.
     static changeMainTemplate(template) {
