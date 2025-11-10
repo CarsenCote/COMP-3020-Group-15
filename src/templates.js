@@ -69,6 +69,8 @@ class SignInTemplate extends Template {
 
 class CategoriesTemplate extends Template {
 
+    categoryElements;
+
     constructor(templateId) {
         super(templateId);
     }
@@ -79,9 +81,21 @@ class CategoriesTemplate extends Template {
 
     setupElements() {
         const Categories = window.App.Categories;
-        for (var category in Categories) {
-            const categoryTemplate =
-                $('#categories-container').append($('#category-template').html())
+        for (var i = 0; i < Categories.length; i++) {
+
+            const category = Categories[i];
+
+            // Get the template content and create a new element from it
+            const templateHtml = $('#category-template').html();
+            const newCategory = $(templateHtml);
+            
+            // Set the attributes and text
+            newCategory.attr('id', category.id);
+            newCategory.find('.category-name').text(category.name);
+            newCategory.find('.category-description').text(category.description);
+            newCategory.find('.category-img').attr('src', `./public/category-icons/${category.id}.png`);
+            // Append the new category element
+            $('#categories-container').append(newCategory);
         }
     }
 }

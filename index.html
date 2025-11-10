@@ -11,6 +11,7 @@
     <script src="./libraries/js-yaml.min.js"></script>
 
     <!--Script imports-->
+    <script src="./src/data-arrays.js"></script>
     <script src="./src/user.js"></script>
     <script src="./src/templates.js"></script>
     <script src="./src/main.js"></script>
@@ -26,16 +27,6 @@
 </body>
 
 </html>
-
-<!--Blackhole Screen Template-->
-<script id="blackhole-template" type="text/template">
-    <link rel="stylesheet" href = "./stylesheets/blackhole.css">
-    <div class="blackhole-container">
-        <img class="blackhole" src="./public/blackhole.png"/>
-            <p class="blackhole-title">Explore</p>
-        <img/>
-    </div>
-</script>
 
 <!--Sign In/Sign Up Screen Template-->
 <script id="signin-template" type="text/template">
@@ -64,6 +55,16 @@
     </div>
 </script>
 
+<!--Blackhole Screen Template-->
+<script id="blackhole-template" type="text/template">
+    <link rel="stylesheet" href = "./stylesheets/blackhole.css">
+    <div class="blackhole-container">
+        <img class="blackhole" src="./public/blackhole.png"/>
+            <p class="blackhole-title">Explore</p>
+        <img/>
+    </div>
+</script>
+
 <!--Categories Screen Template-->
 <script id="categories-template" type="text/template">
     <link rel="stylesheet" href="./stylesheets/categories.css">
@@ -76,8 +77,9 @@
 
 <!--Category Template-->
 <script id="category-template" type="text/template">
-    <div>
-        <p id="category-name"></p>
-        <p id="category-description"></p>
+    <div class="category">
+        <p class="category-name"></p>
+        <p class="category-description"></p>
+        <img class="category-img">
     </div>
 </script>
