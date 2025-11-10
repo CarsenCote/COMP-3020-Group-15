@@ -8,11 +8,10 @@
     <link rel="stylesheet" href="./stylesheets/styles.css">
     <!--Library imports-->
     <script src="./libraries/jquery-3.7.1.min.js"></script>
-    <script src="./libraries/js-yaml.min.js"></script>
 
     <!--Script imports-->
-    <script src="./src/data-arrays.js"></script>
-    <script src="./src/user.js"></script>
+    <script src="./src/categories-data.js"></script>
+    <script src="./src/clubs-data.js"></script>
     <script src="./src/templates.js"></script>
     <script src="./src/main.js"></script>
 
@@ -22,11 +21,23 @@
 </head>
 
 <body>
+    <div class="nav-bar">
+        <div class="nav-button" id="back-button">
+            <img class="nav-button-img" src="./public/star.png">
+        </div>
+        <div class="nav-button" id="home-button">
+            <img class="nav-button-img" src="./public/home.png">
+        </div>
+    </div>
+    
     <main class="main" id="main">
     </main>
 </body>
 
 </html>
+
+<!--Back Button Template-->
+
 
 <!--Sign In/Sign Up Screen Template-->
 <script id="signin-template" type="text/template">
@@ -81,5 +92,12 @@
         <p class="category-name"></p>
         <p class="category-description"></p>
         <img class="category-img">
+    </div>
+</script>
+
+<!--Scrolling Template-->
+<script id="scrolling-template" type="text/template">
+    <div class="scrolling-page-container">
+
     </div>
 </script>
