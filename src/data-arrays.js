@@ -50,3 +50,18 @@ const CATEGORIES = [
         "description": "Student-led groups involved in leadership, policy, and social or political advocacy."
     }
 ];
+
+const CLUBS = [
+    {
+        "id": "wics",
+        "name": "Women in Computer Science",
+        "description": "some stuff here",
+        "categoryId": "academic-professional"
+    },
+    {
+        "id": "cssa",
+        "name": "Computer Science Student Association",
+        "description": "some other stuff here",
+        "categoryId": "academic-professional"
+    }
+];

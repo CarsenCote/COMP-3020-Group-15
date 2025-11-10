@@ -75,8 +75,13 @@ class CategoriesTemplate extends Template {
         super(templateId);
     }
 
+    // this will get the id of whichever category is clicked - use it for club selection page? 
+    // (maybe save in app state)
     setupEventListeners() {
-
+        $('.category').on('click', function (event) {
+            var anotha = $(this).attr("id");
+            alert("clicked a category " + anotha);
+        })
     }
 
     setupElements() {
@@ -98,4 +103,22 @@ class CategoriesTemplate extends Template {
             $('#categories-container').append(newCategory);
         }
     }
+}
+
+class ClubsTemplate extends Template {
+
+    clubsElements;
+
+    constructor(templateId) {
+        super(templateId);
+    }
+
+    setupEventListeners() {
+
+    }
+
+    setupElements() {
+
+    }
+
 }

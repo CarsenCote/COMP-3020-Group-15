@@ -2,6 +2,7 @@
 const BLACKHOLE_TEMPLATE = new BlackHoleTemplate('blackhole-template');
 const CATEGORIES_TEMPLATE = new CategoriesTemplate('categories-template');
 const SIGNIN_TEMPLATE = new SignInTemplate('signin-template');
+const CLUBS_TEMPLATE = new ClubsTemplate('clubs-template');
 
 class AppState {
 
@@ -28,8 +29,10 @@ window.App = {
         BLACKHOLE: BLACKHOLE_TEMPLATE,
         SIGNIN: SIGNIN_TEMPLATE,
         CATEGORIES: CATEGORIES_TEMPLATE,
+        CLUBS: CLUBS_TEMPLATE
     },
-    Categories: CATEGORIES
+    Categories: CATEGORIES,
+    Clubs: CLUBS
 }
 
 
