@@ -1,4 +1,4 @@
-const CATEGORIES = [
+const CATEGORIES_DATA = [
     {
         "id": "academic-professional",
         "name": "Academic & Professional",

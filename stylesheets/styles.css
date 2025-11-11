@@ -1,14 +1,44 @@
 body {
     margin: 0;
     padding: 0;
-    
-}
-
-.main {
     display: flex;
     height: 100vh;
     background-color: rgb(130, 73, 168);
     user-select: none;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
+}
+
+.nav-bar {
+    top: 0;
+    position: absolute;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+#back-button {
+    justify-self: flex-start;
+}
+
+#home-button {
+    justify-self: end;
+}
+
+.nav-button {
+    margin: 10px;
+    visibility: hidden;
+    border-radius: 50%;
+    background-color: rgba(70, 70, 70, 0.514);
+    padding: 10px;
+}
+
+.nav-button-img {
+    transition: transform 0.3s ease;
+    max-width: 5vw;
+}
+
+.nav-button:hover .nav-button-img {
+    transform: scale(120%);
+    filter: drop-shadow(8px 8px 3px rgb(65, 65, 65));
 }

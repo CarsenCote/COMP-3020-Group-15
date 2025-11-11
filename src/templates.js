@@ -1,55 +1,67 @@
 
-class Template {
+class Template 
+{
 
     templateId;
 
-    constructor(templateId) {
+    constructor(templateId) 
+    {
         this.templateId = templateId;
     }
 
-    setup() {
+    setup() 
+    {
         this.setupElements();
         this.setupEventListeners();
     }
 
-    setupEventListeners() {
+    setupEventListeners() 
+    {
 
     }
 
-    setupElements() {
+    setupElements() 
+    {
 
     }
 }
 
-class BlackHoleTemplate extends Template {
+class BlackHoleTemplate extends Template 
+{
 
     categoryContainers;
 
-    constructor(templateId) {
+    constructor(templateId) 
+    {
         super(templateId);
     }
 
-    setupEventListeners() {
+    setupEventListeners() 
+    {
         $('.blackhole-container').on('click', function () {
-            window.App.State.changeMainTemplate(window.App.Templates.CATEGORIES);
+            window.App.State.changeNextTemplate(window.App.Templates.CATEGORIES);
         });
     }
 
-    setupElements() {
+    setupElements() 
+    {
 
     }
 }
 
-class SignInTemplate extends Template {
+class SignInTemplate extends Template 
+{
 
-    constructor(templateId) {
+    constructor(templateId) 
+    {
         super(templateId);
     }
 
     setupEventListeners() {
 
         // Event listener for submission of the signin form.
-        $('#signin-form').on('submit', function (event) {
+        $('#signin-form').on('submit', function (event) 
+        {
             event.preventDefault();
             var dataString = $(this).serialize();
             var params = new URLSearchParams(dataString);
@@ -58,7 +70,7 @@ class SignInTemplate extends Template {
             const email = params.get('email');
             // Create user using the User class from window.App
             window.App.State.user = new User(fname, lname, email);
-            window.App.State.changeMainTemplate(window.App.Templates.BLACKHOLE);
+            window.App.State.changeNextTemplate(window.App.Templates.BLACKHOLE);
         })
     }
 
@@ -67,16 +79,21 @@ class SignInTemplate extends Template {
     }
 }
 
-class CategoriesTemplate extends Template {
+class CategoriesTemplate extends Template 
+{
 
-    categoryElements;
-
-    constructor(templateId) {
+    constructor(templateId) 
+    {
         super(templateId);
     }
 
+<<<<<<< HEAD
     // this will get the id of whichever category is clicked - use it for club selection page? 
     // (maybe save in app state)
+=======
+    setupEventListeners() 
+    {
+>>>>>>> main
 
     //TODO: clean up var names so it's not me being a fake gangsta
     setupEventListeners() {
@@ -88,16 +105,18 @@ class CategoriesTemplate extends Template {
         })
     }
 
-    setupElements() {
-        const Categories = window.App.Categories;
-        for (var i = 0; i < Categories.length; i++) {
+    setupElements() 
+    {
 
+        const Categories = window.App.Categories;
+        for (var i = 0; i < Categories.length; i++) 
+        {
             const category = Categories[i];
 
             // Get the template content and create a new element from it
             const templateHtml = $('#category-template').html();
             const newCategory = $(templateHtml);
-            
+
             // Set the attributes and text
             newCategory.attr('id', category.id);
             newCategory.find('.category-name').text(category.name);
@@ -109,6 +128,7 @@ class CategoriesTemplate extends Template {
     }
 }
 
+<<<<<<< HEAD
 class ClubsTemplate extends Template {
 
     clubsElements;
@@ -142,4 +162,22 @@ class ClubsTemplate extends Template {
         }
     }
 
+=======
+class ScrollingTemplate extends Template 
+{
+    constructor(templateId)
+    {
+        super(templateId);
+    }
+
+    setupElements()
+    {
+
+    }
+
+    setupEventListeners()
+    {
+
+    }
+>>>>>>> main
 }
