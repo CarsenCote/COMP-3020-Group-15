@@ -87,13 +87,8 @@ class CategoriesTemplate extends Template
         super(templateId);
     }
 
-<<<<<<< HEAD
     // this will get the id of whichever category is clicked - use it for club selection page? 
     // (maybe save in app state)
-=======
-    setupEventListeners() 
-    {
->>>>>>> main
 
     //TODO: clean up var names so it's not me being a fake gangsta
     setupEventListeners() {
@@ -128,7 +123,6 @@ class CategoriesTemplate extends Template
     }
 }
 
-<<<<<<< HEAD
 class ClubsTemplate extends Template {
 
     clubsElements;
@@ -162,22 +156,4 @@ class ClubsTemplate extends Template {
         }
     }
 
-=======
-class ScrollingTemplate extends Template 
-{
-    constructor(templateId)
-    {
-        super(templateId);
-    }
-
-    setupElements()
-    {
-
-    }
-
-    setupEventListeners()
-    {
-
-    }
->>>>>>> main
 }
