@@ -138,20 +138,24 @@ class ClubsTemplate extends Template {
     setupElements() {
         const currentCategory = window.App.State.categorySelected;
         const Clubs = window.App.Clubs;
-        for(var i=0; i<Clubs.length; i++){
-            const club = Clubs[i];
-            if(club.categoryId == currentCategory)
+        for(var clubIndex=0; clubIndex<Clubs.length; clubIndex++){
+            const club = Clubs[clubIndex];
+            const categories = club.categories;
+            for(var categoryIndex = 0 ; categoryIndex<categories.length ; categoryIndex++)
             {
-                // Get the template content and create a new element from it
-                const templateHtml = $('#club-select-template').html();
-                const newClub = $(templateHtml);
-                
-                // Set the attributes and text
-                newClub.attr('id', club.id);
-                newClub.find('.club-name').text(club.name);
-                newClub.find('.club-description').text(club.description);
-                // Append the new category element
-                $('#clubs-container').append(newClub);
+                if(club.categories[categoryIndex].category_id == currentCategory)
+                {
+                    // Get the template content and create a new element from it
+                    const templateHtml = $('#club-select-template').html();
+                    const newClub = $(templateHtml);
+                    
+                    // Set the attributes and text
+                    newClub.attr('id', club.id);
+                    newClub.find('.club-name').text(club.name);
+                    newClub.find('.club-description').text(club.description);
+                    // Append the new category element
+                    $('#clubs-container').append(newClub);
+                }
             }
         }
     }
