@@ -76,5 +76,5 @@
 
 .category-img {
     flex-shrink: 1;
-    width: 8vw;
+    max-width: 8vw;
 }
