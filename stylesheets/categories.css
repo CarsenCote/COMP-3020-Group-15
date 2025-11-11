@@ -58,6 +58,7 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     margin-top: 20px;
+    font-size: 1vw;
     text-align: center;
 }
 
@@ -66,9 +67,9 @@
     font-family: 'Montserrat', sans-serif;
     visibility: hidden;
     text-wrap: 1;
-    max-width: 80%;
-    font-size: small;
+    max-width: 90%;
     text-align: center;
+    font-size: 0.7vw;
     text-justify: distribute-all-lines;
     margin: 0;
     max-height: 0;
