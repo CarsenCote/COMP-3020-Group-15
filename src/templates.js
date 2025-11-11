@@ -96,7 +96,7 @@ class CategoriesTemplate extends Template
             var anotha = $(this).attr("id");
             //alert("clicked a category " + anotha);
             window.App.State.categorySelected = anotha;
-            window.App.State.changeMainTemplate(window.App.Templates.CLUBS)
+            window.App.State.changeNextTemplate(window.App.Templates.CLUBS)
         })
     }
 
