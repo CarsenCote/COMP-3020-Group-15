@@ -84,13 +84,8 @@ window.App =
         CATEGORIES: CATEGORIES_TEMPLATE,
         CLUBS: CLUBS_TEMPLATE
     },
-<<<<<<< HEAD
-    Categories: CATEGORIES,
-    Clubs: CLUBS
-=======
     Categories: CATEGORIES_DATA,
     Clubs: CLUBS_DATA,
->>>>>>> main
 }
 
 
