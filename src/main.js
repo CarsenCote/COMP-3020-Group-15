@@ -3,6 +3,7 @@ const BLACKHOLE_TEMPLATE = new BlackHoleTemplate('blackhole-template');
 const CATEGORIES_TEMPLATE = new CategoriesTemplate('categories-template');
 const SIGNIN_TEMPLATE = new SignInTemplate('signin-template');
 const CLUBS_TEMPLATE = new ClubsTemplate('clubs-template');
+const DASHBOARD_TEMPLATE = new DashboardTemplate('user-dashboard-template');
 
 class AppState 
 {
@@ -39,9 +40,12 @@ class AppState
 
     static changeTemplate(template)
     {
-        if(template != SIGNIN_TEMPLATE)
+        if(template != SIGNIN_TEMPLATE && template != DASHBOARD_TEMPLATE)
         {
             $('#home-button').css('visibility', 'visible');
+        }
+        else if(template == DASHBOARD_TEMPLATE){
+            $('#home-button').css('visibility', 'hidden');
         }
 
         AppState.currentTemplate = template;
@@ -55,6 +59,11 @@ $(function ()
     $('#back-button').on('click', function()
     {
         AppState.changePreviousTemplate();
+    })
+
+    $('#home-button').on('click', function ()
+    {
+        AppState.changeNextTemplate(DASHBOARD_TEMPLATE);
     })
 
     AppState.changeNextTemplate(SIGNIN_TEMPLATE);
@@ -82,7 +91,8 @@ window.App =
         BLACKHOLE: BLACKHOLE_TEMPLATE,
         SIGNIN: SIGNIN_TEMPLATE,
         CATEGORIES: CATEGORIES_TEMPLATE,
-        CLUBS: CLUBS_TEMPLATE
+        CLUBS: CLUBS_TEMPLATE,
+        DASHBOARD: DASHBOARD_TEMPLATE
     },
     Categories: CATEGORIES_DATA,
     Clubs: CLUBS_DATA,

@@ -1,0 +1,22 @@
+.dashboard-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.joined-clubs-title {
+    color: rgb(255, 255, 255);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2em;
+}
+
+.explore-clubs-button {
+    background-color: rgb(212, 212, 212);
+    border-radius: 40px;
+}
+
+.user-name-container {
+    color: rgb(255, 255, 255);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5em;
+}

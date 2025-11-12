@@ -112,3 +112,36 @@
         <p class="club-description"></p>
     </div>
 </script>
+
+<!--User Dashboard Template-->
+<script id="user-dashboard-template" type="text/template">
+    <link rel="stylesheet" href="./stylesheets/dashboard.css">
+    <div class="dashboard-page-container">
+        <div class="joined-clubs-section">
+            <p class="joined-clubs-title">Joined Clubs</p>
+            <div id="joined-clubs-container"></div>
+            <div class="explore-clubs-button">Explore Clubs</div>
+        </div>
+        <div class="user-calendar-container">
+            
+        </div>
+        <div class="user-name-container">
+            <div id="user-name">
+                <p class="user-name"></p>
+            </div>
+            <!--add log out button here? will need to redirect to sign in page and wipe any global vars-->
+        </div>
+        <div class="user-feed-container">
+            
+        </div>
+
+    </div>
+</script>
+
+<!--User's Joined Club Template-->
+<!--(inject this script into element with id joined-clubs-container)-->
+<script id="joined-club-template" type="text/template">
+    <div class="joined-club">
+        <p class="club-name"></p>
+    </div>
+</script>

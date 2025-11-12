@@ -159,5 +159,27 @@ class ClubsTemplate extends Template {
             }
         }
     }
+}
 
+class DashboardTemplate extends Template {
+    dashboardElements;
+
+    constructor(templateId) {
+        super(templateId);
+    }
+
+    setupEventListeners() {
+
+    }
+
+    setupElements() {
+        // hopefully this works? lol
+        const user = window.App.State.user;
+        const name = user.firstName + " " + user.lastName;
+        
+        const dashboardHtml = $('#user-dashboard-template');
+        const dashboardName = $(dashboardHtml);
+
+        dashboardName.find('.user-name').text(name);
+    }
 }
