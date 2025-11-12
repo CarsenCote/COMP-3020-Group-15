@@ -131,8 +131,13 @@ class ClubsTemplate extends Template {
         super(templateId);
     }
 
-    setupEventListeners() {
-
+    setupEventListeners() { //Shelby - not sure if this is working correctly, havent tried to grab club name in clubspage yet
+        $('.club').on('click', function () { //keep the variable names i love it
+            var anotha = $(this).attr("id");
+            //alert("clicked a club " + anotha);
+            window.App.State.clubSelected = anotha;
+            window.App.State.changeNextTemplate(window.App.Templates.CLUBSPAGE)
+        })
     }
 
     setupElements() {
@@ -159,5 +164,30 @@ class ClubsTemplate extends Template {
             }
         }
     }
-
 }
+
+
+class ClubsPageTemplate extends Template {
+
+    clubspageElements;
+
+    constructor(templateId) {
+        super(templateId);
+    }
+
+    setupEventListeners() {
+        //join, add event, reply to posts buttons here
+
+        $('.join-btn').on('click', function () { //join button not working
+            alert("You've joined the club!");
+        })
+
+
+    }
+
+    setupElements() {     
+        //code here to add club name?
+    }
+}
+    
+
