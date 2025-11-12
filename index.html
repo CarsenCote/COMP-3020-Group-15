@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="./stylesheets/styles.css">
     <!--Library imports-->
     <script src="./libraries/jquery-3.7.1.min.js"></script>
-    <script src="./libraries/js-yaml.min.js"></script>
 
     <!--Script imports-->
-    <script src="./src/user.js"></script>
+    <script src="./src/categories-data.js"></script>
+    <script src="./src/clubs-data.js"></script>
     <script src="./src/templates.js"></script>
     <script src="./src/main.js"></script>
 
@@ -21,21 +21,23 @@
 </head>
 
 <body>
+    <div class="nav-bar">
+        <div class="nav-button" id="back-button">
+            <img class="nav-button-img" src="./public/star.png" draggable="false">
+        </div>
+        <div class="nav-button" id="home-button">
+            <img class="nav-button-img" src="./public/home.png" draggable="false">
+        </div>
+    </div>
+    
     <main class="main" id="main">
     </main>
 </body>
 
 </html>
 
-<!--Blackhole Screen Template-->
-<script id="blackhole-template" type="text/template">
-    <link rel="stylesheet" href = "./stylesheets/blackhole.css">
-    <div class="blackhole-container">
-        <img class="blackhole" src="./public/blackhole.png"/>
-            <p class="blackhole-title">Explore</p>
-        <img/>
-    </div>
-</script>
+<!--Back Button Template-->
+
 
 <!--Sign In/Sign Up Screen Template-->
 <script id="signin-template" type="text/template">
@@ -64,6 +66,16 @@
     </div>
 </script>
 
+<!--Blackhole Screen Template-->
+<script id="blackhole-template" type="text/template">
+    <link rel="stylesheet" href = "./stylesheets/blackhole.css">
+    <div class="blackhole-container">
+        <img class="blackhole" src="./public/blackhole.png"/>
+            <p class="blackhole-title">Explore</p>
+        <img/>
+    </div>
+</script>
+
 <!--Categories Screen Template-->
 <script id="categories-template" type="text/template">
     <link rel="stylesheet" href="./stylesheets/categories.css">
@@ -76,8 +88,27 @@
 
 <!--Category Template-->
 <script id="category-template" type="text/template">
-    <div>
-        <p id="category-name"></p>
-        <p id="category-description"></p>
+    <div class="category">
+        <p class="category-name"></p>
+        <p class="category-description"></p>
+        <img class="category-img" draggable="false">
+    </div>
+</script>
+
+<!--Clubs Screen Template-->
+<script id="clubs-template" type="text/template">
+    <link rel="stylesheet" href="./stylesheets/clubs.css">
+    <div class="clubs-page-container">
+        <p class="clubs-title">Select a club to learn more</p>
+        <div id="clubs-container">
+        </div>
+    </div>
+</script>
+
+<!--Club Select Template-->
+<script id="club-select-template" type="text/template">
+    <div class="club">
+        <p class="club-name"></p>
+        <p class="club-description"></p>
     </div>
 </script>
