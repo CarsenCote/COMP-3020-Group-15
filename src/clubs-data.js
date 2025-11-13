@@ -1,14 +1,15 @@
 const CLUBS_DATA = [
     {
-        "id": "engineering-society",
+        "id": 0,
         "name": "Engineering Society",
+        "slug": "engineering-society",
         "description": "Engineering Society is a student organization focused on academic professional and related interests.",
         "categories": [
             {
-                "category_id": "academic-professional"
+                "slug": "academic-professional"
             },
             {
-                "category_id": "technology-innovation"
+                "slug": "technology-innovation"
             }
         ],
         "posts": [
@@ -28,15 +29,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "economics-club",
+        "id": 1,
         "name": "Economics Club",
+        "slug": "economics-club",
         "description": "Economics Club is a student organization focused on academic professional and related interests.",
         "categories": [
             {
-                "category_id": "academic-professional"
+                "slug": "academic-professional"
             },
             {
-                "category_id": "technology-innovation"
+                "slug": "technology-innovation"
             }
         ],
         "posts": [
@@ -56,15 +58,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "pre-med-association",
+        "id": 2,
         "name": "Pre-Med Association",
+        "slug": "pre-med-association",
         "description": "Pre-Med Association is a student organization focused on academic professional and related interests.",
         "categories": [
             {
-                "category_id": "academic-professional"
+                "slug": "academic-professional"
             },
             {
-                "category_id": "technology-innovation"
+                "slug": "technology-innovation"
             }
         ],
         "posts": [
@@ -84,15 +87,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "math-circle",
+        "id": 3,
         "name": "Math Circle",
+        "slug": "math-circle",
         "description": "Math Circle is a student organization focused on academic professional and related interests.",
         "categories": [
             {
-                "category_id": "academic-professional"
+                "slug": "academic-professional"
             },
             {
-                "category_id": "technology-innovation"
+                "slug": "technology-innovation"
             }
         ],
         "posts": [
@@ -112,15 +116,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "philosophy-forum",
+        "id": 4,
         "name": "Philosophy Forum",
+        "slug": "philosophy-forum",
         "description": "Philosophy Forum is a student organization focused on academic professional and related interests.",
         "categories": [
             {
-                "category_id": "academic-professional"
+                "slug": "academic-professional"
             },
             {
-                "category_id": "technology-innovation"
+                "slug": "technology-innovation"
             }
         ],
         "posts": [
@@ -140,15 +145,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "latin-american-student-association",
+        "id": 5,
         "name": "Latin American Student Association",
+        "slug": "latin-american-student-association",
         "description": "Latin American Student Association is a student organization focused on cultural international and related interests.",
         "categories": [
             {
-                "category_id": "cultural-international"
+                "slug": "cultural-international"
             },
             {
-                "category_id": "social-networking"
+                "slug": "social-networking"
             }
         ],
         "posts": [
@@ -168,15 +174,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "asian-cultural-union",
+        "id": 6,
         "name": "Asian Cultural Union",
+        "slug": "asian-cultural-union",
         "description": "Asian Cultural Union is a student organization focused on cultural international and related interests.",
         "categories": [
             {
-                "category_id": "cultural-international"
+                "slug": "cultural-international"
             },
             {
-                "category_id": "social-networking"
+                "slug": "social-networking"
             }
         ],
         "posts": [
@@ -196,15 +203,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "african-students-organization",
+        "id": 7,
         "name": "African Students Organization",
+        "slug": "african-students-organization",
         "description": "African Students Organization is a student organization focused on cultural international and related interests.",
         "categories": [
             {
-                "category_id": "cultural-international"
+                "slug": "cultural-international"
             },
             {
-                "category_id": "social-networking"
+                "slug": "social-networking"
             }
         ],
         "posts": [
@@ -224,15 +232,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "french-club",
+        "id": 8,
         "name": "French Club",
+        "slug": "french-club",
         "description": "French Club is a student organization focused on cultural international and related interests.",
         "categories": [
             {
-                "category_id": "cultural-international"
+                "slug": "cultural-international"
             },
             {
-                "category_id": "social-networking"
+                "slug": "social-networking"
             }
         ],
         "posts": [
@@ -252,15 +261,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "german-language-circle",
+        "id": 9,
         "name": "German Language Circle",
+        "slug": "german-language-circle",
         "description": "German Language Circle is a student organization focused on cultural international and related interests.",
         "categories": [
             {
-                "category_id": "cultural-international"
+                "slug": "cultural-international"
             },
             {
-                "category_id": "social-networking"
+                "slug": "social-networking"
             }
         ],
         "posts": [
@@ -280,15 +290,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "theatre-troupe",
+        "id": 10,
         "name": "Theatre Troupe",
+        "slug": "theatre-troupe",
         "description": "Theatre Troupe is a student organization focused on arts performance and related interests.",
         "categories": [
             {
-                "category_id": "arts-performance"
+                "slug": "arts-performance"
             },
             {
-                "category_id": "social-networking"
+                "slug": "social-networking"
             }
         ],
         "posts": [
@@ -308,15 +319,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "dance-collective",
+        "id": 11,
         "name": "Dance Collective",
+        "slug": "dance-collective",
         "description": "Dance Collective is a student organization focused on arts performance and related interests.",
         "categories": [
             {
-                "category_id": "arts-performance"
+                "slug": "arts-performance"
             },
             {
-                "category_id": "social-networking"
+                "slug": "social-networking"
             }
         ],
         "posts": [
@@ -336,15 +348,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "photography-society",
+        "id": 12,
         "name": "Photography Society",
+        "slug": "photography-society",
         "description": "Photography Society is a student organization focused on arts performance and related interests.",
         "categories": [
             {
-                "category_id": "arts-performance"
+                "slug": "arts-performance"
             },
             {
-                "category_id": "social-networking"
+                "slug": "social-networking"
             }
         ],
         "posts": [
@@ -364,15 +377,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "film-club",
+        "id": 13,
         "name": "Film Club",
+        "slug": "film-club",
         "description": "Film Club is a student organization focused on arts performance and related interests.",
         "categories": [
             {
-                "category_id": "arts-performance"
+                "slug": "arts-performance"
             },
             {
-                "category_id": "social-networking"
+                "slug": "social-networking"
             }
         ],
         "posts": [
@@ -392,15 +406,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "music-ensemble",
+        "id": 14,
         "name": "Music Ensemble",
+        "slug": "music-ensemble",
         "description": "Music Ensemble is a student organization focused on arts performance and related interests.",
         "categories": [
             {
-                "category_id": "arts-performance"
+                "slug": "arts-performance"
             },
             {
-                "category_id": "social-networking"
+                "slug": "social-networking"
             }
         ],
         "posts": [
@@ -420,15 +435,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "coding-club",
+        "id": 15,
         "name": "Coding Club",
+        "slug": "coding-club",
         "description": "Coding Club is a student organization focused on technology innovation and related interests.",
         "categories": [
             {
-                "category_id": "technology-innovation"
+                "slug": "technology-innovation"
             },
             {
-                "category_id": "academic-professional"
+                "slug": "academic-professional"
             }
         ],
         "posts": [
@@ -448,15 +464,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "ai-society",
+        "id": 16,
         "name": "AI Society",
+        "slug": "ai-society",
         "description": "AI Society is a student organization focused on technology innovation and related interests.",
         "categories": [
             {
-                "category_id": "technology-innovation"
+                "slug": "technology-innovation"
             },
             {
-                "category_id": "academic-professional"
+                "slug": "academic-professional"
             }
         ],
         "posts": [
@@ -476,15 +493,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "cybersecurity-guild",
+        "id": 17,
         "name": "Cybersecurity Guild",
+        "slug": "cybersecurity-guild",
         "description": "Cybersecurity Guild is a student organization focused on technology innovation and related interests.",
         "categories": [
             {
-                "category_id": "technology-innovation"
+                "slug": "technology-innovation"
             },
             {
-                "category_id": "academic-professional"
+                "slug": "academic-professional"
             }
         ],
         "posts": [
@@ -504,15 +522,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "robotics-team",
+        "id": 18,
         "name": "Robotics Team",
+        "slug": "robotics-team",
         "description": "Robotics Team is a student organization focused on technology innovation and related interests.",
         "categories": [
             {
-                "category_id": "technology-innovation"
+                "slug": "technology-innovation"
             },
             {
-                "category_id": "academic-professional"
+                "slug": "academic-professional"
             }
         ],
         "posts": [
@@ -532,15 +551,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "blockchain-group",
+        "id": 19,
         "name": "Blockchain Group",
+        "slug": "blockchain-group",
         "description": "Blockchain Group is a student organization focused on technology innovation and related interests.",
         "categories": [
             {
-                "category_id": "technology-innovation"
+                "slug": "technology-innovation"
             },
             {
-                "category_id": "academic-professional"
+                "slug": "academic-professional"
             }
         ],
         "posts": [
@@ -560,15 +580,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "climbing-club",
+        "id": 20,
         "name": "Climbing Club",
+        "slug": "climbing-club",
         "description": "Climbing Club is a student organization focused on sports recreation and related interests.",
         "categories": [
             {
-                "category_id": "sports-recreation"
+                "slug": "sports-recreation"
             },
             {
-                "category_id": "health-wellness"
+                "slug": "health-wellness"
             }
         ],
         "posts": [
@@ -588,15 +609,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "soccer-league",
+        "id": 21,
         "name": "Soccer League",
+        "slug": "soccer-league",
         "description": "Soccer League is a student organization focused on sports recreation and related interests.",
         "categories": [
             {
-                "category_id": "sports-recreation"
+                "slug": "sports-recreation"
             },
             {
-                "category_id": "health-wellness"
+                "slug": "health-wellness"
             }
         ],
         "posts": [
@@ -616,15 +638,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "basketball-association",
+        "id": 22,
         "name": "Basketball Association",
+        "slug": "basketball-association",
         "description": "Basketball Association is a student organization focused on sports recreation and related interests.",
         "categories": [
             {
-                "category_id": "sports-recreation"
+                "slug": "sports-recreation"
             },
             {
-                "category_id": "health-wellness"
+                "slug": "health-wellness"
             }
         ],
         "posts": [
@@ -644,15 +667,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "esports-team",
+        "id": 23,
         "name": "Esports Team",
+        "slug": "esports-team",
         "description": "Esports Team is a student organization focused on sports recreation and related interests.",
         "categories": [
             {
-                "category_id": "sports-recreation"
+                "slug": "sports-recreation"
             },
             {
-                "category_id": "health-wellness"
+                "slug": "health-wellness"
             }
         ],
         "posts": [
@@ -672,15 +696,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "running-collective",
+        "id": 24,
         "name": "Running Collective",
+        "slug": "running-collective",
         "description": "Running Collective is a student organization focused on sports recreation and related interests.",
         "categories": [
             {
-                "category_id": "sports-recreation"
+                "slug": "sports-recreation"
             },
             {
-                "category_id": "health-wellness"
+                "slug": "health-wellness"
             }
         ],
         "posts": [
@@ -700,15 +725,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "habitat-for-humanity-chapter",
+        "id": 25,
         "name": "Habitat for Humanity Chapter",
+        "slug": "habitat-for-humanity-chapter",
         "description": "Habitat for Humanity Chapter is a student organization focused on volunteering community and related interests.",
         "categories": [
             {
-                "category_id": "volunteering-community"
+                "slug": "volunteering-community"
             },
             {
-                "category_id": "sustainability-environment"
+                "slug": "sustainability-environment"
             }
         ],
         "posts": [
@@ -728,15 +754,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "food-bank-volunteers",
+        "id": 26,
         "name": "Food Bank Volunteers",
+        "slug": "food-bank-volunteers",
         "description": "Food Bank Volunteers is a student organization focused on volunteering community and related interests.",
         "categories": [
             {
-                "category_id": "volunteering-community"
+                "slug": "volunteering-community"
             },
             {
-                "category_id": "sustainability-environment"
+                "slug": "sustainability-environment"
             }
         ],
         "posts": [
@@ -756,15 +783,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "community-tutoring",
+        "id": 27,
         "name": "Community Tutoring",
+        "slug": "community-tutoring",
         "description": "Community Tutoring is a student organization focused on volunteering community and related interests.",
         "categories": [
             {
-                "category_id": "volunteering-community"
+                "slug": "volunteering-community"
             },
             {
-                "category_id": "sustainability-environment"
+                "slug": "sustainability-environment"
             }
         ],
         "posts": [
@@ -784,15 +812,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "youth-mentorship-program",
+        "id": 28,
         "name": "Youth Mentorship Program",
+        "slug": "youth-mentorship-program",
         "description": "Youth Mentorship Program is a student organization focused on volunteering community and related interests.",
         "categories": [
             {
-                "category_id": "volunteering-community"
+                "slug": "volunteering-community"
             },
             {
-                "category_id": "sustainability-environment"
+                "slug": "sustainability-environment"
             }
         ],
         "posts": [
@@ -812,15 +841,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "campus-cleanup-crew",
+        "id": 29,
         "name": "Campus Cleanup Crew",
+        "slug": "campus-cleanup-crew",
         "description": "Campus Cleanup Crew is a student organization focused on volunteering community and related interests.",
         "categories": [
             {
-                "category_id": "volunteering-community"
+                "slug": "volunteering-community"
             },
             {
-                "category_id": "sustainability-environment"
+                "slug": "sustainability-environment"
             }
         ],
         "posts": [
@@ -840,15 +870,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "meditation-circle",
+        "id": 30,
         "name": "Meditation Circle",
+        "slug": "meditation-circle",
         "description": "Meditation Circle is a student organization focused on health wellness and related interests.",
         "categories": [
             {
-                "category_id": "health-wellness"
+                "slug": "health-wellness"
             },
             {
-                "category_id": "sports-recreation"
+                "slug": "sports-recreation"
             }
         ],
         "posts": [
@@ -868,15 +899,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "yoga-club",
+        "id": 31,
         "name": "Yoga Club",
+        "slug": "yoga-club",
         "description": "Yoga Club is a student organization focused on health wellness and related interests.",
         "categories": [
             {
-                "category_id": "health-wellness"
+                "slug": "health-wellness"
             },
             {
-                "category_id": "sports-recreation"
+                "slug": "sports-recreation"
             }
         ],
         "posts": [
@@ -896,15 +928,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "nutrition-society",
+        "id": 32,
         "name": "Nutrition Society",
+        "slug": "nutrition-society",
         "description": "Nutrition Society is a student organization focused on health wellness and related interests.",
         "categories": [
             {
-                "category_id": "health-wellness"
+                "slug": "health-wellness"
             },
             {
-                "category_id": "sports-recreation"
+                "slug": "sports-recreation"
             }
         ],
         "posts": [
@@ -924,15 +957,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "mental-health-alliance",
+        "id": 33,
         "name": "Mental Health Alliance",
+        "slug": "mental-health-alliance",
         "description": "Mental Health Alliance is a student organization focused on health wellness and related interests.",
         "categories": [
             {
-                "category_id": "health-wellness"
+                "slug": "health-wellness"
             },
             {
-                "category_id": "sports-recreation"
+                "slug": "sports-recreation"
             }
         ],
         "posts": [
@@ -952,15 +986,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "wellness-ambassadors",
+        "id": 34,
         "name": "Wellness Ambassadors",
+        "slug": "wellness-ambassadors",
         "description": "Wellness Ambassadors is a student organization focused on health wellness and related interests.",
         "categories": [
             {
-                "category_id": "health-wellness"
+                "slug": "health-wellness"
             },
             {
-                "category_id": "sports-recreation"
+                "slug": "sports-recreation"
             }
         ],
         "posts": [
@@ -980,15 +1015,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "board-games-society",
+        "id": 35,
         "name": "Board Games Society",
+        "slug": "board-games-society",
         "description": "Board Games Society is a student organization focused on social networking and related interests.",
         "categories": [
             {
-                "category_id": "social-networking"
+                "slug": "social-networking"
             },
             {
-                "category_id": "arts-performance"
+                "slug": "arts-performance"
             }
         ],
         "posts": [
@@ -1008,15 +1044,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "student-networking-association",
+        "id": 36,
         "name": "Student Networking Association",
+        "slug": "student-networking-association",
         "description": "Student Networking Association is a student organization focused on social networking and related interests.",
         "categories": [
             {
-                "category_id": "social-networking"
+                "slug": "social-networking"
             },
             {
-                "category_id": "arts-performance"
+                "slug": "arts-performance"
             }
         ],
         "posts": [
@@ -1036,15 +1073,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "coffee-chat-club",
+        "id": 37,
         "name": "Coffee Chat Club",
+        "slug": "coffee-chat-club",
         "description": "Coffee Chat Club is a student organization focused on social networking and related interests.",
         "categories": [
             {
-                "category_id": "social-networking"
+                "slug": "social-networking"
             },
             {
-                "category_id": "arts-performance"
+                "slug": "arts-performance"
             }
         ],
         "posts": [
@@ -1064,15 +1102,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "outdoor-adventures-group",
+        "id": 38,
         "name": "Outdoor Adventures Group",
+        "slug": "outdoor-adventures-group",
         "description": "Outdoor Adventures Group is a student organization focused on social networking and related interests.",
         "categories": [
             {
-                "category_id": "social-networking"
+                "slug": "social-networking"
             },
             {
-                "category_id": "arts-performance"
+                "slug": "arts-performance"
             }
         ],
         "posts": [
@@ -1092,15 +1131,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "book-discussion-circle",
+        "id": 39,
         "name": "Book Discussion Circle",
+        "slug": "book-discussion-circle",
         "description": "Book Discussion Circle is a student organization focused on social networking and related interests.",
         "categories": [
             {
-                "category_id": "social-networking"
+                "slug": "social-networking"
             },
             {
-                "category_id": "arts-performance"
+                "slug": "arts-performance"
             }
         ],
         "posts": [
@@ -1120,15 +1160,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "green-campus-initiative",
+        "id": 40,
         "name": "Green Campus Initiative",
+        "slug": "green-campus-initiative",
         "description": "Green Campus Initiative is a student organization focused on sustainability environment and related interests.",
         "categories": [
             {
-                "category_id": "sustainability-environment"
+                "slug": "sustainability-environment"
             },
             {
-                "category_id": "volunteering-community"
+                "slug": "volunteering-community"
             }
         ],
         "posts": [
@@ -1148,15 +1189,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "environmental-action-group",
+        "id": 41,
         "name": "Environmental Action Group",
+        "slug": "environmental-action-group",
         "description": "Environmental Action Group is a student organization focused on sustainability environment and related interests.",
         "categories": [
             {
-                "category_id": "sustainability-environment"
+                "slug": "sustainability-environment"
             },
             {
-                "category_id": "volunteering-community"
+                "slug": "volunteering-community"
             }
         ],
         "posts": [
@@ -1176,15 +1218,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "recycling-coalition",
+        "id": 42,
         "name": "Recycling Coalition",
+        "slug": "recycling-coalition",
         "description": "Recycling Coalition is a student organization focused on sustainability environment and related interests.",
         "categories": [
             {
-                "category_id": "sustainability-environment"
+                "slug": "sustainability-environment"
             },
             {
-                "category_id": "volunteering-community"
+                "slug": "volunteering-community"
             }
         ],
         "posts": [
@@ -1204,15 +1247,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "climate-action-network",
+        "id": 43,
         "name": "Climate Action Network",
+        "slug": "climate-action-network",
         "description": "Climate Action Network is a student organization focused on sustainability environment and related interests.",
         "categories": [
             {
-                "category_id": "sustainability-environment"
+                "slug": "sustainability-environment"
             },
             {
-                "category_id": "volunteering-community"
+                "slug": "volunteering-community"
             }
         ],
         "posts": [
@@ -1232,15 +1276,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "sustainable-living-club",
+        "id": 44,
         "name": "Sustainable Living Club",
+        "slug": "sustainable-living-club",
         "description": "Sustainable Living Club is a student organization focused on sustainability environment and related interests.",
         "categories": [
             {
-                "category_id": "sustainability-environment"
+                "slug": "sustainability-environment"
             },
             {
-                "category_id": "volunteering-community"
+                "slug": "volunteering-community"
             }
         ],
         "posts": [
@@ -1260,15 +1305,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "student-union",
+        "id": 45,
         "name": "Student Union",
+        "slug": "student-union",
         "description": "Student Union is a student organization focused on governance advocacy and related interests.",
         "categories": [
             {
-                "category_id": "governance-advocacy"
+                "slug": "governance-advocacy"
             },
             {
-                "category_id": "academic-professional"
+                "slug": "academic-professional"
             }
         ],
         "posts": [
@@ -1288,15 +1334,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "model-united-nations",
+        "id": 46,
         "name": "Model United Nations",
+        "slug": "model-united-nations",
         "description": "Model United Nations is a student organization focused on governance advocacy and related interests.",
         "categories": [
             {
-                "category_id": "governance-advocacy"
+                "slug": "governance-advocacy"
             },
             {
-                "category_id": "academic-professional"
+                "slug": "academic-professional"
             }
         ],
         "posts": [
@@ -1316,15 +1363,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "political-science-society",
+        "id": 47,
         "name": "Political Science Society",
+        "slug": "political-science-society",
         "description": "Political Science Society is a student organization focused on governance advocacy and related interests.",
         "categories": [
             {
-                "category_id": "governance-advocacy"
+                "slug": "governance-advocacy"
             },
             {
-                "category_id": "academic-professional"
+                "slug": "academic-professional"
             }
         ],
         "posts": [
@@ -1344,15 +1392,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "human-rights-advocates",
+        "id": 48,
         "name": "Human Rights Advocates",
+        "slug": "human-rights-advocates",
         "description": "Human Rights Advocates is a student organization focused on governance advocacy and related interests.",
         "categories": [
             {
-                "category_id": "governance-advocacy"
+                "slug": "governance-advocacy"
             },
             {
-                "category_id": "academic-professional"
+                "slug": "academic-professional"
             }
         ],
         "posts": [
@@ -1372,15 +1421,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "debate-council",
+        "id": 49,
         "name": "Debate Council",
+        "slug": "debate-council",
         "description": "Debate Council is a student organization focused on governance advocacy and related interests.",
         "categories": [
             {
-                "category_id": "governance-advocacy"
+                "slug": "governance-advocacy"
             },
             {
-                "category_id": "academic-professional"
+                "slug": "academic-professional"
             }
         ],
         "posts": [
@@ -1400,15 +1450,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "entrepreneurship-hub",
+        "id": 50,
         "name": "Entrepreneurship Hub",
+        "slug": "entrepreneurship-hub",
         "description": "Entrepreneurship Hub is a student organization focused on technology innovation, academic professional.",
         "categories": [
             {
-                "category_id": "technology-innovation"
+                "slug": "technology-innovation"
             },
             {
-                "category_id": "academic-professional"
+                "slug": "academic-professional"
             }
         ],
         "posts": [
@@ -1428,15 +1479,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "women-in-stem",
+        "id": 51,
         "name": "Women in STEM",
+        "slug": "women-in-stem",
         "description": "Women in STEM is a student organization focused on academic professional, governance advocacy.",
         "categories": [
             {
-                "category_id": "academic-professional"
+                "slug": "academic-professional"
             },
             {
-                "category_id": "governance-advocacy"
+                "slug": "governance-advocacy"
             }
         ],
         "posts": [
@@ -1456,15 +1508,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "outdoor-exploration-society",
+        "id": 52,
         "name": "Outdoor Exploration Society",
+        "slug": "outdoor-exploration-society",
         "description": "Outdoor Exploration Society is a student organization focused on sports recreation, social networking.",
         "categories": [
             {
-                "category_id": "sports-recreation"
+                "slug": "sports-recreation"
             },
             {
-                "category_id": "social-networking"
+                "slug": "social-networking"
             }
         ],
         "posts": [
@@ -1484,15 +1537,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "film-analysis-circle",
+        "id": 53,
         "name": "Film Analysis Circle",
+        "slug": "film-analysis-circle",
         "description": "Film Analysis Circle is a student organization focused on arts performance, academic professional.",
         "categories": [
             {
-                "category_id": "arts-performance"
+                "slug": "arts-performance"
             },
             {
-                "category_id": "academic-professional"
+                "slug": "academic-professional"
             }
         ],
         "posts": [
@@ -1512,15 +1566,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "lgbtq+-alliance",
+        "id": 54,
         "name": "LGBTQ+ Alliance",
+        "slug": "lgbtq-alliance",
         "description": "LGBTQ+ Alliance is a student organization focused on social networking, advocacy.",
         "categories": [
             {
-                "category_id": "social-networking"
+                "slug": "social-networking"
             },
             {
-                "category_id": "advocacy"
+                "slug": "advocacy"
             }
         ],
         "posts": [
@@ -1540,15 +1595,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "zero-waste-project",
+        "id": 55,
         "name": "Zero Waste Project",
+        "slug": "zero-waste-project",
         "description": "Zero Waste Project is a student organization focused on sustainability environment, volunteering community.",
         "categories": [
             {
-                "category_id": "sustainability-environment"
+                "slug": "sustainability-environment"
             },
             {
-                "category_id": "volunteering-community"
+                "slug": "volunteering-community"
             }
         ],
         "posts": [
@@ -1568,15 +1624,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "campus-blood-drive-team",
+        "id": 56,
         "name": "Campus Blood Drive Team",
+        "slug": "campus-blood-drive-team",
         "description": "Campus Blood Drive Team is a student organization focused on volunteering community, health wellness.",
         "categories": [
             {
-                "category_id": "volunteering-community"
+                "slug": "volunteering-community"
             },
             {
-                "category_id": "health-wellness"
+                "slug": "health-wellness"
             }
         ],
         "posts": [
@@ -1596,15 +1653,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "creative-writing-guild",
+        "id": 57,
         "name": "Creative Writing Guild",
+        "slug": "creative-writing-guild",
         "description": "Creative Writing Guild is a student organization focused on arts performance, academic professional.",
         "categories": [
             {
-                "category_id": "arts-performance"
+                "slug": "arts-performance"
             },
             {
-                "category_id": "academic-professional"
+                "slug": "academic-professional"
             }
         ],
         "posts": [
@@ -1624,15 +1682,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "tech-startups-club",
+        "id": 58,
         "name": "Tech Startups Club",
+        "slug": "tech-startups-club",
         "description": "Tech Startups Club is a student organization focused on technology innovation, academic professional.",
         "categories": [
             {
-                "category_id": "technology-innovation"
+                "slug": "technology-innovation"
             },
             {
-                "category_id": "academic-professional"
+                "slug": "academic-professional"
             }
         ],
         "posts": [
@@ -1652,15 +1711,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "global-affairs-roundtable",
+        "id": 59,
         "name": "Global Affairs Roundtable",
+        "slug": "global-affairs-roundtable",
         "description": "Global Affairs Roundtable is a student organization focused on governance advocacy, cultural international.",
         "categories": [
             {
-                "category_id": "governance-advocacy"
+                "slug": "governance-advocacy"
             },
             {
-                "category_id": "cultural-international"
+                "slug": "cultural-international"
             }
         ],
         "posts": [
@@ -1680,15 +1740,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "mental-fitness-initiative",
+        "id": 60,
         "name": "Mental Fitness Initiative",
+        "slug": "mental-fitness-initiative",
         "description": "Mental Fitness Initiative is a student organization focused on health wellness, sports recreation.",
         "categories": [
             {
-                "category_id": "health-wellness"
+                "slug": "health-wellness"
             },
             {
-                "category_id": "sports-recreation"
+                "slug": "sports-recreation"
             }
         ],
         "posts": [
@@ -1708,15 +1769,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "chess-and-strategy-club",
+        "id": 61,
         "name": "Chess and Strategy Club",
+        "slug": "chess-and-strategy-club",
         "description": "Chess and Strategy Club is a student organization focused on social networking, academic professional.",
         "categories": [
             {
-                "category_id": "social-networking"
+                "slug": "social-networking"
             },
             {
-                "category_id": "academic-professional"
+                "slug": "academic-professional"
             }
         ],
         "posts": [
@@ -1736,15 +1798,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "eco-fashion-collective",
+        "id": 62,
         "name": "Eco Fashion Collective",
+        "slug": "eco-fashion-collective",
         "description": "Eco Fashion Collective is a student organization focused on sustainability environment, arts performance.",
         "categories": [
             {
-                "category_id": "sustainability-environment"
+                "slug": "sustainability-environment"
             },
             {
-                "category_id": "arts-performance"
+                "slug": "arts-performance"
             }
         ],
         "posts": [
@@ -1764,15 +1827,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "gamers-for-charity",
+        "id": 63,
         "name": "Gamers for Charity",
+        "slug": "gamers-for-charity",
         "description": "Gamers for Charity is a student organization focused on sports recreation, volunteering community.",
         "categories": [
             {
-                "category_id": "sports-recreation"
+                "slug": "sports-recreation"
             },
             {
-                "category_id": "volunteering-community"
+                "slug": "volunteering-community"
             }
         ],
         "posts": [
@@ -1792,15 +1856,16 @@ const CLUBS_DATA = [
         ]
     },
     {
-        "id": "public-speaking-network",
+        "id": 64,
         "name": "Public Speaking Network",
+        "slug": "public-speaking-network",
         "description": "Public Speaking Network is a student organization focused on governance advocacy, social networking.",
         "categories": [
             {
-                "category_id": "governance-advocacy"
+                "slug": "governance-advocacy"
             },
             {
-                "category_id": "social-networking"
+                "slug": "social-networking"
             }
         ],
         "posts": [

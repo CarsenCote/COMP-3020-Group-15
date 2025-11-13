@@ -78,9 +78,8 @@ class CategoriesTemplate extends Template {
         // this event listener will run when a category element is clicked
         // grabs the id (category name) of the element to determine which category the user clicked
         $('.category').on('click', function () {
-            var categoryClicked = $(this).attr("id");
-            window.App.State.categorySelected = categoryClicked;
-            window.App.State.changeNextTemplate(window.App.Templates.CLUBS)
+            var categoryId = $(this).attr("id");
+            window.App.State.changeNextTemplate(window.App.Templates.CLUBS[categoryId])
         })
     }
 
@@ -88,10 +87,10 @@ class CategoriesTemplate extends Template {
         // set up the elements on the category selection screen based on what's in our json category-data
         // will run until all categories from our data have been made into their own element with a respective id, 
         // displayed name, description, and img
-        const Categories = window.App.Categories;
-        for (var i = 0; i < Categories.length; i++) 
+        const categories = window.App.Categories;
+        for (var i = 0; i < categories.length; i++) 
         {
-            const category = Categories[i];
+            const category = categories[i];
 
             // Get the template content and create a new element from it
             const templateHtml = $('#category-template').html();
@@ -101,42 +100,47 @@ class CategoriesTemplate extends Template {
             newCategory.attr('id', category.id);
             newCategory.find('.category-name').text(category.name);
             newCategory.find('.category-description').text(category.description);
-            newCategory.find('.category-img').attr('src', `./public/category-icons/${category.id}.png`);
+            newCategory.find('.category-img').attr('src', `./public/category-icons/${category.slug}.png`);
             // Append the new category element
             $('#categories-container').append(newCategory);
         }
     }
 }
 
-class ClubsTemplate extends Template {
+class ClubSelectTemplate extends Template 
+{
 
-    clubsElements;
+    categoryId;
+    categorySlug;
 
-    constructor(templateId) {
+    constructor(templateId, categoryId, categorySlug) 
+    {
         super(templateId);
+        this.categoryId = categoryId;
+        this.categorySlug = categorySlug;
     }
 
-    setupEventListeners() {
-        //TODO: test this works :)
+    setupEventListeners() 
+    {
         $('.club').on('click', function () {
-            var clubClicked = $(this).attr("id");
-            window.App.State.clubSelected = clubClicked;
-            window.App.State.changeNextTemplate(window.App.Templates.CLUBSPAGE)
+            var clubId = $(this).attr("id");
+            window.App.State.changeNextTemplate(window.App.Templates.CLUBSPAGES[clubId]);
         })
     }
 
-    setupElements() {
-        const currentCategory = window.App.State.categorySelected;
-        const Clubs = window.App.Clubs;
-        for(var clubIndex=0; clubIndex<Clubs.length; clubIndex++){
-            const club = Clubs[clubIndex];
+    setupElements() 
+    {
+        const clubs = window.App.Clubs;
+        for(var clubIndex=0; clubIndex<clubs.length; clubIndex++){
+            const club = clubs[clubIndex];
             const categories = club.categories;
             for(var categoryIndex = 0 ; categoryIndex<categories.length ; categoryIndex++)
             {
-                if(club.categories[categoryIndex].category_id == currentCategory)
+                var currentCategorySlug = categories[categoryIndex].slug;
+                if(this.categorySlug == currentCategorySlug)
                 {
                     // Get the template content and create a new element from it
-                    const templateHtml = $('#club-select-template').html();
+                    const templateHtml = $('#club-bubble-template').html();
                     const newClub = $(templateHtml);
                     
                     // Set the attributes and text
@@ -174,35 +178,34 @@ class DashboardTemplate extends Template {
 
         // display the user's name in the .user-name element from the dashboard template html
         dashboardName.find('.user-name').text(name);
-    }}
+    }
+}
 
 
-class ClubsPageTemplate extends Template {
+class ClubPageTemplate extends Template {
 
-    clubspageElements;
+    clubId;
+    clubSlug;
 
-    constructor(templateId) {
+    constructor(templateId, clubId, clubSlug) 
+    {
         super(templateId);
+        this.clubId = clubId;
+        this.clubSlug = clubSlug;
     }
 
-    setupEventListeners() {
-        //join, add event, reply to posts buttons here
-
-        //TODO: create buttons for addEvent, replyToPosts
-
-        //TODO: test buttons
-        $('.join-btn').on('click', function () { //join button not working
-            alert("You've joined the club!");
-        })
-
-
+    setupEventListeners() 
+    {
+        
     }
 
-    setupElements() {     
-        //code here to add club name?
+    setupElements() 
+    {
+        const club = window.App.Clubs[this.clubId];
+        const clubPageContainer = $('#club-page-container');
+        clubPageContainer.find('.club-name').text(club.name);
+        clubPageContainer.find('.about-us').text(club.description);
 
-        //TODO: setup club-specific elements (club name, events, posts) in here based on what club the user has navigated to
-        // make sure club id has been saved in state (clubClicked var?)
     }
 }
     

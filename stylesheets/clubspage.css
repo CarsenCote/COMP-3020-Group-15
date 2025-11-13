@@ -1,8 +1,7 @@
-body {
-    font-family: 'Montserrat', sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    color: #333;
+.club-page-container {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(228, 228, 228);
 }
 
 .club-header {
@@ -10,12 +9,12 @@ body {
     justify-content: space-between;
     align-items: center;
     background-color: #003366;
-    color: white;
+    color: rgb(197, 197, 197);
     padding: 15px 30px;
 }
 
 .join-btn {
-    background-color: #ffcc00;
+    background-color: #33e02d;
     color: #003366;
     border: none;
     padding: 10px 40px;
@@ -23,14 +22,11 @@ body {
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s;
+    margin-right: 10vw;
 }
 
 .join-btn:hover {
     background-color: #ffffff;
-}
-
-.join-btn {
-    margin-right: 100px; 
 }
 
 .club-layout {
