@@ -93,20 +93,18 @@ class CategoriesTemplate extends Template
     //TODO: clean up var names so it's not me being a fake gangsta
     setupEventListeners() {
         $('.category').on('click', function () {
-            var anotha = $(this).attr("id");
-            //alert("clicked a category " + anotha);
-            window.App.State.categorySelected = anotha;
-            window.App.State.changeNextTemplate(window.App.Templates.CLUBS)
+            var categoryId = $(this).attr("id");
+            window.App.State.changeNextTemplate(window.App.Templates.CLUBS[categoryId])
         })
     }
 
     setupElements() 
     {
 
-        const Categories = window.App.Categories;
-        for (var i = 0; i < Categories.length; i++) 
+        const categories = window.App.Categories;
+        for (var i = 0; i < categories.length; i++) 
         {
-            const category = Categories[i];
+            const category = categories[i];
 
             // Get the template content and create a new element from it
             const templateHtml = $('#category-template').html();
@@ -116,42 +114,47 @@ class CategoriesTemplate extends Template
             newCategory.attr('id', category.id);
             newCategory.find('.category-name').text(category.name);
             newCategory.find('.category-description').text(category.description);
-            newCategory.find('.category-img').attr('src', `./public/category-icons/${category.id}.png`);
+            newCategory.find('.category-img').attr('src', `./public/category-icons/${category.slug}.png`);
             // Append the new category element
             $('#categories-container').append(newCategory);
         }
     }
 }
 
-class ClubsTemplate extends Template {
+class ClubSelectTemplate extends Template 
+{
 
-    clubsElements;
+    categoryId;
+    categorySlug;
 
-    constructor(templateId) {
+    constructor(templateId, categoryId, categorySlug) 
+    {
         super(templateId);
+        this.categoryId = categoryId;
+        this.categorySlug = categorySlug;
     }
 
-    setupEventListeners() { //Shelby - not sure if this is working correctly, havent tried to grab club name in clubspage yet
-        $('.club').on('click', function () { //keep the variable names i love it
-            var anotha = $(this).attr("id");
-            //alert("clicked a club " + anotha);
-            window.App.State.clubSelected = anotha;
-            window.App.State.changeNextTemplate(window.App.Templates.CLUBSPAGE)
+    setupEventListeners() 
+    {
+        $('.club').on('click', function () {
+            var clubId = $(this).attr("id");
+            window.App.State.changeNextTemplate(window.App.Templates.CLUBSPAGES[clubId]);
         })
     }
 
-    setupElements() {
-        const currentCategory = window.App.State.categorySelected;
-        const Clubs = window.App.Clubs;
-        for(var clubIndex=0; clubIndex<Clubs.length; clubIndex++){
-            const club = Clubs[clubIndex];
+    setupElements() 
+    {
+        const clubs = window.App.Clubs;
+        for(var clubIndex=0; clubIndex<clubs.length; clubIndex++){
+            const club = clubs[clubIndex];
             const categories = club.categories;
             for(var categoryIndex = 0 ; categoryIndex<categories.length ; categoryIndex++)
             {
-                if(club.categories[categoryIndex].category_id == currentCategory)
+                var currentCategorySlug = categories[categoryIndex].slug;
+                if(this.categorySlug == currentCategorySlug)
                 {
                     // Get the template content and create a new element from it
-                    const templateHtml = $('#club-select-template').html();
+                    const templateHtml = $('#club-bubble-template').html();
                     const newClub = $(templateHtml);
                     
                     // Set the attributes and text
@@ -167,26 +170,31 @@ class ClubsTemplate extends Template {
 }
 
 
-class ClubsPageTemplate extends Template {
+class ClubPageTemplate extends Template 
+{
 
-    clubspageElements;
+    clubId;
+    clubSlug;
 
-    constructor(templateId) {
+    constructor(templateId, clubId, clubSlug) 
+    {
         super(templateId);
+        this.clubId = clubId;
+        this.clubSlug = clubSlug;
     }
 
-    setupEventListeners() {
-        //join, add event, reply to posts buttons here
-
-        $('.join-btn').on('click', function () { //join button not working
-            alert("You've joined the club!");
-        })
-
-
+    setupEventListeners() 
+    {
+        
     }
 
-    setupElements() {     
-        //code here to add club name?
+    setupElements() 
+    {
+        const club = window.App.Clubs[this.clubId];
+        const clubPageContainer = $('#club-page-container');
+        clubPageContainer.find('.club-name').text(club.name);
+        clubPageContainer.find('.about-us').text(club.description);
+
     }
 }
     
