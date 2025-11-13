@@ -1,6 +1,5 @@
-
-class Template 
-{
+// our base super class which all templates will be extended from
+class Template {
 
     templateId;
 
@@ -9,56 +8,46 @@ class Template
         this.templateId = templateId;
     }
 
-    setup() 
-    {
+    setup() {
         this.setupElements();
         this.setupEventListeners();
     }
 
-    setupEventListeners() 
-    {
+    setupEventListeners() {
 
     }
 
-    setupElements() 
-    {
+    setupElements() {
 
     }
 }
 
-class BlackHoleTemplate extends Template 
-{
+class BlackHoleTemplate extends Template {
 
     categoryContainers;
 
-    constructor(templateId) 
-    {
+    constructor(templateId) {
         super(templateId);
     }
 
-    setupEventListeners() 
-    {
+    setupEventListeners() {
         $('.blackhole-container').on('click', function () {
             window.App.State.changeNextTemplate(window.App.Templates.CATEGORIES);
         });
     }
 
-    setupElements() 
-    {
+    setupElements() {
 
     }
 }
 
-class SignInTemplate extends Template 
-{
+class SignInTemplate extends Template {
 
-    constructor(templateId) 
-    {
+    constructor(templateId) {
         super(templateId);
     }
 
     setupEventListeners() {
-
         // Event listener for submission of the signin form.
         $('#signin-form').on('submit', function (event) 
         {
@@ -79,30 +68,26 @@ class SignInTemplate extends Template
     }
 }
 
-class CategoriesTemplate extends Template 
-{
+class CategoriesTemplate extends Template {
 
-    constructor(templateId) 
-    {
+    constructor(templateId) {
         super(templateId);
     }
 
-    // this will get the id of whichever category is clicked - use it for club selection page? 
-    // (maybe save in app state)
-
-    //TODO: clean up var names so it's not me being a fake gangsta
     setupEventListeners() {
+        // this event listener will run when a category element is clicked
+        // grabs the id (category name) of the element to determine which category the user clicked
         $('.category').on('click', function () {
-            var anotha = $(this).attr("id");
-            //alert("clicked a category " + anotha);
-            window.App.State.categorySelected = anotha;
+            var categoryClicked = $(this).attr("id");
+            window.App.State.categorySelected = categoryClicked;
             window.App.State.changeNextTemplate(window.App.Templates.CLUBS)
         })
     }
 
-    setupElements() 
-    {
-
+    setupElements() {
+        // set up the elements on the category selection screen based on what's in our json category-data
+        // will run until all categories from our data have been made into their own element with a respective id, 
+        // displayed name, description, and img
         const Categories = window.App.Categories;
         for (var i = 0; i < Categories.length; i++) 
         {
@@ -131,11 +116,11 @@ class ClubsTemplate extends Template {
         super(templateId);
     }
 
-    setupEventListeners() { //Shelby - not sure if this is working correctly, havent tried to grab club name in clubspage yet
-        $('.club').on('click', function () { //keep the variable names i love it
-            var anotha = $(this).attr("id");
-            //alert("clicked a club " + anotha);
-            window.App.State.clubSelected = anotha;
+    setupEventListeners() {
+        //TODO: test this works :)
+        $('.club').on('click', function () {
+            var clubClicked = $(this).attr("id");
+            window.App.State.clubSelected = clubClicked;
             window.App.State.changeNextTemplate(window.App.Templates.CLUBSPAGE)
         })
     }
@@ -178,13 +163,16 @@ class DashboardTemplate extends Template {
     }
 
     setupElements() {
-        // hopefully this works? lol
+        //TODO: test this works
+
+        // get the user's name based on signin variables saved from first screen
         const user = window.App.State.user;
         const name = user.firstName + " " + user.lastName;
         
         const dashboardHtml = $('#user-dashboard-template');
         const dashboardName = $(dashboardHtml);
 
+        // display the user's name in the .user-name element from the dashboard template html
         dashboardName.find('.user-name').text(name);
     }}
 
@@ -200,6 +188,9 @@ class ClubsPageTemplate extends Template {
     setupEventListeners() {
         //join, add event, reply to posts buttons here
 
+        //TODO: create buttons for addEvent, replyToPosts
+
+        //TODO: test buttons
         $('.join-btn').on('click', function () { //join button not working
             alert("You've joined the club!");
         })
@@ -209,6 +200,9 @@ class ClubsPageTemplate extends Template {
 
     setupElements() {     
         //code here to add club name?
+
+        //TODO: setup club-specific elements (club name, events, posts) in here based on what club the user has navigated to
+        // make sure club id has been saved in state (clubClicked var?)
     }
 }
     
