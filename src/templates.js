@@ -111,7 +111,7 @@ class CategoriesTemplate extends Template
             const newCategory = $(templateHtml);
 
             // Set the attributes and text
-            newCategory.attr('id', category.id);
+            newCategory.find('.category').attr('id', category.id);
             newCategory.find('.category-name').text(category.name);
             newCategory.find('.category-description').text(category.description);
             newCategory.find('.category-img').attr('src', `./public/category-icons/${category.slug}.png`);
@@ -218,7 +218,7 @@ class ClubPageTemplate extends Template
             }
             return false;
         })
-        
+
         this.setupPosts(clubPosts);
         this.setupEvents(clubEvents);
         this.setupMembers(clubMembers);

@@ -31,6 +31,23 @@ function generateClubSelectTemplates()
     return clubSelectTemplates;
 }
 
+class User 
+{
+    firstName;
+    lastName;
+    email;
+
+    joined_clubs = [];
+    joined_events = [];
+
+    constructor(firstName, lastName, email) 
+    {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+}
+
 class AppState 
 {
 
@@ -85,20 +102,6 @@ $(function ()
 
     AppState.changeNextTemplate(SIGNIN_TEMPLATE);
 });
-
-class User 
-{
-    firstName;
-    lastName;
-    email;
-
-    constructor(firstName, lastName, email) 
-    {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
-}
 
 window.App = 
 {

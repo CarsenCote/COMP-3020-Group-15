@@ -82,7 +82,7 @@
 <script id="categories-template" type="text/template">
     <link rel="stylesheet" href="./stylesheets/categories.css">
     <div class="categories-page-container">
-        <p class="categories-title">Choose a category to browse</p>
+        <p class="categories-title">Please choose a category to browse . . .</p>
         <div id="categories-container">
         </div>
     </div>
@@ -90,11 +90,15 @@
 
 <!--Category Template-->
 <script id="category-template" type="text/template">
-    <div class="category">
-        <p class="category-name"></p>
-        <p class="category-description"></p>
-        <img class="category-img" draggable="false">
+    <div class="category-galaxy">
+        <div class="category">
+            <p class="category-name"></p>
+            <p class="category-description"></p>
+            <img class="category-img" draggable="false">
+        </div>
+        <img class="category-galaxy-img" src="./public/galaxy.png">
     </div>
+    
 </script>
 
 <!--Clubs Select Screen Template-->
@@ -118,7 +122,7 @@
 <!--Clubs Page Screen Template-->
 <script id="club-page-template" type="text/template">
     <link rel="stylesheet" href="./stylesheets/clubspage.css">
-    <div id = "club-page-container">
+    <div id="club-page-container">
 
         <header class="club-header">
             <h1 class="club-name"></h1>
