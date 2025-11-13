@@ -10,6 +10,8 @@
     <script src="./libraries/jquery-3.7.1.min.js"></script>
 
     <!--Script imports-->
+    <script src="./src/members-data.js"></script>
+    <script src="./src/posts-data.js"></script>
     <script src="./src/categories-data.js"></script>
     <script src="./src/clubs-data.js"></script>
     <script src="./src/templates.js"></script>
@@ -125,19 +127,65 @@
 
         <div class="club-layout">
             <div class="posts-container" id="posts">
-            <h2>Posts</h2>
-            <p>Recent news, updates, and discussions go here.</p>
+                <h2>Posts</h2>
+                <p>Recent news, updates, and discussions go here.</p>
             </div>
 
             <div class="aboutus-container" id="about">
-            <h2>About Us</h2>
-            <p class="about-us"></p>
+                <h2>About Us</h2>
+                <p class="about-us"></p>
+
+                <div class="members-container">
+                </div>
             </div>
 
             <div class="events-container" id="events">
-            <h2>Events</h2>
-            <p>Check out our upcoming events and activities.</p>
+                <h2>Events</h2>
+                <p>Check out our upcoming events and activities.</p>
             </div>
         </div>
+    </div>
+</script>
+
+<!--Post Template-->
+<script id="post-template" type="text/template">
+    <link rel="stylesheet" href="./stylesheets/post.css">
+
+    <div class="post-container">
+
+        <header class="post-header">
+            <h1 class="post-title"></h1>
+            <h2 class="post-author"></h2>
+            <h2 class="post-date"></h2>
+        </header>
+
+        <div class="post-content-container">
+            <p class="post-content"></p>
+        </div>
+
+    </div>
+</script>
+
+<!--Event Template-->
+<script id="event-template" type="text/template">
+    <link rel="stylesheet" href="./stylesheets/event.css">
+
+    <div class="event-container">
+
+        <header class="event-header">
+            <h1 class="event-title"></h1>
+            <h3 class="event-date"></h3>
+            <h3 class="event-time"></h3>
+        </header>
+
+    </div>
+</script>
+
+<!--Member Template-->
+<script id="member-template" type="text/template">
+    <link rel="stylesheet" href="./stylesheets/member.css">
+
+    <div class="member-container">
+        <h2 class="member-name"></h2>
     </div>
 </script>

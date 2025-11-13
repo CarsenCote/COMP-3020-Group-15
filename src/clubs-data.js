@@ -11,21 +11,6 @@ const CLUBS_DATA = [
             {
                 "slug": "technology-innovation"
             }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
-            }
         ]
     },
     {
@@ -39,21 +24,6 @@ const CLUBS_DATA = [
             },
             {
                 "slug": "technology-innovation"
-            }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
             }
         ]
     },
@@ -69,21 +39,6 @@ const CLUBS_DATA = [
             {
                 "slug": "technology-innovation"
             }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
-            }
         ]
     },
     {
@@ -97,21 +52,6 @@ const CLUBS_DATA = [
             },
             {
                 "slug": "technology-innovation"
-            }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
             }
         ]
     },
@@ -127,21 +67,6 @@ const CLUBS_DATA = [
             {
                 "slug": "technology-innovation"
             }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
-            }
         ]
     },
     {
@@ -155,21 +80,6 @@ const CLUBS_DATA = [
             },
             {
                 "slug": "social-networking"
-            }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
             }
         ]
     },
@@ -185,21 +95,6 @@ const CLUBS_DATA = [
             {
                 "slug": "social-networking"
             }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
-            }
         ]
     },
     {
@@ -213,21 +108,6 @@ const CLUBS_DATA = [
             },
             {
                 "slug": "social-networking"
-            }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
             }
         ]
     },
@@ -243,21 +123,6 @@ const CLUBS_DATA = [
             {
                 "slug": "social-networking"
             }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
-            }
         ]
     },
     {
@@ -271,21 +136,6 @@ const CLUBS_DATA = [
             },
             {
                 "slug": "social-networking"
-            }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
             }
         ]
     },
@@ -301,21 +151,6 @@ const CLUBS_DATA = [
             {
                 "slug": "social-networking"
             }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
-            }
         ]
     },
     {
@@ -329,21 +164,6 @@ const CLUBS_DATA = [
             },
             {
                 "slug": "social-networking"
-            }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
             }
         ]
     },
@@ -359,21 +179,6 @@ const CLUBS_DATA = [
             {
                 "slug": "social-networking"
             }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
-            }
         ]
     },
     {
@@ -387,21 +192,6 @@ const CLUBS_DATA = [
             },
             {
                 "slug": "social-networking"
-            }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
             }
         ]
     },
@@ -417,21 +207,6 @@ const CLUBS_DATA = [
             {
                 "slug": "social-networking"
             }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
-            }
         ]
     },
     {
@@ -445,21 +220,6 @@ const CLUBS_DATA = [
             },
             {
                 "slug": "academic-professional"
-            }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
             }
         ]
     },
@@ -475,21 +235,6 @@ const CLUBS_DATA = [
             {
                 "slug": "academic-professional"
             }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
-            }
         ]
     },
     {
@@ -503,21 +248,6 @@ const CLUBS_DATA = [
             },
             {
                 "slug": "academic-professional"
-            }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
             }
         ]
     },
@@ -533,21 +263,6 @@ const CLUBS_DATA = [
             {
                 "slug": "academic-professional"
             }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
-            }
         ]
     },
     {
@@ -561,21 +276,6 @@ const CLUBS_DATA = [
             },
             {
                 "slug": "academic-professional"
-            }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
             }
         ]
     },
@@ -591,21 +291,6 @@ const CLUBS_DATA = [
             {
                 "slug": "health-wellness"
             }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
-            }
         ]
     },
     {
@@ -619,21 +304,6 @@ const CLUBS_DATA = [
             },
             {
                 "slug": "health-wellness"
-            }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
             }
         ]
     },
@@ -649,21 +319,6 @@ const CLUBS_DATA = [
             {
                 "slug": "health-wellness"
             }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
-            }
         ]
     },
     {
@@ -677,21 +332,6 @@ const CLUBS_DATA = [
             },
             {
                 "slug": "health-wellness"
-            }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
             }
         ]
     },
@@ -707,21 +347,6 @@ const CLUBS_DATA = [
             {
                 "slug": "health-wellness"
             }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
-            }
         ]
     },
     {
@@ -735,21 +360,6 @@ const CLUBS_DATA = [
             },
             {
                 "slug": "sustainability-environment"
-            }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
             }
         ]
     },
@@ -765,21 +375,6 @@ const CLUBS_DATA = [
             {
                 "slug": "sustainability-environment"
             }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
-            }
         ]
     },
     {
@@ -793,21 +388,6 @@ const CLUBS_DATA = [
             },
             {
                 "slug": "sustainability-environment"
-            }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
             }
         ]
     },
@@ -823,21 +403,6 @@ const CLUBS_DATA = [
             {
                 "slug": "sustainability-environment"
             }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
-            }
         ]
     },
     {
@@ -851,21 +416,6 @@ const CLUBS_DATA = [
             },
             {
                 "slug": "sustainability-environment"
-            }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
             }
         ]
     },
@@ -881,21 +431,6 @@ const CLUBS_DATA = [
             {
                 "slug": "sports-recreation"
             }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
-            }
         ]
     },
     {
@@ -909,21 +444,6 @@ const CLUBS_DATA = [
             },
             {
                 "slug": "sports-recreation"
-            }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
             }
         ]
     },
@@ -939,21 +459,6 @@ const CLUBS_DATA = [
             {
                 "slug": "sports-recreation"
             }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
-            }
         ]
     },
     {
@@ -967,21 +472,6 @@ const CLUBS_DATA = [
             },
             {
                 "slug": "sports-recreation"
-            }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
             }
         ]
     },
@@ -997,21 +487,6 @@ const CLUBS_DATA = [
             {
                 "slug": "sports-recreation"
             }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
-            }
         ]
     },
     {
@@ -1025,21 +500,6 @@ const CLUBS_DATA = [
             },
             {
                 "slug": "arts-performance"
-            }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
             }
         ]
     },
@@ -1055,21 +515,6 @@ const CLUBS_DATA = [
             {
                 "slug": "arts-performance"
             }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
-            }
         ]
     },
     {
@@ -1083,21 +528,6 @@ const CLUBS_DATA = [
             },
             {
                 "slug": "arts-performance"
-            }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
             }
         ]
     },
@@ -1113,21 +543,6 @@ const CLUBS_DATA = [
             {
                 "slug": "arts-performance"
             }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
-            }
         ]
     },
     {
@@ -1141,21 +556,6 @@ const CLUBS_DATA = [
             },
             {
                 "slug": "arts-performance"
-            }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
             }
         ]
     },
@@ -1171,21 +571,6 @@ const CLUBS_DATA = [
             {
                 "slug": "volunteering-community"
             }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
-            }
         ]
     },
     {
@@ -1199,21 +584,6 @@ const CLUBS_DATA = [
             },
             {
                 "slug": "volunteering-community"
-            }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
             }
         ]
     },
@@ -1229,21 +599,6 @@ const CLUBS_DATA = [
             {
                 "slug": "volunteering-community"
             }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
-            }
         ]
     },
     {
@@ -1257,21 +612,6 @@ const CLUBS_DATA = [
             },
             {
                 "slug": "volunteering-community"
-            }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
             }
         ]
     },
@@ -1287,21 +627,6 @@ const CLUBS_DATA = [
             {
                 "slug": "volunteering-community"
             }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
-            }
         ]
     },
     {
@@ -1315,21 +640,6 @@ const CLUBS_DATA = [
             },
             {
                 "slug": "academic-professional"
-            }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
             }
         ]
     },
@@ -1345,21 +655,6 @@ const CLUBS_DATA = [
             {
                 "slug": "academic-professional"
             }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
-            }
         ]
     },
     {
@@ -1373,21 +668,6 @@ const CLUBS_DATA = [
             },
             {
                 "slug": "academic-professional"
-            }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
             }
         ]
     },
@@ -1403,21 +683,6 @@ const CLUBS_DATA = [
             {
                 "slug": "academic-professional"
             }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
-            }
         ]
     },
     {
@@ -1431,21 +696,6 @@ const CLUBS_DATA = [
             },
             {
                 "slug": "academic-professional"
-            }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
             }
         ]
     },
@@ -1461,21 +711,6 @@ const CLUBS_DATA = [
             {
                 "slug": "academic-professional"
             }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
-            }
         ]
     },
     {
@@ -1489,21 +724,6 @@ const CLUBS_DATA = [
             },
             {
                 "slug": "governance-advocacy"
-            }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
             }
         ]
     },
@@ -1519,21 +739,6 @@ const CLUBS_DATA = [
             {
                 "slug": "social-networking"
             }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
-            }
         ]
     },
     {
@@ -1547,21 +752,6 @@ const CLUBS_DATA = [
             },
             {
                 "slug": "academic-professional"
-            }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
             }
         ]
     },
@@ -1577,21 +767,6 @@ const CLUBS_DATA = [
             {
                 "slug": "advocacy"
             }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
-            }
         ]
     },
     {
@@ -1605,21 +780,6 @@ const CLUBS_DATA = [
             },
             {
                 "slug": "volunteering-community"
-            }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
             }
         ]
     },
@@ -1635,21 +795,6 @@ const CLUBS_DATA = [
             {
                 "slug": "health-wellness"
             }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
-            }
         ]
     },
     {
@@ -1663,21 +808,6 @@ const CLUBS_DATA = [
             },
             {
                 "slug": "academic-professional"
-            }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
             }
         ]
     },
@@ -1693,21 +823,6 @@ const CLUBS_DATA = [
             {
                 "slug": "academic-professional"
             }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
-            }
         ]
     },
     {
@@ -1721,21 +836,6 @@ const CLUBS_DATA = [
             },
             {
                 "slug": "cultural-international"
-            }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
             }
         ]
     },
@@ -1751,21 +851,6 @@ const CLUBS_DATA = [
             {
                 "slug": "sports-recreation"
             }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
-            }
         ]
     },
     {
@@ -1779,21 +864,6 @@ const CLUBS_DATA = [
             },
             {
                 "slug": "academic-professional"
-            }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
             }
         ]
     },
@@ -1809,21 +879,6 @@ const CLUBS_DATA = [
             {
                 "slug": "arts-performance"
             }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
-            }
         ]
     },
     {
@@ -1838,21 +893,6 @@ const CLUBS_DATA = [
             {
                 "slug": "volunteering-community"
             }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
-            }
         ]
     },
     {
@@ -1866,21 +906,6 @@ const CLUBS_DATA = [
             },
             {
                 "slug": "social-networking"
-            }
-        ],
-        "posts": [
-            {
-                "post_id": ""
-            }
-        ],
-        "events": [
-            {
-                "event_id": ""
-            }
-        ],
-        "members": [
-            {
-                "person_id": ""
             }
         ]
     }

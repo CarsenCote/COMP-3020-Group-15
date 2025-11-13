@@ -195,6 +195,85 @@ class ClubPageTemplate extends Template
         clubPageContainer.find('.club-name').text(club.name);
         clubPageContainer.find('.about-us').text(club.description);
 
+        const clubPosts = window.App.Posts.filter((post) => 
+        {
+            return this.clubId == post.clubId;
+        });
+
+        const clubEvents = clubPosts.filter((post) => 
+        {
+            return post.event;
+        })
+
+        const clubMembers = window.App.Members.filter((member) => 
+        {
+            const memberClubs = member.clubs;
+            for(var clubIndex = 0 ; clubIndex<memberClubs.length; clubIndex++)
+            {
+                const club = memberClubs[clubIndex];
+                if(club.id == this.clubId)
+                {
+                    return true;
+                }  
+            }
+            return false;
+        })
+        
+        this.setupPosts(clubPosts);
+        this.setupEvents(clubEvents);
+        this.setupMembers(clubMembers);
+    }
+
+    setupPosts(clubPosts)
+    {
+        const postsContainer = $('.posts-container');
+
+        for(var postIndex = 0; postIndex<clubPosts.length ; postIndex++)
+        {
+            const post = clubPosts[postIndex];
+            const postHtml = $('#post-template').html();
+            const newPost = $(postHtml);
+
+            newPost.find('.post-title').text(post.title);
+            newPost.find('.post-content').text(post.content);
+            newPost.find('.post-date').text(post.date);
+
+            postsContainer.append(newPost);
+        }
+    }
+
+    setupEvents(clubEvents)
+    {
+        const eventsContainer = $('.events-container');
+
+        for(var eventIndex = 0 ; eventIndex<clubEvents.length ; eventIndex++)
+        {
+            const event = clubEvents[eventIndex];
+            const eventHtml = $('#event-template').html();
+            const newEvent = $(eventHtml);
+
+            newEvent.find('.event-title').text(event.title);
+            newEvent.find('.event-date').text(event.date);
+            newEvent.find('.event-time').text(`${event.start_time} - ${event.end_time}`);
+
+            eventsContainer.append(newEvent);
+        }
+    }
+
+    setupMembers(clubMembers)
+    {
+        const membersContainer = $('.members-container');
+
+        for(var memberIndex = 0 ; memberIndex<clubMembers.length ; memberIndex++)
+        {
+            const member = clubMembers[memberIndex];
+            const memberHtml = $('#member-template').html();
+            const newMember = $(memberHtml);
+
+            newMember.find('.member-name').text(`${member.fname} ${member.lname}`);
+
+            membersContainer.append(newMember);
+        }
     }
 }
     

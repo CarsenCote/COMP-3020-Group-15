@@ -113,6 +113,8 @@ window.App =
     },
     Categories: CATEGORIES_DATA,
     Clubs: CLUBS_DATA,
+    Posts: POSTS_DATA,
+    Members: MEMBERS_DATA,
 }
 
 
