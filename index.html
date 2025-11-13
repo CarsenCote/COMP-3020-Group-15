@@ -148,23 +148,27 @@
     <link rel="stylesheet" href="./stylesheets/dashboard.css">
     <div class="dashboard-page-container">
 
-        <div class="joined-clubs-section">
+        <div class="joined-clubs-section" id="joined-clubs-section">
             <p class="joined-clubs-title">Joined Clubs</p>
             <div id="joined-clubs-container"></div>
             <div class="explore-clubs-button">Explore Clubs</div>
         </div>
 
-        <div class="user-calendar-container">  
-        </div>
-
-        <div class="user-name-container">
+        <div class="user-name-container" id="user-name-container">
             <div id="user-name">
-                <p class="user-name"></p>
+                <p class="user-name">user name</p>
             </div>
             <!--add log out button here? will need to redirect to sign in page and wipe any global vars-->
         </div>
-        
-        <div class="user-feed-container"> 
+
+        <!--need to fix css grid outline/alignment yet-->
+
+        <div class="user-calendar-container" id="calendar">  
+            <p class="calendar-title">Calendar</p>
+        </div>
+
+        <div class="user-feed-container" id="feed"> 
+            <p class="user-feed">New Posts</p>
         </div>
 
     </div>

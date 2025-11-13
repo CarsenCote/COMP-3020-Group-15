@@ -1,15 +1,24 @@
 .dashboard-page-container {
     display: grid;
-    grid-template-columns: 2fr 1fr; 
-    grid-template-rows: auto auto;
+    grid-template-columns: auto auto; 
+    grid-template-rows: 1fr 1fr 4fr;
     gap: 20px;
     padding: 20px;
     height: calc(100vh - 80px);
     box-sizing: border-box;
 }
 
+.joined-clubs-section,
+.user-calendar-container,
+.user-feed-container {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
 .joined-clubs-title {
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     font-family: 'Montserrat', sans-serif;
     font-size: 2em;
 }
@@ -23,4 +32,9 @@
     color: rgb(255, 255, 255);
     font-family: 'Montserrat', sans-serif;
     font-size: 1.5em;
+    align-items: center;
+}
+
+.user-name {
+    text-align: right;
 }
