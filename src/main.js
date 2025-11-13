@@ -3,6 +3,7 @@ const BLACKHOLE_TEMPLATE = new BlackHoleTemplate('blackhole-template');
 const CATEGORIES_TEMPLATE = new CategoriesTemplate('categories-template');
 const SIGNIN_TEMPLATE = new SignInTemplate('signin-template');
 const CLUBS_TEMPLATE = new ClubsTemplate('clubs-template');
+const CLUBSPAGE_TEMPLATE = new ClubsPageTemplate('clubspage-template');
 const DASHBOARD_TEMPLATE = new DashboardTemplate('user-dashboard-template');
 
 class AppState 
@@ -92,6 +93,7 @@ window.App =
         SIGNIN: SIGNIN_TEMPLATE,
         CATEGORIES: CATEGORIES_TEMPLATE,
         CLUBS: CLUBS_TEMPLATE,
+        CLUBSPAGE: CLUBSPAGE_TEMPLATE,
         DASHBOARD: DASHBOARD_TEMPLATE
     },
     Categories: CATEGORIES_DATA,
