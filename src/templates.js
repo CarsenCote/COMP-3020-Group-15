@@ -1,6 +1,5 @@
-
-class Template 
-{
+// our base super class which all templates will be extended from
+class Template {
 
     templateId;
 
@@ -9,57 +8,46 @@ class Template
         this.templateId = templateId;
     }
 
-    setup() 
-    {
+    setup() {
         this.setupElements();
         this.setupEventListeners();
     }
 
-    setupEventListeners() 
-    {
+    setupEventListeners() {
 
     }
 
-    setupElements() 
-    {
+    setupElements() {
 
     }
 }
 
-class BlackHoleTemplate extends Template 
-{
+class BlackHoleTemplate extends Template {
 
     categoryContainers;
 
-    constructor(templateId) 
-    {
-        super(templateId);
-    }
-
-    setupEventListeners() 
-    {
-        $('.blackhole-title').on('click', function () 
-        {
-            window.App.State.changeNextTemplate(window.App.Templates.CATEGORIES);
-        });
-    }
-
-    setupElements() 
-    {
-
-    }
-}
-
-class SignInTemplate extends Template 
-{
-
-    constructor(templateId) 
-    {
+    constructor(templateId) {
         super(templateId);
     }
 
     setupEventListeners() {
+        $('.blackhole-container').on('click', function () {
+            window.App.State.changeNextTemplate(window.App.Templates.CATEGORIES);
+        });
+    }
 
+    setupElements() {
+
+    }
+}
+
+class SignInTemplate extends Template {
+
+    constructor(templateId) {
+        super(templateId);
+    }
+
+    setupEventListeners() {
         // Event listener for submission of the signin form.
         $('#signin-form').on('submit', function (event) 
         {
@@ -80,28 +68,25 @@ class SignInTemplate extends Template
     }
 }
 
-class CategoriesTemplate extends Template 
-{
+class CategoriesTemplate extends Template {
 
-    constructor(templateId) 
-    {
+    constructor(templateId) {
         super(templateId);
     }
 
-    // this will get the id of whichever category is clicked - use it for club selection page? 
-    // (maybe save in app state)
-
-    //TODO: clean up var names so it's not me being a fake gangsta
     setupEventListeners() {
+        // this event listener will run when a category element is clicked
+        // grabs the id (category name) of the element to determine which category the user clicked
         $('.category').on('click', function () {
             var categoryId = $(this).attr("id");
             window.App.State.changeNextTemplate(window.App.Templates.CLUBS[categoryId])
         })
     }
 
-    setupElements() 
-    {
-
+    setupElements() {
+        // set up the elements on the category selection screen based on what's in our json category-data
+        // will run until all categories from our data have been made into their own element with a respective id, 
+        // displayed name, description, and img
         const categories = window.App.Categories;
         for (var i = 0; i < categories.length; i++) 
         {
@@ -170,9 +155,31 @@ class ClubSelectTemplate extends Template
     }
 }
 
+class DashboardTemplate extends Template {
+    dashboardElements;
 
-class ClubPageTemplate extends Template 
-{
+    constructor(templateId) {
+        super(templateId);
+    }
+
+    setupEventListeners() {
+
+    }
+
+    setupElements() {
+        // get the user's name based on signin variables saved from first screen
+        const user = window.App.State.user;
+        const name = user.firstName + " " + user.lastName;
+        
+        const userNameHtml = $('#user-name-container');
+
+        // display the user's name in the .user-name element of user-name-container div
+        userNameHtml.find('.user-name-text').text(name);
+    }
+}
+
+
+class ClubPageTemplate extends Template {
 
     clubId;
     clubSlug;
