@@ -32,6 +32,7 @@ function generateClubSelectTemplates()
     return clubSelectTemplates;
 }
 
+//user class to keep track of user-specific things such as name, email, joined clubs/events, etc.
 class User 
 {
     firstName;
@@ -88,7 +89,7 @@ class AppState
 
     // function to actually change the screen we're on by loading template's html and calling setup functions
     static changeTemplate(template){
-        // make sure we're only displaying homse/dashboard button when it's appropriate (i.e. not on signin screen)
+        // make sure we're only displaying home/dashboard button when it's appropriate (i.e. not on signin screen)
         if(template != SIGNIN_TEMPLATE && template != DASHBOARD_TEMPLATE)
         {
             $('#home-button').css('visibility', 'visible');

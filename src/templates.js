@@ -167,15 +167,13 @@ class DashboardTemplate extends Template {
     }
 
     setupElements() {
-        //TODO: test this works
-
         // get the user's name based on signin variables saved from first screen
         const user = window.App.State.user;
         const name = user.firstName + " " + user.lastName;
         
         const userNameHtml = $('#user-name-container');
 
-        // display the user's name in the .user-name element from the dashboard template html
+        // display the user's name in the .user-name element of user-name-container div
         userNameHtml.find('.user-name-text').text(name);
     }
 }
