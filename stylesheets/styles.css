@@ -44,7 +44,7 @@ body {
 }
 
 .nav-button-img {
-    transition: transform 0.3s ease;
+    transition: transform 0.1s ease;
     max-width: 5vw;
 }
 

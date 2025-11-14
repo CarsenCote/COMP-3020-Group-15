@@ -38,7 +38,8 @@ class BlackHoleTemplate extends Template
 
     setupEventListeners() 
     {
-        $('.blackhole-container').on('click', function () {
+        $('.blackhole-title').on('click', function () 
+        {
             window.App.State.changeNextTemplate(window.App.Templates.CATEGORIES);
         });
     }
