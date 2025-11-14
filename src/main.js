@@ -32,9 +32,25 @@ function generateClubSelectTemplates()
     return clubSelectTemplates;
 }
 
-// global AppState class, which will save and deal with variables we want to be able to access from anywhere in our code
-class AppState {
+class User 
+{
+    firstName;
+    lastName;
+    email;
 
+    joined_clubs = [];
+    joined_events = [];
+
+    constructor(firstName, lastName, email) 
+    {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+}
+
+class AppState 
+{
     // vars for templates, user, current category & club a user has selected
     static previousTemplates = [];
     static currentTemplate = null;
@@ -105,21 +121,6 @@ $(function ()
     AppState.changeNextTemplate(SIGNIN_TEMPLATE);
 });
 
-// user class to globally keep track of user details (name, email)
-class User 
-{
-    firstName;
-    lastName;
-    email;
-
-    constructor(firstName, lastName, email) 
-    {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
-}
-
 window.App = 
 {
     State: AppState,
@@ -134,6 +135,8 @@ window.App =
     },
     Categories: CATEGORIES_DATA,
     Clubs: CLUBS_DATA,
+    Posts: POSTS_DATA,
+    Members: MEMBERS_DATA,
 }
 
 

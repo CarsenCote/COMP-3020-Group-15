@@ -1,32 +1,42 @@
-.club-page-container {
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(228, 228, 228);
+#club-page-container {
+    margin: 0 3vw 0 3vw;
+}
+
+#club-page-container * {
+    font-family: 'Montserrat', sans-serif;
 }
 
 .club-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #003366;
+    background-color: white;
     color: rgb(197, 197, 197);
     padding: 15px 30px;
+    border-radius: 6px;
+}
+
+.club-name {
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 3vw;
+    font-size: 5vh;
 }
 
 .join-btn {
-    background-color: #33e02d;
-    color: #003366;
+    background-color: #5ad856;
     border: none;
-    padding: 10px 40px;
+    padding: 20px 40px;
     border-radius: 6px;
     font-weight: bold;
+    font-size: 100%;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin-right: 10vw;
+    margin-right: 6vw;
 }
 
 .join-btn:hover {
-    background-color: #ffffff;
+    background-color: #68ff63;
 }
 
 .club-layout {
