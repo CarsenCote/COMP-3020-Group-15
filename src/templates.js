@@ -173,11 +173,10 @@ class DashboardTemplate extends Template {
         const user = window.App.State.user;
         const name = user.firstName + " " + user.lastName;
         
-        const dashboardHtml = $('#user-dashboard-template');
-        const dashboardName = $(dashboardHtml);
+        const userNameHtml = $('#user-name-container');
 
         // display the user's name in the .user-name element from the dashboard template html
-        dashboardName.find('.user-name').text(name);
+        userNameHtml.find('.user-name-text').text(name);
     }
 }
 
