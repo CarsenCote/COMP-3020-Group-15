@@ -121,51 +121,176 @@ class CategoriesTemplate extends Template
     }
 }
 
-class ClubSelectTemplate extends Template 
-{
-
+class ClubSelectTemplate extends Template {
     categoryId;
     categorySlug;
+    currentIndex;
+    visibleClubs;
+    categoryClubs;
 
-    constructor(templateId, categoryId, categorySlug) 
-    {
+    constructor(templateId, categoryId, categorySlug) {
         super(templateId);
         this.categoryId = categoryId;
         this.categorySlug = categorySlug;
+        this.currentIndex = 0;
+        this.visibleClubs = [];
     }
 
-    setupEventListeners() 
-    {
-        $('.club').on('click', function () {
-            var clubId = $(this).attr("id");
-            window.App.State.changeNextTemplate(window.App.Templates.CLUBSPAGES[clubId]);
-        })
+    setupEventListeners() {
+        // Navigation arrows
+        $('.nav-arrow.left').on('click', () => this.navigate(-1));
+        $('.nav-arrow.right').on('click', () => this.navigate(1));
+        
+        // Club click events
+        $(document).on('click', '.club-orbiter', function() {
+            if ($(this).hasClass('center')) {
+                const clubId = $(this).attr("id");
+                window.App.State.changeNextTemplate(window.App.Templates.CLUBSPAGES[clubId]);
+            }
+        });
+
+    
     }
 
-    setupElements() 
-    {
+    navigate(direction) {
+        const clubs = this.getClubsForCategory();
+        if (clubs.length === 0) return;
+        
+        this.currentIndex = (this.currentIndex - direction + clubs.length) % clubs.length;
+        this.updateWheel();
+    }
+
+    getClubsForCategory() {
         const clubs = window.App.Clubs;
-        for(var clubIndex=0; clubIndex<clubs.length; clubIndex++){
-            const club = clubs[clubIndex];
-            const categories = club.categories;
-            for(var categoryIndex = 0 ; categoryIndex<categories.length ; categoryIndex++)
-            {
-                var currentCategorySlug = categories[categoryIndex].slug;
-                if(this.categorySlug == currentCategorySlug)
-                {
-                    // Get the template content and create a new element from it
-                    const templateHtml = $('#club-bubble-template').html();
-                    const newClub = $(templateHtml);
-                    
-                    // Set the attributes and text
-                    newClub.attr('id', club.id);
-                    newClub.find('.club-name').text(club.name);
-                    newClub.find('.club-description').text(club.description);
-                    // Append the new category element
-                    $('#clubs-container').append(newClub);
+        const categoryClubs = [];
+        
+        for (const clubId in clubs) {
+            if (clubs.hasOwnProperty(clubId)){
+                const club = clubs[clubId]
+                const categories = club.categories;
+            
+            
+                for (let categoryIndex = 0; categoryIndex < categories.length; categoryIndex++) {
+                    const currentCategorySlug = categories[categoryIndex].slug;
+                    if (this.categorySlug === currentCategorySlug) {
+                        categoryClubs.push(club);
+                        break;
+                    }
                 }
             }
         }
+        
+        return categoryClubs.sort((a, b) => a.id - b.id);
+    }
+
+    updateWheel() {
+        const clubs = this.getClubsForCategory();
+        const wheel = $('.clubs-wheel');
+        wheel.empty();
+        
+        if (clubs.length === 0) return;
+        
+        setTimeout(() => {
+            const wheelWidth = wheel.width();
+            const wheelHeight = wheel.height();
+            
+            // Calculate which clubs to show but only show 5 max
+            const totalVisible = Math.min(5, clubs.length);
+            const centerY = wheelHeight * 0.4; // vertical pos of the arch
+            const archWidth = wheelWidth * 0.8; // width of arch
+            const archHeight = 100; // height of arch curve
+
+            
+            const centerPosition = Math.floor(totalVisible / 2);
+
+            // DEBUG: Log the current state
+            console.log('=== UPDATE WHEEL ===');
+            console.log('Current index:', this.currentIndex);
+            console.log('Total clubs:', clubs.length);
+            console.log('Clubs order:', clubs.map(c => c.name));
+            console.log('Center position:', centerPosition);
+            
+
+        
+            // create horizontal arch positions
+            for (let i = 0; i < totalVisible; i++) {
+                //calc index based on what the curr position is so order is kept
+
+                let clubIndex = (this.currentIndex + i - centerPosition + clubs.length) % clubs.length;
+                const club = clubs[clubIndex];
+
+                // Calculate horizontal position so it spaced out even
+                const x = (i / (totalVisible - 1)) * archWidth + (wheelWidth - archWidth) / 2;
+
+                
+                // Calculate vertical position aka where on the arch
+                const progress = i / (totalVisible -1); // 0 to 1
+                const curve = Math.sin(progress* Math.PI); // Sine wave for arch
+                const y = centerY - (curve * archHeight);
+                
+                //make sure the center pos is in the middle of whats visible
+                const isCenter = i === centerPosition;
+                
+                const clubOrbiter = $('<div class="club-orbiter"></div>');
+                clubOrbiter.attr('id', club.id);
+                clubOrbiter.data('description', club.description);
+                
+                if (isCenter) {
+                    clubOrbiter.addClass('center');
+                    $('.sun-description').text(club.description).addClass('active');
+                }
+                
+                const clubSize = isCenter ? 200 : 160;
+                
+                clubOrbiter.css({
+                    left: (x - clubSize /2) + 'px',
+                    top: (y -clubSize / 2) + 'px',
+                    width: clubSize + 'px',
+                    height: clubSize + 'px'
+                });
+                
+                const clubName = $('<p class="club-name"></p>').text(club.name);
+                const clubDescription = $('<p class="club-description"></p>').text(club.description);
+                
+                clubOrbiter.append(clubName);
+                clubOrbiter.append(clubDescription);
+                
+                wheel.append(clubOrbiter);
+            }
+        }, 50);
+    }
+
+        
+
+    
+
+    setupElements() {
+        const container = $('#main');
+        const templateHtml = $('#club-select-template').html();
+        container.html(templateHtml);
+        
+        // Add navigation arrows and sun container
+        $('.clubs-select-container').prepend(`
+            <div class="nav-arrow left">‹</div>
+            <div class="nav-arrow right">›</div>
+            <div class="sun-container">
+                <div class="sun-description"></div>
+                <div class="sun"></div>
+            </div>
+        `);
+        
+        this.updateWheel();
+        
+        // Add keyboard navigation
+        $(document).on('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                this.navigate(-1);
+            } else if (e.key === 'ArrowRight') {
+                this.navigate(1);
+            } else if (e.key === 'Enter') {
+                $('.club-orbiter.center').click();
+            }
+        });
     }
 }
 
@@ -275,6 +400,8 @@ class ClubPageTemplate extends Template
             membersContainer.append(newMember);
         }
     }
+
+    
 }
     
 
