@@ -1,9 +1,10 @@
-
+// initialize CONSTS for easier access to our templates
 const BLACKHOLE_TEMPLATE = new BlackHoleTemplate('blackhole-template');
 const CATEGORIES_TEMPLATE = new CategoriesTemplate('categories-template');
 const SIGNIN_TEMPLATE = new SignInTemplate('signin-template');
 const CLUB_SELECT_TEMPLATES = generateClubSelectTemplates();
 const CLUB_PAGE_TEMPLATES = generateClubPageTemplates();
+const DASHBOARD_TEMPLATE = new DashboardTemplate('user-dashboard-template');
 
 function generateClubPageTemplates() 
 {
@@ -31,6 +32,7 @@ function generateClubSelectTemplates()
     return clubSelectTemplates;
 }
 
+//user class to keep track of user-specific things such as name, email, joined clubs/events, etc.
 class User 
 {
     firstName;
@@ -50,18 +52,22 @@ class User
 
 class AppState 
 {
-
+    // vars for templates, user, current category & club a user has selected
     static previousTemplates = [];
     static currentTemplate = null;
     static user = null;
+    static categorySelected = null;
 
-    static changeNextTemplate(template) 
-    {
+    // functions to change from screen to screen using templates
+    static changeNextTemplate(template) {
+        // add the current template screen we're on the an array of previous templates (for back button functionality)
+        // unless current template is null, the signin screen, or the template we're CHANGING to is the signin screen
         if((this.currentTemplate != null) && (this.currentTemplate != SIGNIN_TEMPLATE) && (template != SIGNIN_TEMPLATE)) 
         {
             AppState.previousTemplates.push(this.currentTemplate);
         }
 
+        // make back button visible if we have previous templates to navigate back to
         if(this.previousTemplates.length != 0)
         {
             $('#back-button').css('visibility', 'visible');
@@ -70,9 +76,10 @@ class AppState
         AppState.changeTemplate(template);
     }
 
-    static changePreviousTemplate() 
-    {
+    // function called when back button is pressed
+    static changePreviousTemplate() {
         const previous = this.previousTemplates.pop();
+        // hide back button if we cannot go back any further (user is at explore categories screen)
         if(this.previousTemplates.length == 0)
         {
             $('#back-button').css('visibility', 'hidden');
@@ -80,11 +87,15 @@ class AppState
         AppState.changeTemplate(previous);
     }
 
-    static changeTemplate(template)
-    {
-        if(template != SIGNIN_TEMPLATE)
+    // function to actually change the screen we're on by loading template's html and calling setup functions
+    static changeTemplate(template){
+        // make sure we're only displaying home/dashboard button when it's appropriate (i.e. not on signin screen)
+        if(template != SIGNIN_TEMPLATE && template != DASHBOARD_TEMPLATE)
         {
             $('#home-button').css('visibility', 'visible');
+        }
+        else if(template == DASHBOARD_TEMPLATE){
+            $('#home-button').css('visibility', 'hidden');
         }
 
         AppState.currentTemplate = template;
@@ -93,11 +104,19 @@ class AppState
     }
 }
 
+// other functions for screen navigation
 $(function () 
 {
+    // back button functionality
     $('#back-button').on('click', function()
     {
         AppState.changePreviousTemplate();
+    })
+
+    // home/dashboard button functionality
+    $('#home-button').on('click', function ()
+    {
+        AppState.changeNextTemplate(DASHBOARD_TEMPLATE);
     })
 
     AppState.changeNextTemplate(SIGNIN_TEMPLATE);
@@ -112,7 +131,8 @@ window.App =
         SIGNIN: SIGNIN_TEMPLATE,
         CATEGORIES: CATEGORIES_TEMPLATE,
         CLUBS: CLUB_SELECT_TEMPLATES,
-        CLUBSPAGES: CLUB_PAGE_TEMPLATES
+        CLUBSPAGES: CLUB_PAGE_TEMPLATES,
+        DASHBOARD: DASHBOARD_TEMPLATE
     },
     Categories: CATEGORIES_DATA,
     Clubs: CLUBS_DATA,
