@@ -3,8 +3,7 @@ class Template {
 
     templateId;
 
-    constructor(templateId) 
-    {
+    constructor(templateId) {
         this.templateId = templateId;
     }
 
@@ -49,8 +48,7 @@ class SignInTemplate extends Template {
 
     setupEventListeners() {
         // Event listener for submission of the signin form.
-        $('#signin-form').on('submit', function (event) 
-        {
+        $('#signin-form').on('submit', function (event) {
             event.preventDefault();
             var dataString = $(this).serialize();
             var params = new URLSearchParams(dataString);
@@ -79,7 +77,7 @@ class CategoriesTemplate extends Template {
         // grabs the id (category name) of the element to determine which category the user clicked
         $('.category').on('click', function () {
             var categoryId = $(this).attr("id");
-            window.App.State.changeNextTemplate(window.App.Templates.CLUBS[categoryId])
+            window.App.State.changeNextTemplate(window.App.Templates.CLUB_SELECT[categoryId]);
         })
     }
 
@@ -88,8 +86,7 @@ class CategoriesTemplate extends Template {
         // will run until all categories from our data have been made into their own element with a respective id, 
         // displayed name, description, and img
         const categories = window.App.Categories;
-        for (var i = 0; i < categories.length; i++) 
-        {
+        for (var i = 0; i < categories.length; i++) {
             const category = categories[i];
 
             // Get the template content and create a new element from it
@@ -108,175 +105,172 @@ class CategoriesTemplate extends Template {
 }
 
 class ClubSelectTemplate extends Template {
+
     categoryId;
     categorySlug;
-    currentIndex;
-    visibleClubs;
+
     categoryClubs;
+    currentClubIndex;
+
+    visibleClubs;
+    visibleElements;
+    totalVisibleClubs;
+    totalVisibleElements;
 
     constructor(templateId, categoryId, categorySlug) {
         super(templateId);
         this.categoryId = categoryId;
         this.categorySlug = categorySlug;
         this.currentIndex = 0;
-        this.visibleClubs = [];
+    }
+
+    setup() {
+        this.categoryClubs = this.getCategoryClubs();
+        this.totalVisibleClubs = Math.min(5, this.categoryClubs.length);
+        this.totalVisibleElements = this.totalVisibleClubs + 2;
+        super.setup();
     }
 
     setupEventListeners() {
+
+        const LEFT = -1;
+        const RIGHT = 1;
+
         // Navigation arrows
-        $('.nav-arrow.left').on('click', () => this.navigate(-1));
-        $('.nav-arrow.right').on('click', () => this.navigate(1));
-        
-        // Club click events
-        $(document).on('click', '.club-orbiter', function() {
-            if ($(this).hasClass('center')) {
-                const clubId = $(this).attr("id");
-                window.App.State.changeNextTemplate(window.App.Templates.CLUBSPAGES[clubId]);
-            }
-        });
+        $('.nav-arrow.left').on('click', () => this.navigate(LEFT));
+        $('.nav-arrow.right').on('click', () => this.navigate(RIGHT));
 
-    
-    }
-
-    navigate(direction) {
-        const clubs = this.getClubsForCategory();
-        if (clubs.length === 0) return;
-        
-        this.currentIndex = (this.currentIndex - direction + clubs.length) % clubs.length;
-        this.updateWheel();
-    }
-
-    getClubsForCategory() {
-        const clubs = window.App.Clubs;
-        const categoryClubs = [];
-        
-        for (const clubId in clubs) {
-            if (clubs.hasOwnProperty(clubId)){
-                const club = clubs[clubId]
-                const categories = club.categories;
-            
-            
-                for (let categoryIndex = 0; categoryIndex < categories.length; categoryIndex++) {
-                    const currentCategorySlug = categories[categoryIndex].slug;
-                    if (this.categorySlug === currentCategorySlug) {
-                        categoryClubs.push(club);
-                        break;
-                    }
-                }
-            }
-        }
-        
-        return categoryClubs.sort((a, b) => a.id - b.id);
-    }
-
-    updateWheel() {
-        const clubs = this.getClubsForCategory();
-        const wheel = $('.clubs-wheel');
-        wheel.empty();
-        
-        if (clubs.length === 0) return;
-        
-        setTimeout(() => {
-            const wheelWidth = wheel.width();
-            const wheelHeight = wheel.height();
-            
-            // Calculate which clubs to show but only show 5 max
-            const totalVisible = Math.min(5, clubs.length);
-            const centerY = wheelHeight * 0.4; // vertical pos of the arch
-            const archWidth = wheelWidth * 0.8; // width of arch
-            const archHeight = 100; // height of arch curve
-
-            
-            const centerPosition = Math.floor(totalVisible / 2);
-
-            // DEBUG: Log the current state
-            console.log('=== UPDATE WHEEL ===');
-            console.log('Current index:', this.currentIndex);
-            console.log('Total clubs:', clubs.length);
-            console.log('Clubs order:', clubs.map(c => c.name));
-            console.log('Center position:', centerPosition);
-            
-
-        
-            // create horizontal arch positions
-            for (let i = 0; i < totalVisible; i++) {
-                //calc index based on what the curr position is so order is kept
-
-                let clubIndex = (this.currentIndex + i - centerPosition + clubs.length) % clubs.length;
-                const club = clubs[clubIndex];
-
-                // Calculate horizontal position so it spaced out even
-                const x = (i / (totalVisible - 1)) * archWidth + (wheelWidth - archWidth) / 2;
-
-                
-                // Calculate vertical position aka where on the arch
-                const progress = i / (totalVisible -1); // 0 to 1
-                const curve = Math.sin(progress* Math.PI); // Sine wave for arch
-                const y = centerY - (curve * archHeight);
-                
-                //make sure the center pos is in the middle of whats visible
-                const isCenter = i === centerPosition;
-                
-                const clubOrbiter = $('<div class="club-orbiter"></div>');
-                clubOrbiter.attr('id', club.id);
-                clubOrbiter.data('description', club.description);
-                
-                if (isCenter) {
-                    clubOrbiter.addClass('center');
-                    $('.sun-description').text(club.description).addClass('active');
-                }
-                
-                const clubSize = isCenter ? 200 : 160;
-                
-                clubOrbiter.css({
-                    left: (x - clubSize /2) + 'px',
-                    top: (y -clubSize / 2) + 'px',
-                    width: clubSize + 'px',
-                    height: clubSize + 'px'
-                });
-                
-                const clubName = $('<p class="club-name"></p>').text(club.name);
-                const clubDescription = $('<p class="club-description"></p>').text(club.description);
-                
-                clubOrbiter.append(clubName);
-                clubOrbiter.append(clubDescription);
-                
-                wheel.append(clubOrbiter);
-            }
-        }, 50);
-    }
-
-        
-
-    
-
-    setupElements() {
-        const container = $('#main');
-        const templateHtml = $('#club-select-template').html();
-        container.html(templateHtml);
-        
-        // Add navigation arrows and sun container
-        $('.clubs-select-container').prepend(`
-            <div class="nav-arrow left">‹</div>
-            <div class="nav-arrow right">›</div>
-            <div class="sun-container">
-                <div class="sun-description"></div>
-                <div class="sun"></div>
-            </div>
-        `);
-        
-        this.updateWheel();
-        
         // Add keyboard navigation
         $(document).on('keydown', (e) => {
             if (e.key === 'ArrowLeft') {
-                this.navigate(-1);
+                this.navigate(LEFT);
             } else if (e.key === 'ArrowRight') {
-                this.navigate(1);
+                this.navigate(RIGHT);
             } else if (e.key === 'Enter') {
                 $('.club-orbiter.center').click();
             }
         });
+    }
+
+    navigate(direction) {
+
+        var newClubIndex = this.currentClubIndex + direction;
+
+        if (newClubIndex < 0) {
+            this.currentClubIndex = clubs.length - 1;
+        }
+        else if (newClubIndex >= clubs.length) {
+            this.currentClubIndex = 0;
+        }
+        else {
+            this.currentClubIndex = newClubIndex;
+        }
+
+        this.updateWheel();
+    }
+
+    getCategoryClubs() {
+
+        const clubs = window.App.Clubs;
+
+        const categoryClubs = clubs.filter((club) => {
+            var categories = club.categories
+            for (var categoryIndex = 0; categoryIndex < categories.length; categoryIndex++) {
+                var category = categories[categoryIndex];
+                if (category.slug == this.categorySlug) {
+                    return true;
+                }
+            }
+            return false;
+        })
+
+        return categoryClubs;
+    }
+
+    updateWheel() {
+
+        const wheel = $('.clubs-wheel');
+        wheel.empty();
+
+        const visibleClubs = this.getVisibleClubs();
+        var visibleClubIndex = 0;
+
+        const fullRotationAngle = 180;
+        const angleIncrement = fullRotationAngle / this.totalVisibleElements;
+        const radiusFromWheel = 200;
+
+        for (var element = 0; element < this.totalVisibleElements; element++) {
+
+            const clubHtml = $('#club-bubble-template').html();
+            const newClub = $(clubHtml);
+
+            if ((element != 0) && (element != (this.totalVisibleElements - 1))) {
+
+                const clubData = visibleClubs[visibleClubIndex++];
+                newClub.attr('id', clubData.id)
+                newClub.find('.club-name').text(clubData.name);
+                newClub.find('.club-description').text(clubData.description);
+            }
+
+            const angle = element * angleIncrement;
+            const halfRotationAngle = fullRotationAngle / 2;
+            const xPos = radiusFromWheel * Math.cos(angle * Math.PI / halfRotationAngle);
+            const yPos = radiusFromWheel * Math.sin(angle * Math.PI / halfRotationAngle);
+            newClub.css('left', `calc(50% + ${xPos - newClub.offsetWidth / 2}px)`);
+            newClub.css('top', `calc(50% + ${yPos - newClub.offsetHeight / 2}px)`);
+            wheel.append(newClub);
+        }
+
+    }
+
+    getVisibleClubs() {
+
+        const visibleClubs = [];
+        const halfVisibleClubs = Math.floor(this.totalVisibleClubs / 2);
+
+        // Index of the current club in the visible clubs array
+        var visibleClubIndex = 0;
+
+        // Get clubs to the left of the current club
+        for (var club = 1; club <= halfVisibleClubs; club++) {
+
+            var clubIndex = this.currentClubIndex + club;
+
+            if (clubIndex >= this.categoryClubs.length) {
+                clubIndex = club - 1;
+            }
+
+            visibleClubs[visibleClubIndex++] = this.categoryClubs[clubIndex];
+        }
+
+        // Get the current selected club
+        visibleClubs[visibleClubIndex++] = this.categoryClubs[this.currentClubIndex];
+
+
+        // Get clubs to the right of the current club
+        for (var club = 1; club <= halfVisibleClubs; club++) {
+
+            var clubIndex = this.currentClubIndex - club;
+
+            if (clubIndex < 0) {
+                clubIndex = this.categoryClubs.length - club;
+            }
+            console.log(this.categoryClubs[clubIndex]);
+            visibleClubs[visibleClubIndex++] = this.categoryClubs[clubIndex];
+        }
+        console.log(visibleClubs);
+        return visibleClubs;
+    }
+
+    setupElements() {
+
+        // Add navigation arrows and sun container
+        $('.clubs-select-container').prepend(`
+            <div class="nav-arrow left">‹</div>
+            <div class="nav-arrow right">›</div>
+        `);
+
+        this.updateWheel();
     }
 }
 
@@ -295,7 +289,7 @@ class DashboardTemplate extends Template {
         // get the user's name based on signin variables saved from first screen
         const user = window.App.State.user;
         const name = user.firstName + " " + user.lastName;
-        
+
         const userNameHtml = $('#user-name-container');
 
         // display the user's name in the .user-name element of user-name-container div
@@ -309,45 +303,37 @@ class ClubPageTemplate extends Template {
     clubId;
     clubSlug;
 
-    constructor(templateId, clubId, clubSlug) 
-    {
+    constructor(templateId, clubId, clubSlug) {
         super(templateId);
         this.clubId = clubId;
         this.clubSlug = clubSlug;
     }
 
-    setupEventListeners() 
-    {
-        
+    setupEventListeners() {
+
     }
 
-    setupElements() 
-    {
+    setupElements() {
         const club = window.App.Clubs[this.clubId];
         const clubPageContainer = $('#club-page-container');
         clubPageContainer.find('.club-name').text(club.name);
         clubPageContainer.find('.about-us').text(club.description);
 
-        const clubPosts = window.App.Posts.filter((post) => 
-        {
+        const clubPosts = window.App.Posts.filter((post) => {
             return this.clubId == post.clubId;
         });
 
-        const clubEvents = clubPosts.filter((post) => 
-        {
+        const clubEvents = clubPosts.filter((post) => {
             return post.event;
         })
 
-        const clubMembers = window.App.Members.filter((member) => 
-        {
+        const clubMembers = window.App.Members.filter((member) => {
             const memberClubs = member.clubs;
-            for(var clubIndex = 0 ; clubIndex<memberClubs.length; clubIndex++)
-            {
+            for (var clubIndex = 0; clubIndex < memberClubs.length; clubIndex++) {
                 const club = memberClubs[clubIndex];
-                if(club.id == this.clubId)
-                {
+                if (club.id == this.clubId) {
                     return true;
-                }  
+                }
             }
             return false;
         })
@@ -357,12 +343,10 @@ class ClubPageTemplate extends Template {
         this.setupMembers(clubMembers);
     }
 
-    setupPosts(clubPosts)
-    {
+    setupPosts(clubPosts) {
         const postsContainer = $('.posts-container');
 
-        for(var postIndex = 0; postIndex<clubPosts.length ; postIndex++)
-        {
+        for (var postIndex = 0; postIndex < clubPosts.length; postIndex++) {
             const post = clubPosts[postIndex];
             const postHtml = $('#post-template').html();
             const newPost = $(postHtml);
@@ -375,12 +359,10 @@ class ClubPageTemplate extends Template {
         }
     }
 
-    setupEvents(clubEvents)
-    {
+    setupEvents(clubEvents) {
         const eventsContainer = $('.events-container');
 
-        for(var eventIndex = 0 ; eventIndex<clubEvents.length ; eventIndex++)
-        {
+        for (var eventIndex = 0; eventIndex < clubEvents.length; eventIndex++) {
             const event = clubEvents[eventIndex];
             const eventHtml = $('#event-template').html();
             const newEvent = $(eventHtml);
@@ -393,12 +375,10 @@ class ClubPageTemplate extends Template {
         }
     }
 
-    setupMembers(clubMembers)
-    {
+    setupMembers(clubMembers) {
         const membersContainer = $('.members-container');
 
-        for(var memberIndex = 0 ; memberIndex<clubMembers.length ; memberIndex++)
-        {
+        for (var memberIndex = 0; memberIndex < clubMembers.length; memberIndex++) {
             const member = clubMembers[memberIndex];
             const memberHtml = $('#member-template').html();
             const newMember = $(memberHtml);
@@ -409,7 +389,7 @@ class ClubPageTemplate extends Template {
         }
     }
 
-    
+
 }
-    
+
 

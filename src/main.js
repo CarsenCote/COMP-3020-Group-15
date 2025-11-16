@@ -6,12 +6,10 @@ const CLUB_SELECT_TEMPLATES = generateClubSelectTemplates();
 const CLUB_PAGE_TEMPLATES = generateClubPageTemplates();
 const DASHBOARD_TEMPLATE = new DashboardTemplate('user-dashboard-template');
 
-function generateClubPageTemplates() 
-{
+function generateClubPageTemplates() {
     var clubsPageTemplates = new Array(CLUBS_DATA.length);
 
-    for(var clubId = 0 ; clubId<CLUBS_DATA.length ; clubId++)
-    {
+    for (var clubId = 0; clubId < CLUBS_DATA.length; clubId++) {
         var club = CLUBS_DATA[clubId];
         var clubSlug = club.slug;
         clubsPageTemplates[clubId] = new ClubPageTemplate('club-page-template', clubId, clubSlug);
@@ -19,12 +17,10 @@ function generateClubPageTemplates()
     return clubsPageTemplates;
 }
 
-function generateClubSelectTemplates()
-{
+function generateClubSelectTemplates() {
     var clubSelectTemplates = new Array(CATEGORIES_DATA.length);
 
-    for(var categoryId = 0 ; categoryId<CATEGORIES_DATA.length ; categoryId++)
-    {
+    for (var categoryId = 0; categoryId < CATEGORIES_DATA.length; categoryId++) {
         var category = CATEGORIES_DATA[categoryId];
         var categorySlug = category.slug;
         clubSelectTemplates[categoryId] = new ClubSelectTemplate('club-select-template', categoryId, categorySlug);
@@ -33,8 +29,7 @@ function generateClubSelectTemplates()
 }
 
 //user class to keep track of user-specific things such as name, email, joined clubs/events, etc.
-class User 
-{
+class User {
     firstName;
     lastName;
     email;
@@ -42,16 +37,14 @@ class User
     joined_clubs = [];
     joined_events = [];
 
-    constructor(firstName, lastName, email) 
-    {
+    constructor(firstName, lastName, email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
     }
 }
 
-class AppState 
-{
+class AppState {
     // vars for templates, user, current category & club a user has selected
     static previousTemplates = [];
     static currentTemplate = null;
@@ -62,14 +55,12 @@ class AppState
     static changeNextTemplate(template) {
         // add the current template screen we're on the an array of previous templates (for back button functionality)
         // unless current template is null, the signin screen, or the template we're CHANGING to is the signin screen
-        if((this.currentTemplate != null) && (this.currentTemplate != SIGNIN_TEMPLATE) && (template != SIGNIN_TEMPLATE)) 
-        {
+        if ((this.currentTemplate != null) && (this.currentTemplate != SIGNIN_TEMPLATE) && (template != SIGNIN_TEMPLATE)) {
             AppState.previousTemplates.push(this.currentTemplate);
         }
 
         // make back button visible if we have previous templates to navigate back to
-        if(this.previousTemplates.length != 0)
-        {
+        if (this.previousTemplates.length != 0) {
             $('#back-button').css('visibility', 'visible');
         }
 
@@ -80,21 +71,19 @@ class AppState
     static changePreviousTemplate() {
         const previous = this.previousTemplates.pop();
         // hide back button if we cannot go back any further (user is at explore categories screen)
-        if(this.previousTemplates.length == 0)
-        {
+        if (this.previousTemplates.length == 0) {
             $('#back-button').css('visibility', 'hidden');
         }
         AppState.changeTemplate(previous);
     }
 
     // function to actually change the screen we're on by loading template's html and calling setup functions
-    static changeTemplate(template){
+    static changeTemplate(template) {
         // make sure we're only displaying home/dashboard button when it's appropriate (i.e. not on signin screen)
-        if(template != SIGNIN_TEMPLATE && template != DASHBOARD_TEMPLATE)
-        {
+        if (template != SIGNIN_TEMPLATE && template != DASHBOARD_TEMPLATE) {
             $('#home-button').css('visibility', 'visible');
         }
-        else if(template == DASHBOARD_TEMPLATE){
+        else if (template == DASHBOARD_TEMPLATE) {
             $('#home-button').css('visibility', 'hidden');
         }
 
@@ -105,32 +94,29 @@ class AppState
 }
 
 // other functions for screen navigation
-$(function () 
-{
+$(function () {
     // back button functionality
-    $('#back-button').on('click', function()
-    {
+    $('#back-button').on('click', function () {
         AppState.changePreviousTemplate();
     })
 
     // home/dashboard button functionality
-    $('#home-button').on('click', function ()
-    {
+    $('#home-button').on('click', function () {
         AppState.changeNextTemplate(DASHBOARD_TEMPLATE);
     })
 
     AppState.changeNextTemplate(SIGNIN_TEMPLATE);
 });
 
-window.App = 
+window.App =
 {
     State: AppState,
-    Templates: 
+    Templates:
     {
         BLACKHOLE: BLACKHOLE_TEMPLATE,
         SIGNIN: SIGNIN_TEMPLATE,
         CATEGORIES: CATEGORIES_TEMPLATE,
-        CLUBS: CLUB_SELECT_TEMPLATES,
+        CLUB_SELECT: CLUB_SELECT_TEMPLATES,
         CLUBSPAGES: CLUB_PAGE_TEMPLATES,
         DASHBOARD: DASHBOARD_TEMPLATE
     },

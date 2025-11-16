@@ -1,9 +1,4 @@
-#clubs-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-    justify-content: center;
-}
+#clubs-container {}
 
 .clubs-title {
     box-sizing: border-box;
@@ -46,7 +41,6 @@
     width: 100%;
     height: 100vh;
     overflow: hidden;
-    background: linear-gradient(to bottom, #0a0a2a, #1a1a4a);
 }
 
 /* Sun at the bottom */
@@ -187,7 +181,3 @@
 .nav-arrow.right {
     right: 20px;
 }
-
-
-
-
