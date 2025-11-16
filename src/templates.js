@@ -106,6 +106,9 @@ class CategoriesTemplate extends Template {
 
 class ClubSelectTemplate extends Template {
 
+    static LEFT = 1;
+    static RIGHT = -1;
+
     categoryId;
     categorySlug;
 
@@ -121,7 +124,7 @@ class ClubSelectTemplate extends Template {
         super(templateId);
         this.categoryId = categoryId;
         this.categorySlug = categorySlug;
-        this.currentIndex = 0;
+        this.currentClubIndex = 0;
     }
 
     setup() {
@@ -133,22 +136,23 @@ class ClubSelectTemplate extends Template {
 
     setupEventListeners() {
 
-        const LEFT = -1;
-        const RIGHT = 1;
-
         // Navigation arrows
-        $('.nav-arrow.left').on('click', () => this.navigate(LEFT));
-        $('.nav-arrow.right').on('click', () => this.navigate(RIGHT));
+        $('.nav-arrow.left').on('click', () => this.navigate(ClubSelectTemplate.LEFT));
+        $('.nav-arrow.right').on('click', () => this.navigate(ClubSelectTemplate.RIGHT));
 
         // Add keyboard navigation
         $(document).on('keydown', (e) => {
             if (e.key === 'ArrowLeft') {
-                this.navigate(LEFT);
+                this.navigate(ClubSelectTemplate.LEFT);
             } else if (e.key === 'ArrowRight') {
-                this.navigate(RIGHT);
+                this.navigate(ClubSelectTemplate.RIGHT);
             } else if (e.key === 'Enter') {
-                $('.club-orbiter.center').click();
+                alert("TODO implement change template");
             }
+        });
+
+        $(window).on('resize', () => {
+            this.updateWheel();
         });
     }
 
@@ -157,16 +161,44 @@ class ClubSelectTemplate extends Template {
         var newClubIndex = this.currentClubIndex + direction;
 
         if (newClubIndex < 0) {
-            this.currentClubIndex = clubs.length - 1;
+            this.currentClubIndex = this.categoryClubs.length - 1;
         }
-        else if (newClubIndex >= clubs.length) {
+        else if (newClubIndex >= this.categoryClubs.length) {
             this.currentClubIndex = 0;
         }
         else {
             this.currentClubIndex = newClubIndex;
         }
+        
+        $('.club-name').css({
+            opacity: 0,
+            transition: `0.1s ease`,
+        });
 
-        this.updateWheel();
+        if(direction == ClubSelectTemplate.LEFT)
+        {
+            setTimeout(() => {
+            $('.clubs-wheel').css({
+                transform: `rotate(30deg)`,
+                transition: `0.2s ease`
+            })
+            }, 100);
+        }
+        else if(direction == ClubSelectTemplate.RIGHT)
+        {
+            setTimeout(() => {
+            $('.clubs-wheel').css({
+                transform: `rotate(-30deg)`,
+                transition: `0.2s ease`
+            })
+            }, 100);
+        }
+        
+        
+
+        setTimeout(() => {
+            this.updateWheel();
+        }, 300);
     }
 
     getCategoryClubs() {
@@ -183,21 +215,27 @@ class ClubSelectTemplate extends Template {
             }
             return false;
         })
-
         return categoryClubs;
     }
 
     updateWheel() {
 
-        const wheel = $('.clubs-wheel');
+        const wheel = $('.clubs-wheel')
+        .css({
+            transform: ``,
+            transition: ``,
+        });
+
         wheel.empty();
 
         const visibleClubs = this.getVisibleClubs();
         var visibleClubIndex = 0;
 
-        const fullRotationAngle = 180;
+        const fullRotationAngle = -210;
         const angleIncrement = fullRotationAngle / this.totalVisibleElements;
-        const radiusFromWheel = 200;
+        
+        // Calculate radius based on viewport dimensions (use smaller dimension for better fit)
+        const radiusFromWheel = Math.max(window.innerWidth, window.innerHeight) * 0.40;
 
         for (var element = 0; element < this.totalVisibleElements; element++) {
 
@@ -212,13 +250,24 @@ class ClubSelectTemplate extends Template {
                 newClub.find('.club-description').text(clubData.description);
             }
 
-            const angle = element * angleIncrement;
-            const halfRotationAngle = fullRotationAngle / 2;
-            const xPos = radiusFromWheel * Math.cos(angle * Math.PI / halfRotationAngle);
-            const yPos = radiusFromWheel * Math.sin(angle * Math.PI / halfRotationAngle);
-            newClub.css('left', `calc(50% + ${xPos - newClub.offsetWidth / 2}px)`);
-            newClub.css('top', `calc(50% + ${yPos - newClub.offsetHeight / 2}px)`);
             wheel.append(newClub);
+
+            const angle = element * angleIncrement * (Math.PI / 180); // Convert to radians
+            const xPos = radiusFromWheel * Math.cos(angle);
+            const yPos = radiusFromWheel * Math.sin(angle);
+
+            newClub.css({
+                position: 'absolute',
+                left: `calc(50% + ${xPos}px)`,
+                top: `calc(50% + ${yPos}px)`,
+                transform: 'translate(-50%, -50%)',
+                opacity: 1
+            });
+
+            newClub.on('click', function() {
+                const clubId = $(this).attr('id');
+                window.App.State.changeNextTemplate(window.App.Templates.CLUB_PAGES[clubId]);
+            })
         }
 
     }
@@ -227,38 +276,24 @@ class ClubSelectTemplate extends Template {
 
         const visibleClubs = [];
         const halfVisibleClubs = Math.floor(this.totalVisibleClubs / 2);
+        const totalClubs = this.categoryClubs.length;
 
-        // Index of the current club in the visible clubs array
-        var visibleClubIndex = 0;
+        // Calculate the starting offset (left-most club to display)
+        const startOffset = -halfVisibleClubs;
 
-        // Get clubs to the left of the current club
-        for (var club = 1; club <= halfVisibleClubs; club++) {
-
-            var clubIndex = this.currentClubIndex + club;
-
-            if (clubIndex >= this.categoryClubs.length) {
-                clubIndex = club - 1;
-            }
-
-            visibleClubs[visibleClubIndex++] = this.categoryClubs[clubIndex];
-        }
-
-        // Get the current selected club
-        visibleClubs[visibleClubIndex++] = this.categoryClubs[this.currentClubIndex];
-
-
-        // Get clubs to the right of the current club
-        for (var club = 1; club <= halfVisibleClubs; club++) {
-
-            var clubIndex = this.currentClubIndex - club;
-
+        // Get all visible clubs using modulo arithmetic for circular wrapping
+        for (let i = 0; i < this.totalVisibleClubs; i++) {
+            const offset = startOffset + i;
+            // Use modulo to wrap around circularly (handles both negative and positive)
+            let clubIndex = (this.currentClubIndex + offset) % totalClubs;
+            
             if (clubIndex < 0) {
-                clubIndex = this.categoryClubs.length - club;
+                clubIndex += totalClubs;
             }
-            console.log(this.categoryClubs[clubIndex]);
-            visibleClubs[visibleClubIndex++] = this.categoryClubs[clubIndex];
+
+            visibleClubs.push(this.categoryClubs[clubIndex]);
         }
-        console.log(visibleClubs);
+
         return visibleClubs;
     }
 
