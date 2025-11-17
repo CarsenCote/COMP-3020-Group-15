@@ -156,6 +156,17 @@ class ClubSelectTemplate extends Template {
         });
     }
 
+    setupElements() {
+
+        // Add navigation arrows and sun container
+        $('.clubs-select-container').prepend(`
+            <div class="nav-arrow left">‹</div>
+            <div class="nav-arrow right">›</div>
+        `);
+
+        this.updateWheel();
+    }
+
     navigate(direction) {
 
         var newClubIndex = this.currentClubIndex + direction;
@@ -169,36 +180,28 @@ class ClubSelectTemplate extends Template {
         else {
             this.currentClubIndex = newClubIndex;
         }
-        
+
+        const CLUB_FADE_TIME = 100;
+        const WHEEL_ROTATE_TIME = 200;
+        const ROTATION_ANGLE = (direction == ClubSelectTemplate.LEFT) ? 30 : -30;
+
         $('.club-name').css({
             opacity: 0,
-            transition: `0.1s ease`,
+            transition: `${CLUB_FADE_TIME}ms ease`,
         });
 
-        if(direction == ClubSelectTemplate.LEFT)
-        {
-            setTimeout(() => {
-            $('.clubs-wheel').css({
-                transform: `rotate(30deg)`,
-                transition: `0.2s ease`
-            })
-            }, 100);
-        }
-        else if(direction == ClubSelectTemplate.RIGHT)
-        {
-            setTimeout(() => {
-            $('.clubs-wheel').css({
-                transform: `rotate(-30deg)`,
-                transition: `0.2s ease`
-            })
-            }, 100);
-        }
-        
-        
+        const clubWheel = $('.clubs-wheel');
+
+        setTimeout(() => {
+            clubWheel.css({
+                transition: `${WHEEL_ROTATE_TIME}ms ease`,
+                transform: `rotate(${ROTATION_ANGLE}deg)`
+            });
+        }, CLUB_FADE_TIME)
 
         setTimeout(() => {
             this.updateWheel();
-        }, 300);
+        }, CLUB_FADE_TIME + WHEEL_ROTATE_TIME);
     }
 
     getCategoryClubs() {
@@ -221,10 +224,10 @@ class ClubSelectTemplate extends Template {
     updateWheel() {
 
         const wheel = $('.clubs-wheel')
-        .css({
-            transform: ``,
-            transition: ``,
-        });
+            .css({
+                transform: ``,
+                transition: ``,
+            });
 
         wheel.empty();
 
@@ -233,7 +236,7 @@ class ClubSelectTemplate extends Template {
 
         const fullRotationAngle = -210;
         const angleIncrement = fullRotationAngle / this.totalVisibleElements;
-        
+
         // Calculate radius based on viewport dimensions (use smaller dimension for better fit)
         const radiusFromWheel = Math.max(window.innerWidth, window.innerHeight) * 0.40;
 
@@ -264,7 +267,7 @@ class ClubSelectTemplate extends Template {
                 opacity: 1
             });
 
-            newClub.on('click', function() {
+            newClub.on('click', function () {
                 const clubId = $(this).attr('id');
                 window.App.State.changeNextTemplate(window.App.Templates.CLUB_PAGES[clubId]);
             })
@@ -286,7 +289,7 @@ class ClubSelectTemplate extends Template {
             const offset = startOffset + i;
             // Use modulo to wrap around circularly (handles both negative and positive)
             let clubIndex = (this.currentClubIndex + offset) % totalClubs;
-            
+
             if (clubIndex < 0) {
                 clubIndex += totalClubs;
             }
@@ -295,17 +298,6 @@ class ClubSelectTemplate extends Template {
         }
 
         return visibleClubs;
-    }
-
-    setupElements() {
-
-        // Add navigation arrows and sun container
-        $('.clubs-select-container').prepend(`
-            <div class="nav-arrow left">‹</div>
-            <div class="nav-arrow right">›</div>
-        `);
-
-        this.updateWheel();
     }
 }
 
