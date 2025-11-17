@@ -7,7 +7,7 @@
 
 .blackhole-title {
     position: absolute;
-    top: 41%;
+    top: 41.5%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
@@ -29,8 +29,8 @@
 
 .blackhole {
     position: relative;
-    height: 50%;
-    width: 50%;
+    height: 60%;
+    width: 60%;
     user-select: none;
     animation: infinite-spin 30s linear infinite;
     z-index: 1;

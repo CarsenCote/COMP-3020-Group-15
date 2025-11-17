@@ -261,12 +261,11 @@ class ClubSelectTemplate extends Template {
             const xPos = radiusFromWheel * Math.cos(angle);
             const yPos = radiusFromWheel * Math.sin(angle);
 
-            const isCenterElement = element == Math.floor(this.totalVisibleElements/2);
-            if(isCenterElement)
-            {
+            const isCenterElement = element == Math.floor(this.totalVisibleElements / 2);
+            if (isCenterElement) {
                 newClub.addClass('center-club');
             }
-            
+
             newClub.css({
                 position: 'absolute',
                 left: `calc(50% + ${xPos}px)`,
@@ -282,7 +281,7 @@ class ClubSelectTemplate extends Template {
             wheel.append(newClub);
         }
 
-        setTimeout(()=> {
+        setTimeout(() => {
             $('.center-club').css({
                 transform: 'translate(-50%, -50%) scale(1.5)',
                 transition: 'transform 0.2s ease'

@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    background-color: rgb(45, 21, 129);
+    background: linear-gradient(#010015 0%, #000542 100%, transparent 100%);
     user-select: none;
 }
 
@@ -20,7 +20,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-top: 80px; /* Space for fixed nav */
+    padding-top: 80px;
+    /* Space for fixed nav */
 }
 
 #back-button {
