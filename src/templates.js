@@ -147,7 +147,6 @@ class ClubSelectTemplate extends Template {
             } else if (e.key === 'ArrowRight') {
                 this.navigate(ClubSelectTemplate.RIGHT);
             } else if (e.key === 'Enter') {
-                alert("TODO implement change template");
             }
         });
 
@@ -188,6 +187,11 @@ class ClubSelectTemplate extends Template {
         $('.club-name').css({
             opacity: 0,
             transition: `${CLUB_FADE_TIME}ms ease`,
+        });
+
+        $('.center-club').css({
+            transform: 'translate(-50%, -50%) scale(1)',
+            transition: 'transform 0.1s ease'
         });
 
         const clubWheel = $('.clubs-wheel');
@@ -253,26 +257,37 @@ class ClubSelectTemplate extends Template {
                 newClub.find('.club-description').text(clubData.description);
             }
 
-            wheel.append(newClub);
-
             const angle = element * angleIncrement * (Math.PI / 180); // Convert to radians
             const xPos = radiusFromWheel * Math.cos(angle);
             const yPos = radiusFromWheel * Math.sin(angle);
 
+            const isCenterElement = element == Math.floor(this.totalVisibleElements/2);
+            if(isCenterElement)
+            {
+                newClub.addClass('center-club');
+            }
+            
             newClub.css({
                 position: 'absolute',
                 left: `calc(50% + ${xPos}px)`,
                 top: `calc(50% + ${yPos}px)`,
                 transform: 'translate(-50%, -50%)',
-                opacity: 1
             });
 
             newClub.on('click', function () {
                 const clubId = $(this).attr('id');
                 window.App.State.changeNextTemplate(window.App.Templates.CLUB_PAGES[clubId]);
             })
+
+            wheel.append(newClub);
         }
 
+        setTimeout(()=> {
+            $('.center-club').css({
+                transform: 'translate(-50%, -50%) scale(1.5)',
+                transition: 'transform 0.2s ease'
+            });
+        }, 100);
     }
 
     getVisibleClubs() {

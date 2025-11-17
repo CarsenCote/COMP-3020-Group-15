@@ -26,6 +26,7 @@
     z-index: 1;
     overflow: hidden;
 }
+
 .club {
     display: flex;
     position: absolute;
