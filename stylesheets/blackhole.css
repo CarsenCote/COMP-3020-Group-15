@@ -3,20 +3,21 @@
     display: flex;
     overflow: hidden;
     position: relative;
+    height: 100vh;
 }
 
 .blackhole-title {
     position: absolute;
-    top: 41.5%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
     color: rgb(255, 255, 255);
     font-family: 'Montserrat', sans-serif;
-    font-size: 5vw;
+    font-size: 10vh;
     text-align: center;
     user-select: none;
-    background-color: rgba(59, 59, 59, 0.568);
+    background-color: rgb(107, 107, 107);
     padding: 0.2em 0.4em;
     border-radius: 4em;
     transition: transform 0.3s ease, background-color 0.3s ease;
@@ -24,16 +25,18 @@
 
 .blackhole-title:hover {
     transform: translate(-50%, -50%) scale(1.1);
-    background-color: rgb(59, 59, 59);
+    background-color: rgb(87, 87, 87);
 }
 
 .blackhole {
     position: relative;
-    height: 60%;
-    width: 60%;
+    height: 100vh;
+    width: 100vh;
     user-select: none;
-    animation: infinite-spin 30s linear infinite;
+    animation: infinite-spin 20s linear infinite;
     z-index: 1;
+    overflow: hidden;
+    filter: brightness(40%);
 }
 
 @keyframes infinite-spin {

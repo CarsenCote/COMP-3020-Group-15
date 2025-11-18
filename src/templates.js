@@ -184,7 +184,7 @@ class ClubSelectTemplate extends Template {
         const WHEEL_ROTATE_TIME = 200;
         const ROTATION_ANGLE = (direction == ClubSelectTemplate.LEFT) ? 30 : -30;
 
-        $('.club-name').css({
+        $('.club-name, .club-description').css({
             opacity: 0,
             transition: `${CLUB_FADE_TIME}ms ease`,
         });
@@ -282,10 +282,19 @@ class ClubSelectTemplate extends Template {
         }
 
         setTimeout(() => {
-            $('.center-club').css({
+            const centerClub = $('.center-club');
+
+            centerClub.css({
                 transform: 'translate(-50%, -50%) scale(1.5)',
                 transition: 'transform 0.2s ease'
             });
+
+            centerClub.find('.club-description').css({
+                transition: `0.2s ease`,
+                opacity: 1,
+                maxHeight: `100%`,
+            });
+
         }, 100);
     }
 

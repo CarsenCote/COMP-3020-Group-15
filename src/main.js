@@ -48,8 +48,8 @@ class AppState {
     // vars for templates, user, current category & club a user has selected
     static previousTemplates = [];
     static currentTemplate = null;
+
     static user = null;
-    static categorySelected = null;
 
     // functions to change from screen to screen using templates
     static changeNextTemplate(template) {
@@ -85,6 +85,19 @@ class AppState {
         }
         else if (template == DASHBOARD_TEMPLATE) {
             $('#home-button').css('visibility', 'hidden');
+        }
+
+        // Change the size of the home button on the blackhole screen to be larger.
+        if(template == BLACKHOLE_TEMPLATE){
+            $('#home-button').css({
+                width: `10vw`
+            })
+        }
+        else
+        {
+            $('#home-button').css({
+                width: ''
+            })
         }
 
         AppState.currentTemplate = template;
