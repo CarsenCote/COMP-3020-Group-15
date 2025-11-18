@@ -58,8 +58,8 @@
 
 .aboutus-container{
     background-image: url("../public/astronaut.jpg");
-    background-size: cover;       /* keep full-size scaling */
-    background-position: left;    /* <-- shows left side of image */
+    background-size: cover;       
+    background-position: left;    
     background-repeat: no-repeat;
     
     position: relative;   
