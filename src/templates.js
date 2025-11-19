@@ -378,14 +378,18 @@ class ClubPageTemplate extends Template {
         joinLeaveButton.on('click', ()=> {
 
             const user = window.App.State.user;
-
+            // console.log(" " + joinLeaveButton.hasClass('join-btn'))
             if(joinLeaveButton.hasClass('join-btn'))
             {
                 user.addClub(this.clubId);
+                //console.log(user.joinedClubs)
                 joinLeaveButton.removeClass('join-btn');
             }
-            else if(joinLeaveButton.hasClass('leave-btn'));
+            else if(joinLeaveButton.hasClass('leave-btn'))
             {
+                //console.log(" " + joinLeaveButton.hasClass('leave-btn'))
+                user.leaveClub(this.clubId)
+                //console.log(user.joinedClubs)
                 joinLeaveButton.removeClass('leave-btn');
             }
             
@@ -427,10 +431,12 @@ class ClubPageTemplate extends Template {
     setupJoinLeaveButton() {
         const user = window.App.State.user;
         const userInClub = user.inClub(this.clubId);
+        // console.log("is user in club? " + userInClub)
         const joinLeaveButtonText = userInClub ? 'Leave': 'Join';
         const joinLeaveButtonClass = userInClub ? 'leave-btn': 'join-btn';
         $('#join-leave-btn').addClass(joinLeaveButtonClass).text(joinLeaveButtonText);
-        console.log(userInClub);
+        // console.log(userInClub);
+        // console.log(joinLeaveButtonClass)
     }
 
     setupPosts(clubPosts) {

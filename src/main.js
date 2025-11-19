@@ -52,6 +52,8 @@ class User {
     }
 
     leaveClub(clubId) {
+        const indexId= this.joinedClubs.indexOf(clubId)
+        this.joinedClubs.splice(indexId, 1)
     }
 
     inClub(clubId) {
