@@ -434,7 +434,7 @@ class ClubPageTemplate extends Template {
     }
 
     setupPosts(clubPosts) {
-        const postsScroll = $('.posts-scroll');
+        const postsContainer = $('.posts-container');
 
         for (var postIndex = 0; postIndex < clubPosts.length; postIndex++) {
             const post = clubPosts[postIndex];
@@ -445,12 +445,12 @@ class ClubPageTemplate extends Template {
             newPost.find('.post-content').text(post.content);
             newPost.find('.post-date').text(post.date);
 
-            postsScroll.append(newPost);
+            postsContainer.append(newPost);
         }
     }
 
     setupEvents(clubEvents) {
-        const eventsScroll = $('.events-scroll');
+        const eventsContainer = $('.events-container');
 
         for (var eventIndex = 0; eventIndex < clubEvents.length; eventIndex++) {
             const event = clubEvents[eventIndex];
@@ -461,7 +461,7 @@ class ClubPageTemplate extends Template {
             newEvent.find('.event-date').text(event.date);
             newEvent.find('.event-time').text(`${event.start_time} - ${event.end_time}`);
 
-            eventsScroll.append(newEvent);
+            eventsContainer.append(newEvent);
         }
     }
 
