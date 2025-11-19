@@ -43,17 +43,17 @@ class User {
         this.email = email;
     }
 
-    addEvent(eventId){
+    addEvent(eventId) {
         this.joinedEvents.push(eventId);
     }
 
-    addClub(clubId){
+    addClub(clubId) {
         this.joinedClubs.push(clubId);
     }
 
     leaveClub(clubId) {
-        const indexId= this.joinedClubs.indexOf(clubId)
-        this.joinedClubs.splice(indexId, 1)
+        const indexId = this.joinedClubs.indexOf(clubId);
+        this.joinedClubs.splice(indexId, 1);
     }
 
     inClub(clubId) {
@@ -66,8 +66,7 @@ class User {
 
     getEvents() {
         const userEvents = [];
-        for(var event = 0; event<this.joinedEvents.length; event++)
-        {
+        for (var event = 0; event < this.joinedEvents.length; event++) {
             userEvents.push(window.App.Posts[this.joinedEvents[event]]);
         }
         return userEvents;
@@ -75,22 +74,19 @@ class User {
 
     getClubs() {
         const userClubs = [];
-        for(var club = 0; club<this.joinedClubs.length; club++)
-        {
+        for (var club = 0; club < this.joinedClubs.length; club++) {
             userClubs.push(window.App.Clubs[this.joinedClubs[club]]);
         }
         return userClubs;
     }
 
     getPosts() {
-        const userPosts = window.App.Posts.filter((post)=> {
+        const userPosts = window.App.Posts.filter((post) => {
             const postClubId = post.clubId;
-            for(var club = 0; club<this.joinedClubs.length; club++)
-            {
-                if(postClubId == this.joinedClubs[club])
-                {
+            for (var club = 0; club < this.joinedClubs.length; club++) {
+                if (postClubId == this.joinedClubs[club]) {
                     return true;
-                }  
+                }
             }
             return false;
         });
@@ -142,13 +138,12 @@ class AppState {
         }
 
         // Change the size of the home button on the blackhole screen to be larger.
-        if(template == BLACKHOLE_TEMPLATE){
+        if (template == BLACKHOLE_TEMPLATE) {
             $('#home-button').css({
                 width: `10vw`
             })
         }
-        else
-        {
+        else {
             $('#home-button').css({
                 width: ''
             })

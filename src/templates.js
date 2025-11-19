@@ -375,24 +375,18 @@ class ClubPageTemplate extends Template {
 
         const joinLeaveButton = $('#join-leave-btn');
 
-        joinLeaveButton.on('click', ()=> {
+        joinLeaveButton.on('click', () => {
 
             const user = window.App.State.user;
-            // console.log(" " + joinLeaveButton.hasClass('join-btn'))
-            if(joinLeaveButton.hasClass('join-btn'))
-            {
+            if (joinLeaveButton.hasClass('join-btn')) {
                 user.addClub(this.clubId);
-                //console.log(user.joinedClubs)
                 joinLeaveButton.removeClass('join-btn');
             }
-            else if(joinLeaveButton.hasClass('leave-btn'))
-            {
-                //console.log(" " + joinLeaveButton.hasClass('leave-btn'))
+            else if (joinLeaveButton.hasClass('leave-btn')) {
                 user.leaveClub(this.clubId)
-                //console.log(user.joinedClubs)
                 joinLeaveButton.removeClass('leave-btn');
             }
-            
+
             this.setupJoinLeaveButton();
         })
     }
@@ -401,7 +395,7 @@ class ClubPageTemplate extends Template {
         const club = window.App.Clubs[this.clubId];
         const clubPageContainer = $('#club-page-container');
         clubPageContainer.find('.club-name').text(club.name);
-        clubPageContainer.find('.about-us').text(club.description);
+        clubPageContainer.find('.about-us-header-description').text(club.description);
 
         const clubPosts = window.App.Posts.filter((post) => {
             return this.clubId == post.clubId;
@@ -432,8 +426,8 @@ class ClubPageTemplate extends Template {
         const user = window.App.State.user;
         const userInClub = user.inClub(this.clubId);
         // console.log("is user in club? " + userInClub)
-        const joinLeaveButtonText = userInClub ? 'Leave': 'Join';
-        const joinLeaveButtonClass = userInClub ? 'leave-btn': 'join-btn';
+        const joinLeaveButtonText = userInClub ? 'Leave' : 'Join';
+        const joinLeaveButtonClass = userInClub ? 'leave-btn' : 'join-btn';
         $('#join-leave-btn').addClass(joinLeaveButtonClass).text(joinLeaveButtonText);
         // console.log(userInClub);
         // console.log(joinLeaveButtonClass)
@@ -473,7 +467,6 @@ class ClubPageTemplate extends Template {
 
     setupMembers(clubMembers) {
         const membersContainer = $('.members-container');
-        const membersBorder = $('.members-border')
         for (var memberIndex = 0; memberIndex < clubMembers.length; memberIndex++) {
             const member = clubMembers[memberIndex];
             const memberHtml = $('#member-template').html();
@@ -481,7 +474,7 @@ class ClubPageTemplate extends Template {
 
             newMember.find('.member-name').text(`${member.fname} ${member.lname}`);
 
-             membersBorder.append(newMember);
+            membersContainer.append(newMember);
         }
     }
 

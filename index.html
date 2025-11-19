@@ -130,23 +130,38 @@
         </header>
 
         <div class="club-layout">
+
             <div class="posts-container" id="posts">
-                <h2 class="posts-head">Posts</h2>
-                <p class="posts-head-discription">Recent news, updates, and discussions go here.</p>
+
+                <div class="posts-header">
+                    <h2 class="posts-header-title">Posts</h2>
+                    <p class="posts-header-description">Recent news, updates, and discussions go here.</p>
+                </div>
+
             </div>
 
-            <div class="aboutus-container" id="about">
-                <h2 class="about-us-head">About Us</h2>
-                <p class="about-us"></p>
+            <div class="about-us-container" id="about">
 
+                <div class="about-us-header">
+                    <h2 class="about-us-header-title">About Us</h2>
+                    <p class="about-us-header-description"></p>
+                </div>
+
+                <header class="members-header">
+                        <h2 class="members-header-title">Members</h2>
+                        <button class="members-button">Collapse</button>
+                </header>
+                
                 <div class="members-container">
-                    <div class="members-border"></div>
                 </div>
             </div>
 
             <div class="events-container" id="events">
-                <h2>Events</h2>
-                <p>Check out our upcoming events and activities.</p>
+                <div class="events-header">
+                    <h2 class="events-header-title">Events</h2>
+                    <p class="events-header-description">Check out our upcoming events and activities.</p>
+                </div>
+                
             </div>
         </div>
     </div>
@@ -161,8 +176,9 @@
         <header class="post-header">
             <h1 class="post-title"></h1>
             <h2 class="post-date"></h2>
-            <p class="post-content"></p>
         </header>
+
+        <p class="post-content"></p>
     </div>
 </script>
 
@@ -173,16 +189,14 @@
     <div class="event-container">
 
         <header class="event-header">
-            <div class="event-info">
-                <h1 class="event-title"></h1>
-                <h3 class="event-date"></h3>
-                <h3 class="event-time"></h3>
-            </div>
-            <div class="add-btn">
-                <button class="add-event">Add Event</button>
-            </div>
+            <h1 class="event-title"></h1>
+            <h3 class="event-date"></h3>
         </header>
-        
+
+        <div class="event-content">
+            <h3 class="event-time"></h3>
+            <button class="add-event">Add</button>
+        </div>
     </div>
 </script>
 
