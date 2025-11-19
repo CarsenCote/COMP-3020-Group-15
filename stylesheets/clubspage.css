@@ -40,6 +40,7 @@
     background-color: #5ad856;
 }
 
+.remove-event-btn,
 .leave-btn {
     background-color: rgb(255, 72, 72);
 }
@@ -50,17 +51,19 @@
     background-color: #68ff63;
 }
 
+.remove-event-btn:hover,
 .leave-btn:hover {
     background-color: rgb(255, 88, 88);
 }
 
 .club-layout {
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-template-rows: auto auto;
+    grid-template-columns: 3fr 2fr;
+    grid-template-rows: auto 1fr;
     gap: 20px;
     padding: 20px;
-    height: calc(100vh - 80px);
+    min-height: 100vh;
+    max-height: 120vh;
     box-sizing: border-box;
 }
 
@@ -68,16 +71,14 @@
 .posts-container,
 .about-us-container,
 .events-container {
-    background-color: rgb(135, 60, 255);
+    background-color: rgba(41, 38, 48, 0.723);
     border-radius: 10px;
     padding: 15px;
 }
 
-.about-us-container,
 .posts-container,
 .events-container {
     overflow-y: scroll;
-    scrollbar-color: rgba(0, 0, 0, 0), rgba(0, 0, 0, 0);
 }
 
 #posts {
@@ -113,9 +114,16 @@
 .post-container {
     padding: 1vw;
     margin: 3vh 0;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(220, 220, 220);
     border-radius: 15px;
     box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.5);
+}
+
+.members-container {
+    max-height: 0;
+    overflow: hidden;
+    visibility: collapse;
+    margin: 0;
 }
 
 .posts-header {
@@ -137,7 +145,7 @@
 .posts-header,
 .about-us-header {
     padding: 15px;
-    background-color: rgba(49, 49, 49, 0.805);
+    background-color: rgba(65, 65, 65, 0.805);
     border-radius: 15px;
     margin-bottom: 10px;
 }

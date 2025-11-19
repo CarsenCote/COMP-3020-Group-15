@@ -365,6 +365,8 @@ class ClubPageTemplate extends Template {
     clubId;
     clubSlug;
 
+    membersMenuCollapsed = true;
+
     constructor(templateId, clubId, clubSlug) {
         super(templateId);
         this.clubId = clubId;
@@ -373,6 +375,7 @@ class ClubPageTemplate extends Template {
 
     setupEventListeners() {
 
+        // Join / Leave button click callbacks
         const joinLeaveButton = $('#join-leave-btn');
 
         joinLeaveButton.on('click', () => {
@@ -389,6 +392,21 @@ class ClubPageTemplate extends Template {
 
             this.setupJoinLeaveButton();
         })
+
+        // Member menu collapsable button
+        const membersMenuButton = $('#members-button')
+
+        membersMenuButton.on('click', () => {
+
+            // Toggle collapsed value
+            this.membersMenuCollapsed = !this.membersMenuCollapsed;
+
+            $('.members-container').css({
+                maxHeight: this.membersMenuCollapsed ? `` : `100%`,
+                visibility: this.membersMenuCollapsed ? `` : `visible`,
+                transition: `0.2s ease`
+            })
+        });
     }
 
     setupElements() {
