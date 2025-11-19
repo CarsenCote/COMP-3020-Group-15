@@ -1,0 +1,88 @@
+.events-container h2{
+    text-align: center;
+    font-size: 2rem;
+    margin: 5px;
+}
+
+.events-container p{
+    text-align: center;
+    font-size: 1rem;
+    margin-top: 5px;
+    margin-bottom: 10px; 
+
+}
+
+.event-date::before{
+    content: "Date: ";
+}
+
+.event-time::before{
+    content: "Time: ";
+}
+
+.event-header{
+    border: 2px solid black;        
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    position: relative;   
+
+    background-image: url("../public/rocket.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;  
+    position: relative;   
+    overflow: hidden;     
+    z-index: 0;
+}
+
+.event-header::before{
+    content: '';
+    position: absolute;
+    inset: 0;
+    width: 500%;
+    height: 500%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 0; 
+}
+
+.events-scroll{
+    overflow-y: auto;
+    max-height: 1000px;
+}
+
+.event-title{
+    display: block;
+    font-size: 1.5rem 
+}
+
+.add-btn{
+    position: absolute;
+    top: 55%;
+    right: 5px;
+
+    padding: 4px 10px;
+    z-index: 2;
+    
+}
+
+.add-event{
+    font-size: 0.85rem;
+    padding: 10px;
+    font-weight: 600;
+}
+
+.event-title{
+    color: rgb(226, 159, 35);
+    font-weight: 800;
+}
+
+.event-date, 
+.event-time{
+    color: #2ac4af;
+}
+
+.event-info{
+    backdrop-filter: blur(2px);
+}

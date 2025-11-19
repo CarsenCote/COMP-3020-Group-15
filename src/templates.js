@@ -394,7 +394,7 @@ class ClubPageTemplate extends Template {
     }
 
     setupPosts(clubPosts) {
-        const postsContainer = $('.posts-container');
+        const postsScroll = $('.posts-scroll');
 
         for (var postIndex = 0; postIndex < clubPosts.length; postIndex++) {
             const post = clubPosts[postIndex];
@@ -405,12 +405,12 @@ class ClubPageTemplate extends Template {
             newPost.find('.post-content').text(post.content);
             newPost.find('.post-date').text(post.date);
 
-            postsContainer.append(newPost);
+            postsScroll.append(newPost);
         }
     }
 
     setupEvents(clubEvents) {
-        const eventsContainer = $('.events-container');
+        const eventsScroll = $('.events-scroll');
 
         for (var eventIndex = 0; eventIndex < clubEvents.length; eventIndex++) {
             const event = clubEvents[eventIndex];
@@ -421,13 +421,13 @@ class ClubPageTemplate extends Template {
             newEvent.find('.event-date').text(event.date);
             newEvent.find('.event-time').text(`${event.start_time} - ${event.end_time}`);
 
-            eventsContainer.append(newEvent);
+            eventsScroll.append(newEvent);
         }
     }
 
     setupMembers(clubMembers) {
         const membersContainer = $('.members-container');
-
+        const membersBorder = $('.members-border')
         for (var memberIndex = 0; memberIndex < clubMembers.length; memberIndex++) {
             const member = clubMembers[memberIndex];
             const memberHtml = $('#member-template').html();
@@ -435,7 +435,7 @@ class ClubPageTemplate extends Template {
 
             newMember.find('.member-name').text(`${member.fname} ${member.lname}`);
 
-            membersContainer.append(newMember);
+             membersBorder.append(newMember);
         }
     }
 
