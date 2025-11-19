@@ -23,19 +23,27 @@
     font-size: 5vh;
 }
 
-.join-btn {
-    background-color: #5ad856;
+.join-btn,
+.leave-btn {
     border: none;
     padding: 20px 40px;
     border-radius: 6px;
     font-weight: bold;
     font-size: 100%;
     cursor: pointer;
-    transition: background-color 0.3s;
     margin-right: 6vw;
 }
 
+.join-btn {
+    background-color: #5ad856;
+}
+
+.leave-btn {
+    background-color: rgb(255, 72, 72);
+}
+
 .join-btn:hover {
+    transition: background-color 0.3s;
     background-color: #68ff63;
 }
 

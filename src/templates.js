@@ -338,12 +338,24 @@ class DashboardTemplate extends Template {
     setupElements() {
         // get the user's name based on signin variables saved from first screen
         const user = window.App.State.user;
+        const userEvents = user.getEvents();
+        const userClubs = user.getClubs();
+        const userPosts = user.getPosts();
+
         const name = user.firstName + " " + user.lastName;
 
         const userNameHtml = $('#user-name-container');
 
         // display the user's name in the .user-name element of user-name-container div
         userNameHtml.find('.user-name-text').text(name);
+    }
+
+    setupPosts(posts) {
+
+    }
+
+    setupEvents(events) {
+
     }
 }
 
@@ -361,6 +373,24 @@ class ClubPageTemplate extends Template {
 
     setupEventListeners() {
 
+        const joinLeaveButton = $('#join-leave-btn');
+
+        joinLeaveButton.on('click', ()=> {
+
+            const user = window.App.State.user;
+
+            if(joinLeaveButton.hasClass('join-btn'))
+            {
+                user.addClub(this.clubId);
+                joinLeaveButton.removeClass('join-btn');
+            }
+            else if(joinLeaveButton.hasClass('leave-btn'));
+            {
+                joinLeaveButton.removeClass('leave-btn');
+            }
+            
+            this.setupJoinLeaveButton();
+        })
     }
 
     setupElements() {
@@ -388,9 +418,19 @@ class ClubPageTemplate extends Template {
             return false;
         })
 
+        this.setupJoinLeaveButton();
         this.setupPosts(clubPosts);
         this.setupEvents(clubEvents);
         this.setupMembers(clubMembers);
+    }
+
+    setupJoinLeaveButton() {
+        const user = window.App.State.user;
+        const userInClub = user.inClub(this.clubId);
+        const joinLeaveButtonText = userInClub ? 'Leave': 'Join';
+        const joinLeaveButtonClass = userInClub ? 'leave-btn': 'join-btn';
+        $('#join-leave-btn').addClass(joinLeaveButtonClass).text(joinLeaveButtonText);
+        console.log(userInClub);
     }
 
     setupPosts(clubPosts) {
