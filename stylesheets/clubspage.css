@@ -10,8 +10,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-image: url("../public/space2.jpg");
-    color: rgb(197, 197, 197);
+    background-color: white;
     padding: 15px 30px;
     border-radius: 6px;
 }
