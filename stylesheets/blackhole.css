@@ -3,17 +3,18 @@
     display: flex;
     overflow: hidden;
     position: relative;
+     
 }
 
 .blackhole-title {
     position: absolute;
-    top: 41.5%;
+    top: 44%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
     color: rgb(255, 255, 255);
     font-family: 'Montserrat', sans-serif;
-    font-size: 5vw;
+    font-size: 3.5vw;
     text-align: center;
     user-select: none;
     background-color: rgba(59, 59, 59, 0.568);
@@ -34,6 +35,12 @@
     user-select: none;
     animation: infinite-spin 30s linear infinite;
     z-index: 1;
+  
+    
+    filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.7));
+
+
+
 }
 
 @keyframes infinite-spin {

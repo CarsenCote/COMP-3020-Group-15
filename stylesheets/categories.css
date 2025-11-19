@@ -40,13 +40,22 @@
     flex-direction: column;
     justify-items: center;
     box-sizing: border-box;
-    background: radial-gradient(ellipse at center, #ffcc00 0%, #ffb300 70%, transparent 100%);
-    width: 300px;
-    height: 300px;
+    background: radial-gradient(circle at center,
+      #fff9d6 0%,        
+        #fff1a8 28%,     
+        #ffd54d 55%,      
+        #ffb300 80%,       
+        #e69100 100%       
+
+    );
+    
+    width: 280px;
+    height: 280px;
     padding: 20px 32px;
-    border-radius: 45%;
-    border: 6px solid rgb(0, 0, 0);
+    border-radius: 50%;
+    border: none;
     align-items: center;
+    filter: drop-shadow(0 0 12px rgba(255, 180, 0, 0.35));
 }
 
 .category:hover {
