@@ -67,7 +67,8 @@
 
 .posts-container,
 .events-container {
-    overflow: scroll;
+    overflow-y: scroll;
+
 }
 
 #posts {

@@ -12,12 +12,6 @@
     margin-bottom: 20px;
 }
 
-.posts-scroll{
-    overflow-y: auto;
-    max-height: 170vh;
-}
-
-
 
 .post-title{
     text-align: center;
@@ -26,7 +20,7 @@
     font-weight: 800;      
     text-shadow: 0 2px 8px rgba(0,0,0,0.6);
     margin-bottom: 10px;
-    color: rgb(238, 160, 160);
+    color: rgb(245, 134, 134);
     position: relative;
     z-index: 1;
 }
