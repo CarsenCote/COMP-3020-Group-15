@@ -119,6 +119,7 @@ class ClubSelectTemplate extends Template {
     visibleElements;
     totalVisibleClubs;
     totalVisibleElements;
+    currentlyNavigating = false;
 
     constructor(templateId, categoryId, categorySlug) {
         super(templateId);
@@ -168,6 +169,10 @@ class ClubSelectTemplate extends Template {
 
     navigate(direction) {
 
+        if(this.currentlyNavigating){
+            return;
+        }
+
         var newClubIndex = this.currentClubIndex + direction;
 
         if (newClubIndex < 0) {
@@ -184,6 +189,8 @@ class ClubSelectTemplate extends Template {
         const WHEEL_ROTATE_TIME = 200;
         const ROTATION_ANGLE = (direction == ClubSelectTemplate.LEFT) ? 30 : -30;
 
+        this.currentlyNavigating = true;
+        
         $('.club-name, .club-description').css({
             opacity: 0,
             transition: `${CLUB_FADE_TIME}ms ease`,
@@ -206,6 +213,10 @@ class ClubSelectTemplate extends Template {
         setTimeout(() => {
             this.updateWheel();
         }, CLUB_FADE_TIME + WHEEL_ROTATE_TIME);
+
+        setTimeout(() => {
+            this.currentlyNavigating = false;
+        }, CLUB_FADE_TIME + WHEEL_ROTATE_TIME + 60);
     }
 
     getCategoryClubs() {
@@ -296,6 +307,7 @@ class ClubSelectTemplate extends Template {
             });
 
         }, 100);
+
     }
 
     getVisibleClubs() {
