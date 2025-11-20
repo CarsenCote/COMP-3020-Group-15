@@ -374,24 +374,46 @@ class ClubPageTemplate extends Template {
     }
 
     setupEventListeners() {
+        
+        const user = window.App.State.user;
 
         // Join / Leave button click callbacks
         const joinLeaveButton = $('#join-leave-btn');
 
         joinLeaveButton.on('click', () => {
 
-            const user = window.App.State.user;
             if (joinLeaveButton.hasClass('join-btn')) {
                 user.addClub(this.clubId);
                 joinLeaveButton.removeClass('join-btn');
-            }
-            else if (joinLeaveButton.hasClass('leave-btn')) {
+            } else if (joinLeaveButton.hasClass('leave-btn')) {
                 user.leaveClub(this.clubId)
                 joinLeaveButton.removeClass('leave-btn');
             }
 
             this.setupJoinLeaveButton();
         })
+
+        const addRemoveEventButtons = $('.add-remove-event-button');
+        
+        for(var buttonIndex = 0 ; buttonIndex<addRemoveEventButtons.length ; buttonIndex++)
+        {
+            const addRemoveButton = $(addRemoveEventButtons[buttonIndex]);
+            addRemoveButton.on('click', ()=> {
+
+                const eventId = addRemoveButton.parents('.event-container').attr('id');
+
+                if(addRemoveButton.hasClass('add-event-button')){
+                    user.addEvent(eventId);
+                    addRemoveButton.removeClass('add-event-button');
+                } else if(addRemoveButton.hasClass('remove-event-button')) {
+                    user.leaveEvent(eventId);
+                    addRemoveButton.removeClass('remove-event-button');
+                }
+                this.setupAddRemoveEventButtons();
+            })
+        }
+
+        
 
         // Member menu collapsable button
         const membersMenuButton = $('#members-button')
@@ -407,6 +429,8 @@ class ClubPageTemplate extends Template {
                 transition: `0.2s ease`
             })
         });
+
+
     }
 
     setupElements() {
@@ -438,17 +462,30 @@ class ClubPageTemplate extends Template {
         this.setupPosts(clubPosts);
         this.setupEvents(clubEvents);
         this.setupMembers(clubMembers);
+        this.setupAddRemoveEventButtons();
     }
 
     setupJoinLeaveButton() {
         const user = window.App.State.user;
         const userInClub = user.inClub(this.clubId);
-        // console.log("is user in club? " + userInClub)
         const joinLeaveButtonText = userInClub ? 'Leave' : 'Join';
         const joinLeaveButtonClass = userInClub ? 'leave-btn' : 'join-btn';
         $('#join-leave-btn').addClass(joinLeaveButtonClass).text(joinLeaveButtonText);
-        // console.log(userInClub);
-        // console.log(joinLeaveButtonClass)
+    }
+
+    setupAddRemoveEventButtons() {
+        const user = window.App.State.user;
+        const addRemoveEventButtons = $('.add-remove-event-button');
+        
+        for(var i = 0; i < addRemoveEventButtons.length; i++)
+        {
+            const addRemoveButton = $(addRemoveEventButtons[i]);
+            const eventId = addRemoveButton.parents('.event-container').attr('id');
+            const userInEvent = user.inEvent(eventId);
+            const addRemoveButtonText = userInEvent ? 'Remove' : 'Add';
+            const addRemoveButtonClass = userInEvent ? 'remove-event-button' : 'add-event-button';
+            addRemoveButton.addClass(addRemoveButtonClass).text(addRemoveButtonText);
+        }
     }
 
     setupPosts(clubPosts) {
@@ -475,6 +512,7 @@ class ClubPageTemplate extends Template {
             const eventHtml = $('#event-template').html();
             const newEvent = $(eventHtml);
 
+            newEvent.attr('id', event.id);
             newEvent.find('.event-title').text(event.title);
             newEvent.find('.event-date').text(event.date);
             newEvent.find('.event-time').text(`${event.start_time} - ${event.end_time}`);
@@ -489,6 +527,13 @@ class ClubPageTemplate extends Template {
             const member = clubMembers[memberIndex];
             const memberHtml = $('#member-template').html();
             const newMember = $(memberHtml);
+
+            const memberImg = newMember.find('.member-img');
+            if(member.clubs.find((club) => {
+                return club.id == this.clubId && club.admin;
+            })) {
+                memberImg.css('display','block');
+            }
 
             newMember.find('.member-name').text(`${member.fname} ${member.lname}`);
 

@@ -35,24 +35,25 @@
     margin-left: 2vw;
 }
 
-.add-event,
+.add-event-button,
 .join-btn {
     background-color: #5ad856;
 }
 
-.remove-event-btn,
+.remove-event-button,
 .leave-btn {
-    background-color: rgb(255, 72, 72);
+    background-color: rgb(255, 44, 44);
 }
 
-.add-event:hover,
+.add-event-button:hover,
 .join-btn:hover {
-    transition: background-color 0.3s;
+    transition: background-color 0.1s;
     background-color: #68ff63;
 }
 
-.remove-event-btn:hover,
+.remove-event-button:hover,
 .leave-btn:hover {
+    transition: background-color 0.1s;
     background-color: rgb(255, 88, 88);
 }
 
@@ -87,6 +88,27 @@
     overflow-y: auto;
     flex: 1;
     min-height: 0;
+}
+
+.event-element-container::-webkit-scrollbar,
+.post-element-container::-webkit-scrollbar {
+    width: 12px;
+}
+
+.event-element-container::-webkit-scrollbar-track,
+.post-element-container::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.event-element-container::-webkit-scrollbar-thumb,
+.post-element-container::-webkit-scrollbar-thumb {
+    background-color: rgb(102, 102, 102);
+    border-radius: 6px;
+}
+
+.event-element-container::-webkit-scrollbar-thumb:hover,
+.post-element-container::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 #posts {
@@ -189,10 +211,22 @@
     white-space: nowrap;
 }
 
-.add-event {
+.remove-event-button,
+.add-event-button {
     align-self: center;
     padding: 3%;
     max-height: max-content;
     border: none;
     border-radius: 6px;
+}
+
+.member-container {
+    display: flex;
+}
+
+.member-img {
+    height: 2vh;
+    align-self: center;
+    margin: 0 1vw;
+    display: none;
 }
