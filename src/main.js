@@ -34,13 +34,68 @@ class User {
     lastName;
     email;
 
-    joined_clubs = [];
-    joined_events = [];
+    joinedClubs = [];
+    joinedEvents = [];
 
     constructor(firstName, lastName, email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+    }
+
+    addEvent(eventId) {
+        this.joinedEvents.push(eventId);
+    }
+
+    addClub(clubId) {
+        this.joinedClubs.push(clubId);
+    }
+
+    leaveClub(clubId) {
+        const index = this.joinedClubs.indexOf(clubId);
+        this.joinedClubs.splice(index, 1);
+    }
+
+    leaveEvent(eventId) {
+        const index = this.joinedEvents.indexOf(eventId);
+        this.joinedEvents.splice(index, 1);
+    }
+
+    inClub(clubId) {
+        return this.joinedClubs.includes(clubId);
+    }
+
+    inEvent(eventId) {
+        return this.joinedEvents.includes(eventId);
+    }
+
+    getEvents() {
+        const userEvents = [];
+        for (var event = 0; event < this.joinedEvents.length; event++) {
+            userEvents.push(window.App.Posts[this.joinedEvents[event]]);
+        }
+        return userEvents;
+    }
+
+    getClubs() {
+        const userClubs = [];
+        for (var club = 0; club < this.joinedClubs.length; club++) {
+            userClubs.push(window.App.Clubs[this.joinedClubs[club]]);
+        }
+        return userClubs;
+    }
+
+    getPosts() {
+        const userPosts = window.App.Posts.filter((post) => {
+            const postClubId = post.clubId;
+            for (var club = 0; club < this.joinedClubs.length; club++) {
+                if (postClubId == this.joinedClubs[club]) {
+                    return true;
+                }
+            }
+            return false;
+        });
+        return userPosts;
     }
 }
 
@@ -88,13 +143,12 @@ class AppState {
         }
 
         // Change the size of the home button on the blackhole screen to be larger.
-        if(template == BLACKHOLE_TEMPLATE){
+        if (template == BLACKHOLE_TEMPLATE) {
             $('#home-button').css({
                 width: `10vw`
             })
         }
-        else
-        {
+        else {
             $('#home-button').css({
                 width: ''
             })

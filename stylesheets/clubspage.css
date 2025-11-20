@@ -1,5 +1,5 @@
 #club-page-container {
-    margin: 0 4vw 0 4vw;
+    margin: 5vh 4vw 0 4vw;
 }
 
 #club-page-container * {
@@ -10,56 +10,105 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: white;
-    color: rgb(197, 197, 197);
-    padding: 15px 30px;
-    border-radius: 6px;
 }
 
 .club-name {
-    color: black;
+    color: rgb(255, 255, 255);
     font-family: 'Montserrat', sans-serif;
-    margin-left: 3vw;
-    font-size: 5vh;
+    margin-left: 0 2vw;
+    font-size: 6vh;
+    font-weight: 800;
+    padding: 1.8vh 3vw;
+    background-color: rgba(49, 49, 49, 0.805);
+    border-radius: 20px;
 }
 
-.join-btn {
-    background-color: #5ad856;
+.join-btn,
+.leave-btn {
     border: none;
     padding: 20px 40px;
     border-radius: 6px;
     font-weight: bold;
     font-size: 100%;
     cursor: pointer;
-    transition: background-color 0.3s;
-    margin-right: 6vw;
+    margin-right: 5vw;
+    margin-left: 2vw;
 }
 
+.add-event-button,
+.join-btn {
+    background-color: #5ad856;
+}
+
+.remove-event-button,
+.leave-btn {
+    background-color: rgb(255, 44, 44);
+}
+
+.add-event-button:hover,
 .join-btn:hover {
+    transition: background-color 0.1s;
     background-color: #68ff63;
+}
+
+.remove-event-button:hover,
+.leave-btn:hover {
+    transition: background-color 0.1s;
+    background-color: rgb(255, 88, 88);
 }
 
 .club-layout {
     display: grid;
-    grid-template-columns: 2fr 1fr; 
-    grid-template-rows: auto auto;
+    grid-template-columns: 3fr 2fr;
+    grid-template-rows: auto 1fr;
     gap: 20px;
     padding: 20px;
-    height: calc(100vh - 80px);
+    height: 120vh;
     box-sizing: border-box;
 }
 
+.club-header,
 .posts-container,
-.aboutus-container,
+.about-us-container,
 .events-container {
-    background-color: white;
+    background-color: rgba(41, 38, 48, 0.723);
     border-radius: 10px;
-    padding: 20px;
+    padding: 15px;
 }
 
 .posts-container,
 .events-container {
-    overflow: scroll;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.post-element-container,
+.event-element-container {
+    overflow-y: auto;
+    flex: 1;
+    min-height: 0;
+}
+
+.event-element-container::-webkit-scrollbar,
+.post-element-container::-webkit-scrollbar {
+    width: 12px;
+}
+
+.event-element-container::-webkit-scrollbar-track,
+.post-element-container::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.event-element-container::-webkit-scrollbar-thumb,
+.post-element-container::-webkit-scrollbar-thumb {
+    background-color: rgb(102, 102, 102);
+    border-radius: 6px;
+}
+
+.event-element-container::-webkit-scrollbar-thumb:hover,
+.post-element-container::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 #posts {
@@ -77,13 +126,107 @@
 }
 
 @media (max-width: 800px) {
-  .club-layout {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-  }
+    .club-layout {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
 
-  #posts, #about, #events {
-    grid-column: 1;
-    grid-row: auto;
-  }
+    #posts,
+    #about,
+    #events {
+        grid-column: 1;
+        grid-row: auto;
+    }
+}
+
+.members-container,
+.event-container,
+.post-container {
+    padding: 1vw;
+    margin: 3vh 0;
+    background-color: rgb(220, 220, 220);
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.5);
+}
+
+.members-container {
+    max-height: 0;
+    overflow: hidden;
+    visibility: collapse;
+    margin: 0;
+}
+
+#member-button {
+    background-color: rgb(107, 107, 107);
+}
+
+.posts-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.members-header-title,
+.events-header-title,
+.about-us-header-title,
+.posts-header-title {
+    margin: 0;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.912);
+}
+
+.members-header,
+.events-header,
+.posts-header,
+.about-us-header {
+    padding: 15px;
+    background-color: rgba(65, 65, 65, 0.805);
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
+
+.about-us-header-description,
+.events-header-description,
+.posts-header-description {
+    color: white;
+}
+
+.members-header,
+.event-content,
+.event-header,
+.post-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-title {
+    font-size: 3.0vh;
+}
+
+.event-title {
+    font-size: 3vh;
+}
+
+.event-date {
+    font-size: 2vh;
+    white-space: nowrap;
+}
+
+.remove-event-button,
+.add-event-button {
+    align-self: center;
+    padding: 3%;
+    max-height: max-content;
+    border: none;
+    border-radius: 6px;
+}
+
+.member-container {
+    display: flex;
+}
+
+.member-img {
+    height: 2vh;
+    align-self: center;
+    margin: 0 1vw;
+    display: none;
 }

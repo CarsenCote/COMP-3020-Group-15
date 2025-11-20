@@ -1,7 +1,8 @@
 body {
+    display: flex;
+    flex-direction: column;
     margin: 0;
     padding: 0;
-    min-height: 100vh;
     background: linear-gradient(#010015 0%, #000542 100%, transparent 100%);
     user-select: none;
 }
@@ -59,10 +60,10 @@ body {
 .nav-button-title {
     font-family: 'Montserrat', sans-serif;
     position: absolute;
-    top: 95%;
+    top: 80%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgb(46, 46, 46);
+    background-color: rgba(46, 46, 46, 0.836);
     color: white;
     border-radius: 25%;
     font-size: 2.7vh;

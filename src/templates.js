@@ -119,6 +119,7 @@ class ClubSelectTemplate extends Template {
     visibleElements;
     totalVisibleClubs;
     totalVisibleElements;
+    currentlyNavigating = false;
 
     constructor(templateId, categoryId, categorySlug) {
         super(templateId);
@@ -178,6 +179,10 @@ class ClubSelectTemplate extends Template {
 
     navigate(direction) {
 
+        if(this.currentlyNavigating){
+            return;
+        }
+
         var newClubIndex = this.currentClubIndex + direction;
 
         if (newClubIndex < 0) {
@@ -194,6 +199,8 @@ class ClubSelectTemplate extends Template {
         const WHEEL_ROTATE_TIME = 200;
         const ROTATION_ANGLE = (direction == ClubSelectTemplate.LEFT) ? 30 : -30;
 
+        this.currentlyNavigating = true;
+        
         $('.club-name, .club-description').css({
             opacity: 0,
             transition: `${CLUB_FADE_TIME}ms ease`,
@@ -216,6 +223,10 @@ class ClubSelectTemplate extends Template {
         setTimeout(() => {
             this.updateWheel();
         }, CLUB_FADE_TIME + WHEEL_ROTATE_TIME);
+
+        setTimeout(() => {
+            this.currentlyNavigating = false;
+        }, CLUB_FADE_TIME + WHEEL_ROTATE_TIME + 60);
     }
 
     getCategoryClubs() {
@@ -309,6 +320,7 @@ class ClubSelectTemplate extends Template {
             });
 
         }, 100);
+
     }
 
     getVisibleClubs() {
@@ -403,12 +415,24 @@ class DashboardTemplate extends Template {
     setupElements() {
         // get the user's name based on signin variables saved from first screen
         const user = window.App.State.user;
+        const userEvents = user.getEvents();
+        const userClubs = user.getClubs();
+        const userPosts = user.getPosts();
+
         const name = user.firstName + " " + user.lastName;
 
         const userNameHtml = $('#user-name-container');
 
         // display the user's name in the .user-name element of user-name-container div
         userNameHtml.find('.user-name-text').text(name);
+    }
+
+    setupPosts(posts) {
+
+    }
+
+    setupEvents(events) {
+
     }
 }
 
@@ -418,6 +442,8 @@ class ClubPageTemplate extends Template {
     clubId;
     clubSlug;
 
+    membersMenuCollapsed = true;
+
     constructor(templateId, clubId, clubSlug) {
         super(templateId);
         this.clubId = clubId;
@@ -425,6 +451,62 @@ class ClubPageTemplate extends Template {
     }
 
     setupEventListeners() {
+        
+        const user = window.App.State.user;
+
+        // Join / Leave button click callbacks
+        const joinLeaveButton = $('#join-leave-btn');
+
+        joinLeaveButton.on('click', () => {
+
+            if (joinLeaveButton.hasClass('join-btn')) {
+                user.addClub(this.clubId);
+                joinLeaveButton.removeClass('join-btn');
+            } else if (joinLeaveButton.hasClass('leave-btn')) {
+                user.leaveClub(this.clubId)
+                joinLeaveButton.removeClass('leave-btn');
+            }
+
+            this.setupJoinLeaveButton();
+        })
+
+        const addRemoveEventButtons = $('.add-remove-event-button');
+        
+        for(var buttonIndex = 0 ; buttonIndex<addRemoveEventButtons.length ; buttonIndex++)
+        {
+            const addRemoveButton = $(addRemoveEventButtons[buttonIndex]);
+            addRemoveButton.on('click', ()=> {
+
+                const eventId = addRemoveButton.parents('.event-container').attr('id');
+
+                if(addRemoveButton.hasClass('add-event-button')){
+                    user.addEvent(eventId);
+                    addRemoveButton.removeClass('add-event-button');
+                } else if(addRemoveButton.hasClass('remove-event-button')) {
+                    user.leaveEvent(eventId);
+                    addRemoveButton.removeClass('remove-event-button');
+                }
+                this.setupAddRemoveEventButtons();
+            })
+        }
+
+        
+
+        // Member menu collapsable button
+        const membersMenuButton = $('#members-button')
+
+        membersMenuButton.on('click', () => {
+
+            // Toggle collapsed value
+            this.membersMenuCollapsed = !this.membersMenuCollapsed;
+
+            $('.members-container').css({
+                maxHeight: this.membersMenuCollapsed ? `` : `100%`,
+                visibility: this.membersMenuCollapsed ? `` : `visible`,
+                transition: `0.2s ease`
+            })
+        });
+
 
     }
 
@@ -432,14 +514,22 @@ class ClubPageTemplate extends Template {
         const club = window.App.Clubs[this.clubId];
         const clubPageContainer = $('#club-page-container');
         clubPageContainer.find('.club-name').text(club.name);
-        clubPageContainer.find('.about-us').text(club.description);
+        clubPageContainer.find('.about-us-header-description').text(club.description);
 
         const clubPosts = window.App.Posts.filter((post) => {
             return this.clubId == post.clubId;
         });
 
+        clubPosts.sort((post1, post2) => {
+            return this.sortByDateDesc(post1.date, post2.date);
+        })
+
         const clubEvents = clubPosts.filter((post) => {
             return post.event;
+        })
+
+        clubEvents.sort((event1, event2) => {
+            return this.sortByDateDesc(event1.date, event2.date);
         })
 
         const clubMembers = window.App.Members.filter((member) => {
@@ -453,13 +543,38 @@ class ClubPageTemplate extends Template {
             return false;
         })
 
+        this.setupJoinLeaveButton();
         this.setupPosts(clubPosts);
         this.setupEvents(clubEvents);
         this.setupMembers(clubMembers);
+        this.setupAddRemoveEventButtons();
+    }
+
+    setupJoinLeaveButton() {
+        const user = window.App.State.user;
+        const userInClub = user.inClub(this.clubId);
+        const joinLeaveButtonText = userInClub ? 'Leave' : 'Join';
+        const joinLeaveButtonClass = userInClub ? 'leave-btn' : 'join-btn';
+        $('#join-leave-btn').addClass(joinLeaveButtonClass).text(joinLeaveButtonText);
+    }
+
+    setupAddRemoveEventButtons() {
+        const user = window.App.State.user;
+        const addRemoveEventButtons = $('.add-remove-event-button');
+        
+        for(var i = 0; i < addRemoveEventButtons.length; i++)
+        {
+            const addRemoveButton = $(addRemoveEventButtons[i]);
+            const eventId = addRemoveButton.parents('.event-container').attr('id');
+            const userInEvent = user.inEvent(eventId);
+            const addRemoveButtonText = userInEvent ? 'Remove' : 'Add';
+            const addRemoveButtonClass = userInEvent ? 'remove-event-button' : 'add-event-button';
+            addRemoveButton.addClass(addRemoveButtonClass).text(addRemoveButtonText);
+        }
     }
 
     setupPosts(clubPosts) {
-        const postsContainer = $('.posts-container');
+        const postsContainer = $('.post-element-container');
 
         for (var postIndex = 0; postIndex < clubPosts.length; postIndex++) {
             const post = clubPosts[postIndex];
@@ -475,13 +590,14 @@ class ClubPageTemplate extends Template {
     }
 
     setupEvents(clubEvents) {
-        const eventsContainer = $('.events-container');
+        const eventsContainer = $('.event-element-container');
 
         for (var eventIndex = 0; eventIndex < clubEvents.length; eventIndex++) {
             const event = clubEvents[eventIndex];
             const eventHtml = $('#event-template').html();
             const newEvent = $(eventHtml);
 
+            newEvent.attr('id', event.id);
             newEvent.find('.event-title').text(event.title);
             newEvent.find('.event-date').text(event.date);
             newEvent.find('.event-time').text(`${event.start_time} - ${event.end_time}`);
@@ -492,11 +608,17 @@ class ClubPageTemplate extends Template {
 
     setupMembers(clubMembers) {
         const membersContainer = $('.members-container');
-
         for (var memberIndex = 0; memberIndex < clubMembers.length; memberIndex++) {
             const member = clubMembers[memberIndex];
             const memberHtml = $('#member-template').html();
             const newMember = $(memberHtml);
+
+            const memberImg = newMember.find('.member-img');
+            if(member.clubs.find((club) => {
+                return club.id == this.clubId && club.admin;
+            })) {
+                memberImg.css('display','block');
+            }
 
             newMember.find('.member-name').text(`${member.fname} ${member.lname}`);
 
@@ -504,7 +626,24 @@ class ClubPageTemplate extends Template {
         }
     }
 
+    sortByDateDesc(date1, date2) {
 
+        const [dayA, monthA, yearA] = date1.split('-');
+        const [dayB, monthB, yearB] = date2.split('-');
+
+        // Create a YYYYMMDD string for comparison
+        const formattedDateA = `${yearA}${monthA}${dayA}`;
+        const formattedDateB = `${yearB}${monthB}${dayB}`;
+
+        // Compare the formatted strings
+        if (formattedDateA < formattedDateB) {
+            return 1;
+        }
+        if (formattedDateA > formattedDateB) {
+            return -1;
+        }
+        return 0; // Dates are equal
+    }
 }
 
 
