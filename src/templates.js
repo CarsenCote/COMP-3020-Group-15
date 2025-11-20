@@ -452,7 +452,7 @@ class ClubPageTemplate extends Template {
     }
 
     setupPosts(clubPosts) {
-        const postsContainer = $('.posts-container');
+        const postsContainer = $('.post-element-container');
 
         for (var postIndex = 0; postIndex < clubPosts.length; postIndex++) {
             const post = clubPosts[postIndex];
@@ -468,7 +468,7 @@ class ClubPageTemplate extends Template {
     }
 
     setupEvents(clubEvents) {
-        const eventsContainer = $('.events-container');
+        const eventsContainer = $('.event-element-container');
 
         for (var eventIndex = 0; eventIndex < clubEvents.length; eventIndex++) {
             const event = clubEvents[eventIndex];

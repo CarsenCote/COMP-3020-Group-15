@@ -62,8 +62,7 @@
     grid-template-rows: auto 1fr;
     gap: 20px;
     padding: 20px;
-    min-height: 100vh;
-    max-height: 120vh;
+    height: 120vh;
     box-sizing: border-box;
 }
 
@@ -78,7 +77,16 @@
 
 .posts-container,
 .events-container {
-    overflow-y: scroll;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.post-element-container,
+.event-element-container {
+    overflow-y: auto;
+    flex: 1;
+    min-height: 0;
 }
 
 #posts {
@@ -124,6 +132,10 @@
     overflow: hidden;
     visibility: collapse;
     margin: 0;
+}
+
+#member-button {
+    background-color: rgb(107, 107, 107);
 }
 
 .posts-header {
