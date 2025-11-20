@@ -156,11 +156,21 @@ class ClubSelectTemplate extends Template {
     }
 
     setupElements() {
+        // Get the category name from your categories data
+        const categories = window.App.Categories;
+        const currentCategory = categories.find(cat => cat.id === this.categoryId);
+        const categoryName = currentCategory ? currentCategory.name : 'Clubs';
 
         // Add navigation arrows and sun container
         $('.clubs-select-container').prepend(`
             <div class="nav-arrow left">‹</div>
             <div class="nav-arrow right">›</div>
+            <div class="sun-container">
+                <div class="sun-glow"></div>
+                <div class="sun"></div>
+                <div class="sun-title">${categoryName}</div>
+
+            </div>
         `);
 
         this.updateWheel();
@@ -255,6 +265,8 @@ class ClubSelectTemplate extends Template {
                 newClub.attr('id', clubData.id)
                 newClub.find('.club-name').text(clubData.name);
                 newClub.find('.club-description').text(clubData.description);
+
+                this.applyPlanetStyle(newClub, clubData);
             }
 
             const angle = element * angleIncrement * (Math.PI / 180); // Convert to radians
@@ -322,7 +334,62 @@ class ClubSelectTemplate extends Template {
 
         return visibleClubs;
     }
+
+    applyPlanetStyle(clubElement, clubData) {
+        const colors = clubData.colors;
+
+        clubElement.css({
+            background: `
+                /* main spherical shading */
+                radial-gradient(circle at 30% 30%, 
+                    ${colors[0]} 0%,
+                    ${colors[1]} 40%,
+                    ${colors[2]} 80%,
+                    rgba(0, 0, 0, 0.25) 100%
+                ),
+
+                /* subtle surface variation */
+                radial-gradient(circle at 65% 45%,
+                    rgba(255, 255, 255, 0.12) 0%,
+                    rgba(255, 255, 255, 0.04) 35%,
+                    transparent 75%
+                ),
+
+                /* light diagonal blending for a cooler tone */
+                linear-gradient(
+                    150deg,
+                    rgba(255,255,255,0.03) 0%,
+                    rgba(0,0,0,0.10) 45%,
+                    rgba(255,255,255,0.02) 90%
+                )
+            `,
+
+            backgroundBlendMode: 'overlay, soft-light, normal',
+
+            boxShadow: `
+                /* gentle outer glow (non-distracting) */
+                0 0 25px ${colors[1]}33,
+
+                /* depth + curvature */
+                inset -15px -15px 35px rgba(0, 0, 0, 0.35),
+                inset 10px 10px 28px rgba(255, 255, 255, 0.18),
+
+                /* crisp but soft edge */
+                inset 0 0 6px rgba(255, 255, 255, 0.20),
+                inset 0 0 10px rgba(0, 0, 0, 0.25)
+            `,
+
+            filter: 'brightness(1.08) contrast(1.13) saturate(1.06)',
+            transform: 'translateZ(6px)'
+        });
+    }
+
+    
+
+    
+
 }
+
 
 class DashboardTemplate extends Template {
     dashboardElements;

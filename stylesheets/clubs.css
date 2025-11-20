@@ -32,17 +32,52 @@
     flex-direction: column;
     justify-content: center;
     position: absolute;
-    background-color: white;
     width: 8vw;
     height: 8vw;
     padding: 2vw;
     border-radius: 50%;
     overflow: hidden;
+
+    /* Planet-style background */
+    background: radial-gradient(circle at 70% 30%, 
+        rgba(255, 255, 255, 0.15) 0%,
+        transparent 40%);
+
+    /* Depth & highlights */
+    box-shadow: 
+        inset -8px -8px 25px rgba(0, 0, 0, 0.7),
+        inset 6px 6px 20px rgba(255, 255, 255, 0.25),
+        0 8px 25px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(255, 255, 255, 0.1);
 }
 
-.club:hover {
-    background-color: rgb(192, 192, 192);
+.club.center-club {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    width: 8vw;
+    height: 8vw;
+    padding: 2vw;
+    border-radius: 50%;
+    overflow: hidden;
+
+    /* Core depth & highlights */
+    box-shadow: 
+        inset -8px -8px 25px rgba(0, 0, 0, 0.7),
+        inset 6px 6px 20px rgba(255, 255, 255, 0.4),
+        0 8px 25px rgba(0, 0, 0, 0.5);
+
+    /* Subtle lighting */
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.2))
+            drop-shadow(0 0 12px rgba(255, 255, 255, 0.1));
+
+    background: radial-gradient(circle at 70% 30%, 
+        rgba(255, 255, 255, 0.15) 0%,
+        transparent 40%);
 }
+
+
 
 .club-name {
     font-family: 'Montserrat', sans-serif;
@@ -64,14 +99,16 @@
 }
 
 /* Sun at the bottom */
+
 .sun-container {
     position: absolute;
-    bottom: -100px;
+    bottom: -105px;
     left: 50%;
     transform: translateX(-50%);
-    width: 1300px;
+    width: 900px;
     height: 400px;
     z-index: 5;
+    pointer-events: none;
 }
 
 .sun {
@@ -79,34 +116,83 @@
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 1300px;
+    width: 950px;
     height: 400px;
-    background: radial-gradient(ellipse at center, #ffd700 0%, #ff8c00 70%, transparent 100%);
+    background: radial-gradient(ellipse at center,     
+        #fff9d6 0%,
+        #fff1a8 10%,
+        #ffd54d 25%,
+        #ffb300 40%,
+        #e69100 55%,
+        rgba(230, 145, 0, 0.7) 65%,
+        rgba(230, 145, 0, 0.4) 75%,
+        rgba(230, 145, 0, 0.2) 85%,
+        transparent 95%
+    );
     border-radius: 50% 50% 0 0 / 100% 100% 0 0;
-    box-shadow: 0 0 50px rgba(255, 215, 0, 0.7);
+    filter: blur(2px);
 }
 
-.sun-description {
+.sun-glow {
     position: absolute;
-    bottom: 160px;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 600px;
+    width: 1250px; /* Slightly wider */
+    height: 420px; /* Slightly taller */
+    background: radial-gradient(ellipse at center, 
+        rgba(255, 215, 0, 0.15) 0%, /* Slightly brighter */
+        rgba(255, 215, 0, 0.09) 20%,
+        rgba(255, 140, 0, 0.06) 40%,
+        rgba(255, 140, 0, 0.03) 60%,
+        rgba(255, 140, 0, 0.015) 80%,
+        transparent 92% /* Slightly extended */
+    );
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    z-index: 4;
+    filter: blur(15px);
+}
+
+.sun-title {
+    position: absolute;
+    bottom: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
     background: rgba(0, 0, 0, 0.8);
     color: white;
-    padding: 20px;
+    padding: 15px;
     border-radius: 10px;
     font-family: 'Montserrat', sans-serif;
     text-align: center;
     z-index: 6;
-    opacity: 0;
-    font-size: 16px;
-    transition: opacity 0.3s ease;
+    font-size: 20px;
+    font-weight: 600;
 }
 
-.sun-description.active {
-    opacity: 1;
+
+
+
+/* Navigation arrows */
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 24px;
+    color: white;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.3);
 }
+
 
 
 /* Navigation arrows */
