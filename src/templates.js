@@ -266,6 +266,7 @@ class ClubSelectTemplate extends Template {
                 newClub.find('.club-name').text(clubData.name);
                 newClub.find('.club-description').text(clubData.description);
 
+                
                 this.applyPlanetStyle(newClub, clubData);
             }
 
@@ -335,7 +336,7 @@ class ClubSelectTemplate extends Template {
         return visibleClubs;
     }
 
-    applyPlanetStyle(clubElement, clubData) {
+     applyPlanetStyle(clubElement, clubData) {
         const colors = clubData.colors;
 
         clubElement.css({
@@ -384,9 +385,6 @@ class ClubSelectTemplate extends Template {
         });
     }
 
-    
-
-    
 
 }
 

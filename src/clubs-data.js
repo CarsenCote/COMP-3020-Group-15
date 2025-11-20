@@ -912,6 +912,7 @@ const CLUBS_DATA = [
 ]
 
 
+
 // Space colors palette
 
 const spaceColors = [
