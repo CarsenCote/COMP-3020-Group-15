@@ -443,8 +443,16 @@ class ClubPageTemplate extends Template {
             return this.clubId == post.clubId;
         });
 
+        clubPosts.sort((post1, post2) => {
+            return this.sortByDateDesc(post1.date, post2.date);
+        })
+
         const clubEvents = clubPosts.filter((post) => {
             return post.event;
+        })
+
+        clubEvents.sort((event1, event2) => {
+            return this.sortByDateDesc(event1.date, event2.date);
         })
 
         const clubMembers = window.App.Members.filter((member) => {
@@ -541,7 +549,24 @@ class ClubPageTemplate extends Template {
         }
     }
 
+    sortByDateDesc(date1, date2) {
 
+        const [dayA, monthA, yearA] = date1.split('-');
+        const [dayB, monthB, yearB] = date2.split('-');
+
+        // Create a YYYYMMDD string for comparison
+        const formattedDateA = `${yearA}${monthA}${dayA}`;
+        const formattedDateB = `${yearB}${monthB}${dayB}`;
+
+        // Compare the formatted strings
+        if (formattedDateA < formattedDateB) {
+            return 1;
+        }
+        if (formattedDateA > formattedDateB) {
+            return -1;
+        }
+        return 0; // Dates are equal
+    }
 }
 
 
