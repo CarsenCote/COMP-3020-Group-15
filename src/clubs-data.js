@@ -908,6 +908,20 @@ const CLUBS_DATA = [
                 "slug": "social-networking"
             }
         ]
+    },
+    {
+        "id": 65,
+        "name": "Indigenous Students' Association",
+        "slug": "indigenous-students-association",
+        "description": "A student group for indigenous students at the University of Manitoba",
+        "categories": [
+            {
+                "slug": "governance-advocacy"
+            },
+            {
+                "slug": "cultural-international"
+            }
+        ]
     }
 ]
 
