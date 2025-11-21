@@ -598,6 +598,9 @@ class ClubSelectTemplate extends Template {
 
 class DashboardTemplate extends Template {
     dashboardElements;
+    currentMonth; 
+    currentYear; 
+    eventsByDate = {}; 
 
     constructor(templateId) {
         super(templateId);
@@ -620,6 +623,12 @@ class DashboardTemplate extends Template {
 
         // display the user's name in the .user-name element of user-name-container div
         userNameHtml.find('.user-name-text').text(name);
+
+
+        this.displayJoinedClub()
+        this.displayCalendar()
+        this.eventListnerExploreMore()
+        this.eventListenerLogout()
     }
 
     setupPosts(posts) {
@@ -628,6 +637,160 @@ class DashboardTemplate extends Template {
 
     setupEvents(events) {
 
+    }
+
+    displayJoinedClub(){
+        const user = window.App.State.user; 
+        const joinedClubContainer = $('#joined-clubs-container');
+        const dictClubs = user.getClubs(); 
+        console.log(dictClubs)
+
+        if(dictClubs.length > 0){
+            const arrayClubs = []; 
+    
+            for(var index = 0; index < dictClubs.length; index++){
+                const club = dictClubs[index];
+                arrayClubs.push(club.name)
+            }
+            arrayClubs.sort(); 
+
+            for(var index = 0; index < arrayClubs.length; index++){
+                const club = arrayClubs[index];
+                const clubHtml = $("#joined-club-template").html();
+                const joinedClub = $(clubHtml)
+
+                joinedClub.find('.club-name').text(club)
+                joinedClubContainer.append(joinedClub);
+            }
+        }
+        
+        else{
+            $('#joined-clubs-container').css({
+                visibility: 'hidden'
+            });
+        }
+        
+    }
+
+    displayCalendar(){
+        const user = window.App.State.user; 
+        const dictEvents = user.getEvents();
+        
+        console.log(dictEvents)
+        const calendarHtml = $('#calendar-template').html();
+        const calendarContainer = $('.user-calendar-container');
+        calendarContainer.append(calendarHtml)
+
+        const today = new Date();
+        this.currentMonth = today.getMonth();   
+        this.currentYear = today.getFullYear();
+        this.eventsByDate = this.buildEventsByDates(dictEvents);
+
+        this.renderCalendar()
+
+        $('#prev-month').on('click', () => {
+            this.currentMonth--;
+            if (this.currentMonth < 0) {
+                this.currentMonth = 11;
+                this.currentYear--;
+            }
+            this.renderCalendar();
+        });
+
+        $('#next-month').on('click', () => {
+            this.currentMonth++;
+            if (this.currentMonth > 11) {
+                this.currentMonth = 0;
+                this.currentYear++;
+            }
+            this.renderCalendar();
+        });
+    }
+
+    buildEventsByDates(dictEvents){
+        const map = {}; 
+        if(dictEvents.length == 0){
+            return map
+        }
+        for(let index = 0; index < dictEvents.length; index++){
+            const [dayStr, monthStr, yearStr] = dictEvents[index].date.split("-");
+            const title = dictEvents[index].title;
+            const day = Number(dayStr);
+            const month = Number(monthStr);
+            const year = Number(yearStr);
+
+            const key = year + "-" + String(month).padStart(2, "0") + "-" + String(day).padStart(2, "0"); // YYYY-MM-DD
+
+            if (!map[key]) {
+                map[key] = [];
+            }
+
+            map[key].push(title);
+        }
+        return map; 
+    }
+
+    renderCalendar(){
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const year = this.currentYear;
+        const month = this.currentMonth;
+        
+        $('#calendar-title').text(`${monthNames[month]} ${year}`);
+
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonths = new Date(year, month + 1, 0).getDate();
+
+        const tbody = $('#calendar-table-body');
+        tbody.empty();
+
+        let row = $('<tr></tr>');
+        let cellCount = 0;
+
+        for(let i = 0; i < firstDay; i++){
+            row.append("<td></td>");
+            cellCount++;
+        }
+
+        for(let day = 1; day <= daysInMonths; day++){
+            const dateKey = year + "-" + String(month + 1).padStart(2, "0") + "-" + String(day).padStart(2, "0");
+            const cell = $('<td class="calendar-day"></td>');                 
+            cell.append(`<div class="day-number">${day}</div>`);
+
+            if(this.eventsByDate[dateKey]){
+                const events = this.eventsByDate[dateKey];
+                for (let ev of events) {
+                    cell.append(`<div class="calendar-event">${ev}</div>`);
+                }
+            }
+
+            row.append(cell);
+            cellCount++;
+
+            if (cellCount === 7) {
+                tbody.append(row);
+                row = $('<tr></tr>');
+                cellCount = 0;
+            }
+        }
+
+        if (cellCount > 0) {
+            for (let i = cellCount; i < 7; i++) {
+                row.append("<td></td>");
+            }
+            tbody.append(row);
+        }
+    }
+
+    eventListnerExploreMore(){ 
+        $('.explore-clubs-button').on('click', function(){
+            window.App.State.changeNextTemplate(window.App.Templates.CATEGORIES);
+        })
+    }
+
+    eventListenerLogout(){
+        $('.log-out').on('click', function(){
+            window.App.State.changeNextTemplate(window.App.Templates.SIGNIN);
+        })
     }
 }
 

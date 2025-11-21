@@ -244,10 +244,10 @@
         <div class="user-name-container" id="user-name-container">
             <p class="user-name-text"></p>
             <!--add log out button here-->
+            <button class="log-out">Log out</button>
         </div>
 
         <div class="user-calendar-container">  
-            <p class="calendar-title">Calendar</p>
         </div>
 
         <div class="user-feed-container"> 
@@ -261,5 +261,35 @@
 <script id="joined-club-template" type="text/template">
     <div class="joined-club">
         <p class="club-name"></p>
+    </div>
+</script>
+
+
+<script id="calendar-template", type="text/template">
+    <div id="calendar">
+        <div id="calendar-header">
+            <button id="prev-month">&lt;</button>
+            <span id="calendar-title"></span>
+            <button id="next-month">&gt;</button>
+        </div>
+
+        <table class="calendar-table">
+        <thead>
+            <tr>
+            <th>Sun</th>
+            <th>Mon</th>
+            <th>Tue</th>
+            <th>Wed</th>
+            <th>Thu</th>
+            <th>Fri</th>
+            <th>Sat</th>
+            </tr>
+        </thead>
+
+        <tbody id="calendar-table-body">
+        <!-- JS will fill in all the <tr><td> here -->
+        </tbody>
+
+        </table>
     </div>
 </script>

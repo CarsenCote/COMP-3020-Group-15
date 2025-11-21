@@ -20,6 +20,7 @@
 .joined-clubs-section {
     grid-row: 1 / 3;
     grid-column: 1;
+    position: relative;
 }
 
 .user-name-container {
@@ -41,11 +42,17 @@
     color: rgb(0, 0, 0);
     font-family: 'Montserrat', sans-serif;
     font-size: 2em;
+    margin-top: 0px;
+    margin-left: 10px;
 }
 
 .explore-clubs-button {
     background-color: rgb(212, 212, 212);
     border-radius: 40px;
+    position: absolute;
+    top: 35px;
+    right: 50px;
+    padding: 15px;
 }
 
 .user-name-container {
@@ -62,3 +69,116 @@
 .user-name-text {
     color: white;
 }
+
+#joined-clubs-container{
+    border: 1px solid black;
+    border-radius: px;
+    overflow-y: scroll;
+    margin: 10px; 
+    max-height: 15vh;
+    padding-left: 18px;
+}
+
+#joined-clubs-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+#joined-clubs-container::-webkit-scrollbar-track {
+    background: rgba(73, 73, 73, 0.15);
+    border-radius: 10px;
+}
+
+#joined-clubs-container::-webkit-scrollbar-thumb {
+    background: rgba(8, 8, 8, 0.4);
+    border-radius: 10px;
+}
+
+#joined-clubs-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(165, 159, 159, 0.6);
+}
+
+.explore-clubs-button:hover{
+    background-color: rgb(165, 172, 172);
+}
+
+.joined-clubs-section {
+    height: 20vh;
+}
+
+.user-calendar-container{
+    padding: 10px;
+    height: 45vh; 
+    overflow: scroll;
+}
+
+#calendar {
+  background: rgba(255,255,255,0.95);
+  margin-left: 20px;
+  overflow: auto;
+}
+
+#calendar-header {
+  gap: 15px;              
+  left: 18vw;
+  font-weight: 600;
+}
+
+#calendar-header button {
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid #aaa;
+  background: #f4f4f4;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+
+.day-number {
+  font-weight: 600;
+}
+
+.calendar-day{
+    vertical-align: top;
+    overflow: auto;
+    height: 40px;
+    width: 90px;
+    padding: 10px;
+}
+
+.day-number {
+    font-weight: bold;
+}
+
+.calendar-event {
+    margin-top: 2px;
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 12px;
+    white-space: nowrap;   /* keep events on one line so scroll appears */
+}
+
+
+.calendar-title{
+    margin: 0px;
+}
+
+.calendar-table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;   /* Every column same width */
+    width: 45vw;
+}
+
+.calendar-table th,
+.calendar-table td {
+    padding: 5px;        /* remove internal padding */
+    margin: 0;         /* remove external spacing */
+    border: 1px solid #000;   /* keeps visible lines without gaps */
+    vertical-align: top;
+}
+
+.log-out{
+    font-size: 20px;
+}
+
+
