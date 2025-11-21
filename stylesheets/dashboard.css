@@ -77,8 +77,11 @@
     grid-column: 1;
     padding: 10px;
     height: 50vh;
+    
     overflow-y: auto;
     overflow-x: auto;
+
+    
 }
 
 .joined-clubs-title {
@@ -152,30 +155,12 @@
 }
 
 
-/* Scrollbar styling */
-#joined-clubs-container::-webkit-scrollbar {
-    width: 4px;
-}
-#joined-clubs-container::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-}
-#joined-clubs-container::-webkit-scrollbar-thumb {
-    background: rgba(0, 200, 255, 0.4);
-    border-radius: 10px;
-}
-#joined-clubs-container::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 200, 255, 0.6);
-}
-
-
 #calendar {
     background: rgba(55, 60, 100, 0.95);
-    width: 100%; /* fill the container width */
-    max-height: 65vh;
+    width: 90%;
+    max-height: 70vh;
     margin: 0 auto;
-    overflow-y: auto; /* scroll vertically for multiple days/events */
-    overflow-x: auto; /* scroll horizontally only if necessary */
+    overflow-y: auto;
     border-radius: 8px;
     border: 1px solid rgba(51, 240, 255, 0.25);
     padding: 10px;
@@ -201,8 +186,8 @@
 .calendar-table {
     border-collapse: collapse;
     border-spacing: 0;
-    width: 100%; /* fit container */
-    table-layout: auto; /* allow cells to adjust if content requires */
+    width: 100%;
+    table-layout: fixed;
 }
 
 .calendar-table th,
@@ -211,7 +196,6 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
     vertical-align: top;
     color: #f0f0f0;
-    white-space: normal;
 }
 
 .calendar-day {
@@ -221,7 +205,6 @@
     overflow-y: auto;
     background: rgba(50, 55, 90, 0.85);
     border-radius: 4px;
-    overflow-wrap: break-word;
 }
 
 .day-number {
@@ -239,6 +222,24 @@
     background: rgba(0, 90, 160, 0.7);
     color: #f0f0f0;
 }
+
+/* Scrollbar styling */
+#joined-clubs-container::-webkit-scrollbar {
+    width: 4px;
+}
+#joined-clubs-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+#joined-clubs-container::-webkit-scrollbar-thumb {
+    background: rgba(0, 200, 255, 0.4);
+    border-radius: 10px;
+}
+#joined-clubs-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 200, 255, 0.6);
+}
+
+
 
 .dashboard-page-container .post-container {
     padding: 1vw;
