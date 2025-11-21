@@ -73,36 +73,172 @@ class CategoriesTemplate extends Template {
     }
 
     setupEventListeners() {
-        // this event listener will run when a category element is clicked
-        // grabs the id (category name) of the element to determine which category the user clicked
+        // Use a regular function but store 'this' reference
+        const self = this;
+        
         $('.category').on('click', function () {
             var categoryId = $(this).attr("id");
-            window.App.State.changeNextTemplate(window.App.Templates.CLUB_SELECT[categoryId]);
-        })
+            console.log('Raw category ID from click:', categoryId, 'Type:', typeof categoryId);
+            self.animateCategoryTransition($(this), categoryId);
+        });
     }
 
-    setupElements() {
-        // set up the elements on the category selection screen based on what's in our json category-data
-        // will run until all categories from our data have been made into their own element with a respective id, 
-        // displayed name, description, and img
+    animateCategoryTransition(clickedCategory, categoryId) {
+        console.log('Starting animation for category:', categoryId);
+        
+        // Prevent multiple clicks during animation
+        $('.category').off('click');
+        
+        // Get category data
         const categories = window.App.Categories;
+        let category = categories.find(cat => cat.id == categoryId);
+        
+        if (!category) {
+            console.error('Category not found in data. Clicked ID:', categoryId);
+            window.App.State.changeNextTemplate(window.App.Templates.CLUB_SELECT[categoryId]);
+            return;
+        }
+
+        // Get positions and dimensions - ACCOUNT FOR SCROLL POSITION
+        const categoryRect = clickedCategory[0].getBoundingClientRect();
+        const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Create transition container
+        const transitionContainer = $('<div class="category-transition-container"></div>');
+        $('body').append(transitionContainer);
+        
+        // Create transition element
+        const transitionElement = $(`
+            <div class="category-transition-element">
+                <img class="category-transition-icon" src="${clickedCategory.find('.category-img').attr('src')}" alt="${category.name}">
+                <div class="category-transition-name">${category.name}</div>
+            </div>
+        `);
+        
+        transitionContainer.append(transitionElement);
+        
+        // Set initial position and size - USE ABSOLUTE POSITION (including scroll)
+        const initialSize = categoryRect.width;
+        
+        transitionElement.css({
+            width: `${initialSize}px`,
+            height: `${initialSize}px`,
+            left: `${categoryRect.left}px`,
+            top: `${categoryRect.top + scrollY}px`, // ADD SCROLL OFFSET
+            opacity: 1,
+            background: 'radial-gradient(ellipse at center, #fff9d6 0%, #fff1a8 10%, #ffd54d 25%, #ffb300 40%, #e69100 55%, rgba(230, 145, 0, 0.7) 65%, rgba(230, 145, 0, 0.4) 75%, rgba(230, 145, 0, 0.2) 85%, transparent 95%)',
+            borderRadius: '50% 50% 0 0 / 100% 100% 0 0',
+            filter: 'blur(1px)'
+        });
+        
+        // Fade out background elements
+        $('.category').css({ opacity: 0, transition: 'opacity 0.6s ease-out' });
+        $('.category-galaxy-img').css({ opacity: 0, transition: 'opacity 0.5s ease-out' });
+        $('.categories-title').css({ opacity: 0, transition: 'opacity 0.6s ease-out' });
+        
+        // CREATE ACTUAL SUN ELEMENT TO GET EXACT POSITION
+        const tempSunContainer = $('<div class="sun-container"></div>').css({
+            position: 'absolute',
+            bottom: '-105px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '900px',
+            height: '400px',
+            zIndex: 5,
+            pointerEvents: 'none',
+            visibility: 'hidden'
+        });
+        
+        const tempSun = $('<div class="sun"></div>').css({
+            position: 'absolute',
+            bottom: '0',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '950px',
+            height: '400px',
+            background: 'radial-gradient(ellipse at center, #fff9d6 0%, #fff1a8 10%, #ffd54d 25%, #ffb300 40%, #e69100 55%, rgba(230, 145, 0, 0.7) 65%, rgba(230, 145, 0, 0.4) 75%, rgba(230, 145, 0, 0.2) 85%, transparent 95%)',
+            borderRadius: '50% 50% 0 0 / 100% 100% 0 0',
+            filter: 'blur(2px)'
+        });
+        
+        tempSunContainer.append(tempSun);
+        $('body').append(tempSunContainer);
+        
+        // Get the EXACT position of the sun element
+        const sunRect = tempSun[0].getBoundingClientRect();
+        console.log('Actual sun position:', sunRect.left, sunRect.top, sunRect.width, sunRect.height);
+        
+        // Use the exact measured position - sun is always at bottom of viewport
+        const finalWidth = sunRect.width;
+        const finalHeight = sunRect.height;
+        const finalLeft = sunRect.left;
+        const finalTop = sunRect.top + scrollY; // ADD SCROLL OFFSET TO SUN TOO
+        
+        // Remove temporary sun
+        tempSunContainer.remove();
+        
+        console.log('Category start position:', categoryRect.top + scrollY);
+        console.log('Sun target position:', finalTop);
+        
+        // PHASE 1: Quick fade out of content
+        setTimeout(() => {
+            transitionElement.find('.category-transition-name, .category-transition-icon').css({
+                opacity: 0,
+                transition: 'opacity 0.3s ease'
+            });
+        }, 50);
+        
+        // PHASE 2: Smooth expansion to exact measured sun position (0.8s)
+        setTimeout(() => {
+            transitionElement.css({
+                transition: 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                width: `${finalWidth}px`,
+                height: `${finalHeight}px`,
+                left: `${finalLeft}px`,
+                top: `${finalTop}px`,
+                filter: 'blur(2px)'
+            });
+            
+        }, 100);
+        
+        // Complete transition and navigate
+        setTimeout(() => {
+            transitionContainer.remove();
+            window.App.State.changeNextTemplate(window.App.Templates.CLUB_SELECT[categoryId]);
+        }, 900);
+    }
+
+        
+    
+
+
+    setupElements() {
+        const categories = window.App.Categories;
+        console.log('Setting up categories with data:', categories);
+        
         for (var i = 0; i < categories.length; i++) {
             const category = categories[i];
+            console.log('Creating category element:', category.id, category.name);
 
             // Get the template content and create a new element from it
             const templateHtml = $('#category-template').html();
             const newCategory = $(templateHtml);
 
-            // Set the attributes and text
-            newCategory.find('.category').attr('id', category.id);
+            // Set the attributes and text - make sure we're using the correct ID
+            newCategory.find('.category').attr('id', category.id); // Use the actual category ID
             newCategory.find('.category-name').text(category.name);
             newCategory.find('.category-description').text(category.description);
             newCategory.find('.category-img').attr('src', `./public/category-icons/${category.slug}.png`);
+            
             // Append the new category element
             $('#categories-container').append(newCategory);
         }
+        
+        console.log('Finished setting up categories. Total:', $('.category').length);
     }
 }
+
+
 
 class ClubSelectTemplate extends Template {
 
@@ -120,12 +256,14 @@ class ClubSelectTemplate extends Template {
     totalVisibleClubs;
     totalVisibleElements;
     currentlyNavigating = false;
+    wheelInitialized = false;
 
     constructor(templateId, categoryId, categorySlug) {
         super(templateId);
         this.categoryId = categoryId;
         this.categorySlug = categorySlug;
         this.currentClubIndex = 0;
+        this.wheelInitialized = false;
     }
 
     setup() {
@@ -157,14 +295,34 @@ class ClubSelectTemplate extends Template {
     }
 
     setupElements() {
+        // Get the category name from your categories data
+        const categories = window.App.Categories;
+        const currentCategory = categories.find(cat => cat.id === this.categoryId);
+        const categoryName = currentCategory ? currentCategory.name : 'Clubs';
 
         // Add navigation arrows and sun container
         $('.clubs-select-container').prepend(`
             <div class="nav-arrow left">‹</div>
             <div class="nav-arrow right">›</div>
+            <div class="sun-container">
+                <div class="sun-glow"></div>
+                <div class="sun"></div>
+                <div class="sun-title">${categoryName}</div>
+
+            </div>
         `);
 
+         $('.sun-container, .sun, .sun-glow, .sun-title').show();
+
+        // Initially hide the clubs wheel
+        $('.clubs-wheel').hide();
+
         this.updateWheel();
+
+        // Fade in the clubs (planets) after a short delay
+        setTimeout(() => {
+            $('.clubs-wheel').fadeIn(400);
+        }, 300);
     }
 
     navigate(direction) {
@@ -266,6 +424,9 @@ class ClubSelectTemplate extends Template {
                 newClub.attr('id', clubData.id)
                 newClub.find('.club-name').text(clubData.name);
                 newClub.find('.club-description').text(clubData.description);
+
+                
+                this.applyPlanetStyle(newClub, clubData);
             }
 
             const angle = element * angleIncrement * (Math.PI / 180); // Convert to radians
@@ -282,6 +443,7 @@ class ClubSelectTemplate extends Template {
                 left: `calc(50% + ${xPos}px)`,
                 top: `calc(50% + ${yPos}px)`,
                 transform: 'translate(-50%, -50%)',
+                opacity: 1 // Always visible during navigation
             });
 
             newClub.on('click', function () {
@@ -290,6 +452,19 @@ class ClubSelectTemplate extends Template {
             })
 
             wheel.append(newClub);
+        }
+
+        // Only fade in clubs on initial page load, not during navigation
+        if (!this.wheelInitialized) {
+            // Fade in the clubs with staggered delay (only on first load)
+            $('.club').css('opacity', 0);
+            setTimeout(() => {
+                $('.club').each(function(index) {
+                    $(this).delay(index * 80).animate({opacity: 1}, 400);
+                });
+            }, 100);
+            
+            this.wheelInitialized = true;
         }
 
         setTimeout(() => {
@@ -306,8 +481,7 @@ class ClubSelectTemplate extends Template {
                 maxHeight: `100%`,
             });
 
-        }, 100);
-
+        }, this.wheelInitialized ? 100 : 600); // Faster center scaling during navigation
     }
 
     getVisibleClubs() {
@@ -334,7 +508,59 @@ class ClubSelectTemplate extends Template {
 
         return visibleClubs;
     }
+
+     applyPlanetStyle(clubElement, clubData) {
+        const colors = clubData.colors;
+
+        clubElement.css({
+            background: `
+                /* main spherical shading */
+                radial-gradient(circle at 30% 30%, 
+                    ${colors[0]} 0%,
+                    ${colors[1]} 40%,
+                    ${colors[2]} 80%,
+                    rgba(0, 0, 0, 0.25) 100%
+                ),
+
+                /* subtle surface variation */
+                radial-gradient(circle at 65% 45%,
+                    rgba(255, 255, 255, 0.12) 0%,
+                    rgba(255, 255, 255, 0.04) 35%,
+                    transparent 75%
+                ),
+
+                /* light diagonal blending for a cooler tone */
+                linear-gradient(
+                    150deg,
+                    rgba(255,255,255,0.03) 0%,
+                    rgba(0,0,0,0.10) 45%,
+                    rgba(255,255,255,0.02) 90%
+                )
+            `,
+
+            backgroundBlendMode: 'overlay, soft-light, normal',
+
+            boxShadow: `
+                /* gentle outer glow (non-distracting) */
+                0 0 25px ${colors[1]}33,
+
+                /* depth + curvature */
+                inset -15px -15px 35px rgba(0, 0, 0, 0.35),
+                inset 10px 10px 28px rgba(255, 255, 255, 0.18),
+
+                /* crisp but soft edge */
+                inset 0 0 6px rgba(255, 255, 255, 0.20),
+                inset 0 0 10px rgba(0, 0, 0, 0.25)
+            `,
+
+            filter: 'brightness(1.08) contrast(1.13) saturate(1.06)',
+            transform: 'translateZ(6px)'
+        });
+    }
+
+
 }
+
 
 class DashboardTemplate extends Template {
     dashboardElements;
