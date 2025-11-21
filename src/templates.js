@@ -360,6 +360,10 @@ class DashboardTemplate extends Template {
 
         // display the user's name in the .user-name element of user-name-container div
         userNameHtml.find('.user-name-text').text(name);
+
+
+        this.displayJoinedClub()
+        this.displayCalendar()
     }
 
     setupPosts(posts) {
@@ -369,6 +373,52 @@ class DashboardTemplate extends Template {
     setupEvents(events) {
 
     }
+
+    displayJoinedClub(){
+        const user = window.App.State.user; 
+        const joinedClubContainer = $('#joined-clubs-container');
+        const dictClubs = user.getClubs(); 
+        console.log(dictClubs)
+
+        if(dictClubs.length > 0){
+            const arrayClubs = []; 
+    
+            for(var index = 0; index < dictClubs.length; index++){
+                const club = dictClubs[index];
+                arrayClubs.push(club.name)
+            }
+            arrayClubs.sort(); 
+
+            for(var index = 0; index < arrayClubs.length; index++){
+                const club = arrayClubs[index];
+                const clubHtml = $("#joined-club-template").html();
+                const joinedClub = $(clubHtml)
+
+                joinedClub.find('.club-name').text(club)
+                joinedClubContainer.append(joinedClub);
+            }
+        }
+        
+        else{
+            $('#joined-clubs-container').css({
+                visibility: 'hidden'
+            });
+        }
+        
+    }
+
+    displayCalendar(){
+        const user = window.App.State.user; 
+        const dictEvents = user.getEvents();
+        const calendarContainer = $('.user-calendar-container')
+        console.log(dictEvents)
+        const calendarHtml = $("#calendar-template").html();
+        calendarContainer.append($(calendarHtml))
+    }
+
+    
+
+    
 }
 
 
