@@ -82,14 +82,12 @@ class CategoriesTemplate extends Template {
             self.animateCategoryTransition($(this), categoryId);
         });
     }
-
+    
     animateCategoryTransition(clickedCategory, categoryId) {
         console.log('Starting animation for category:', categoryId);
         
-        // Prevent multiple clicks during animation
         $('.category').off('click');
         
-        // Get category data
         const categories = window.App.Categories;
         let category = categories.find(cat => cat.id == categoryId);
         
@@ -99,15 +97,12 @@ class CategoriesTemplate extends Template {
             return;
         }
 
-        // Get positions and dimensions - ACCOUNT FOR SCROLL POSITION
         const categoryRect = clickedCategory[0].getBoundingClientRect();
         const scrollY = window.pageYOffset || document.documentElement.scrollTop;
         
-        // Create transition container
         const transitionContainer = $('<div class="category-transition-container"></div>');
         $('body').append(transitionContainer);
         
-        // Create transition element
         const transitionElement = $(`
             <div class="category-transition-element">
                 <img class="category-transition-icon" src="${clickedCategory.find('.category-img').attr('src')}" alt="${category.name}">
@@ -117,33 +112,41 @@ class CategoriesTemplate extends Template {
         
         transitionContainer.append(transitionElement);
         
-        // Set initial position and size - USE ABSOLUTE POSITION (including scroll)
         const initialSize = categoryRect.width;
         
+        // Start as FULL CIRCLE with sun styling
         transitionElement.css({
             width: `${initialSize}px`,
             height: `${initialSize}px`,
             left: `${categoryRect.left}px`,
-            top: `${categoryRect.top + scrollY}px`, // ADD SCROLL OFFSET
+            top: `${categoryRect.top + scrollY}px`,
             opacity: 1,
-            background: 'radial-gradient(ellipse at center, #fff9d6 0%, #fff1a8 10%, #ffd54d 25%, #ffb300 40%, #e69100 55%, rgba(230, 145, 0, 0.7) 65%, rgba(230, 145, 0, 0.4) 75%, rgba(230, 145, 0, 0.2) 85%, transparent 95%)',
-            borderRadius: '50% 50% 0 0 / 100% 100% 0 0',
+            background: `radial-gradient(ellipse at center,     
+                #fff9d6 0%,
+                #fff1a8 10%,
+                #ffd54d 25%,
+                #ffb300 40%,
+                #e69100 55%,
+                rgba(230, 145, 0, 0.7) 65%,
+                rgba(230, 145, 0, 0.4) 75%,
+                rgba(230, 145, 0, 0.2) 85%,
+        transparent 95%)`,
+            borderRadius: '50%', // Start as full circle
             filter: 'blur(1px)'
         });
         
-        // Fade out background elements
         $('.category').css({ opacity: 0, transition: 'opacity 0.6s ease-out' });
         $('.category-galaxy-img').css({ opacity: 0, transition: 'opacity 0.5s ease-out' });
         $('.categories-title').css({ opacity: 0, transition: 'opacity 0.6s ease-out' });
         
-        // CREATE ACTUAL SUN ELEMENT TO GET EXACT POSITION
+        // CREATE ACTUAL SUN ELEMENT TO GET EXACT POSITION WITH YOUR DIMENSIONS
         const tempSunContainer = $('<div class="sun-container"></div>').css({
             position: 'absolute',
             bottom: '-105px',
             left: '50%',
             transform: 'translateX(-50%)',
-            width: '55vw',
-            height: '45vh',
+            width: '55vw', // Your sun width
+            height: '45vh', // Your sun height
             zIndex: 5,
             pointerEvents: 'none',
             visibility: 'hidden'
@@ -154,31 +157,36 @@ class CategoriesTemplate extends Template {
             bottom: '0',
             left: '50%',
             transform: 'translateX(-50%)',
-            width: '55vw',
-            height: '45vh',
-            background: 'radial-gradient(ellipse at center, #fff9d6 0%, #fff1a8 10%, #ffd54d 25%, #ffb300 40%, #e69100 55%, rgba(230, 145, 0, 0.7) 65%, rgba(230, 145, 0, 0.4) 75%, rgba(230, 145, 0, 0.2) 85%, transparent 95%)',
-            borderRadius: '50% 50% 0 0 / 100% 100% 0 0',
+            width: '55vw', // Your sun width
+            height: '45vh', // Your sun height
+            background: `radial-gradient(ellipse at center,     
+                #fff9d6 0%,
+                #fff1a8 10%,
+                #ffd54d 25%,
+                #ffb300 40%,
+                #e69100 55%,
+                rgba(230, 145, 0, 0.7) 65%,
+                rgba(230, 145, 0, 0.4) 75%,
+                rgba(230, 145, 0, 0.2) 85%,
+                transparent 95%)`,
+            borderRadius: '50% 50% 0 0 / 100% 100% 0 0', // Half-sun shape
             filter: 'blur(2px)'
         });
         
         tempSunContainer.append(tempSun);
         $('body').append(tempSunContainer);
         
-        // Get the EXACT position of the sun element
         const sunRect = tempSun[0].getBoundingClientRect();
-        console.log('Actual sun position:', sunRect.left, sunRect.top, sunRect.width, sunRect.height);
-        
-        // Use the exact measured position - sun is always at bottom of viewport
         const finalWidth = sunRect.width;
         const finalHeight = sunRect.height;
         const finalLeft = sunRect.left;
-        const finalTop = sunRect.top + scrollY; // ADD SCROLL OFFSET TO SUN TOO
+        const finalTop = sunRect.top + scrollY;
         
-        // Remove temporary sun
         tempSunContainer.remove();
         
         console.log('Category start position:', categoryRect.top + scrollY);
         console.log('Sun target position:', finalTop);
+        console.log('Sun dimensions:', finalWidth, 'x', finalHeight);
         
         // PHASE 1: Quick fade out of content
         setTimeout(() => {
@@ -187,27 +195,37 @@ class CategoriesTemplate extends Template {
                 transition: 'opacity 0.3s ease'
             });
         }, 50);
-        
-        // PHASE 2: Smooth expansion to exact measured sun position (0.8s)
+
+        // PHASE 2: Expand to final width while maintaining circle shape
         setTimeout(() => {
             transitionElement.css({
-                transition: 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                 width: `${finalWidth}px`,
-                height: `${finalHeight}px`,
+                height: `${finalWidth}px`, // Keep as square for now
                 left: `${finalLeft}px`,
                 top: `${finalTop}px`,
-                filter: 'blur(2px)'
+                borderRadius: '50%', // Remain circular
+                filter: 'blur(2px)' // Keep your existing filter
             });
-            
         }, 100);
+
+        // PHASE 3: Transform to half-sun shape
+        setTimeout(() => {
+            transitionElement.css({
+                transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                height: `${finalHeight}px`,
+                borderRadius: '50% 50% 0 0 / 100% 100% 0 0'
+            });
+        }, 500); // 100ms + 400ms
+        
+        
         
         // Complete transition and navigate
         setTimeout(() => {
             transitionContainer.remove();
             window.App.State.changeNextTemplate(window.App.Templates.CLUB_SELECT[categoryId]);
-        }, 900);
+        }, 900); 
     }
-
         
     
 
