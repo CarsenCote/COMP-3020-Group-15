@@ -368,6 +368,7 @@ class DashboardTemplate extends Template {
         this.displayJoinedClub()
         this.displayCalendar()
         this.eventListnerExploreMore()
+        this.eventListenerLogout()
     }
 
     setupPosts(posts) {
@@ -523,6 +524,12 @@ class DashboardTemplate extends Template {
     eventListnerExploreMore(){ 
         $('.explore-clubs-button').on('click', function(){
             window.App.State.changeNextTemplate(window.App.Templates.CATEGORIES);
+        })
+    }
+
+    eventListenerLogout(){
+        $('.log-out').on('click', function(){
+            window.App.State.changeNextTemplate(window.App.Templates.SIGNIN);
         })
     }
 }
