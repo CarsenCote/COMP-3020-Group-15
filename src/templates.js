@@ -367,6 +367,7 @@ class DashboardTemplate extends Template {
 
         this.displayJoinedClub()
         this.displayCalendar()
+        this.eventListnerExploreMore()
     }
 
     setupPosts(posts) {
@@ -517,6 +518,12 @@ class DashboardTemplate extends Template {
             }
             tbody.append(row);
         }
+    }
+
+    eventListnerExploreMore(){ 
+        $('.explore-clubs-button').on('click', function(){
+            window.App.State.changeNextTemplate(window.App.Templates.CATEGORIES);
+        })
     }
 }
 
