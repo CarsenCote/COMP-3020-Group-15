@@ -99,8 +99,9 @@ class CategoriesTemplate extends Template {
             return;
         }
 
-        // Get positions and dimensions
+        // Get positions and dimensions - ACCOUNT FOR SCROLL POSITION
         const categoryRect = clickedCategory[0].getBoundingClientRect();
+        const scrollY = window.pageYOffset || document.documentElement.scrollTop;
         
         // Create transition container
         const transitionContainer = $('<div class="category-transition-container"></div>');
@@ -116,14 +117,14 @@ class CategoriesTemplate extends Template {
         
         transitionContainer.append(transitionElement);
         
-        // Set initial position and size
+        // Set initial position and size - USE ABSOLUTE POSITION (including scroll)
         const initialSize = categoryRect.width;
         
         transitionElement.css({
             width: `${initialSize}px`,
             height: `${initialSize}px`,
             left: `${categoryRect.left}px`,
-            top: `${categoryRect.top}px`,
+            top: `${categoryRect.top + scrollY}px`, // ADD SCROLL OFFSET
             opacity: 1,
             background: 'radial-gradient(ellipse at center, #fff9d6 0%, #fff1a8 10%, #ffd54d 25%, #ffb300 40%, #e69100 55%, rgba(230, 145, 0, 0.7) 65%, rgba(230, 145, 0, 0.4) 75%, rgba(230, 145, 0, 0.2) 85%, transparent 95%)',
             borderRadius: '50% 50% 0 0 / 100% 100% 0 0',
@@ -145,7 +146,7 @@ class CategoriesTemplate extends Template {
             height: '400px',
             zIndex: 5,
             pointerEvents: 'none',
-            visibility: 'hidden' // Hide it but keep it in layout
+            visibility: 'hidden'
         });
         
         const tempSun = $('<div class="sun"></div>').css({
@@ -167,14 +168,17 @@ class CategoriesTemplate extends Template {
         const sunRect = tempSun[0].getBoundingClientRect();
         console.log('Actual sun position:', sunRect.left, sunRect.top, sunRect.width, sunRect.height);
         
-        // Use the exact measured position
+        // Use the exact measured position - sun is always at bottom of viewport
         const finalWidth = sunRect.width;
         const finalHeight = sunRect.height;
         const finalLeft = sunRect.left;
-        const finalTop = sunRect.top;
+        const finalTop = sunRect.top + scrollY; // ADD SCROLL OFFSET TO SUN TOO
         
         // Remove temporary sun
         tempSunContainer.remove();
+        
+        console.log('Category start position:', categoryRect.top + scrollY);
+        console.log('Sun target position:', finalTop);
         
         // PHASE 1: Quick fade out of content
         setTimeout(() => {
