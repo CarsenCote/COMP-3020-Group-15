@@ -1,63 +1,51 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
 .dashboard-page-container {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 45% 45%;
     grid-template-rows: 1fr 1fr 4fr;
     gap: 4%;
     padding: 5%;
     height: 100vh;
     box-sizing: border-box;
+    background: radial-gradient(circle at top left, #0f0f19 0%, #1c1c2e 70%);
+    color: #e0e0e0;
+    position: relative;
+}
+
+.dashboard-page-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url('https://www.transparenttextures.com/patterns/stardust.png'); 
+    opacity: 0.05;
+    pointer-events: none;
 }
 
 .joined-clubs-section,
 .user-calendar-container,
 .user-feed-container {
-    background-color: white;
-    border-radius: 10px;
-    padding: 5%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: rgba(40, 45, 70, 0.95);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(51, 240, 255, 0.15), 0 5px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(51, 240, 255, 0.25);
+    backdrop-filter: blur(4px);
+    position: relative;
 }
 
 .joined-clubs-section {
     grid-row: 1 / 3;
     grid-column: 1;
-    position: relative;
+    height: 20vh;
 }
 
 .user-name-container {
     grid-row: 1;
     grid-column: 2;
-}
-
-.user-calendar-container {
-    grid-row: 3 / end;
-    grid-column: 1;
-}
-
-.user-feed-container {
-    grid-row: 2 / end;
-    grid-column: 2;
-}
-
-.joined-clubs-title {
-    color: rgb(0, 0, 0);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 2em;
-    margin-top: 0px;
-    margin-left: 10px;
-}
-
-.explore-clubs-button {
-    background-color: rgb(212, 212, 212);
-    border-radius: 40px;
-    position: absolute;
-    top: 35px;
-    right: 50px;
-    padding: 15px;
-}
-
-.user-name-container {
-    color: rgb(255, 255, 255);
-    font-family: 'Montserrat', sans-serif;
+    color: #e0e0e0;
     font-size: 1.5em;
     align-items: center;
 }
@@ -67,55 +55,88 @@
 }
 
 .user-name-text {
-    color: white;
+    color: #e0e0e0;
+}
+
+.user-feed-container {
+    grid-row: 2 / end;
+    grid-column: 2;
+    height: 65vh;
+    overflow-y: scroll;
+}
+
+.user-calendar-container {
+    grid-row: 3 / end;
+    grid-column: 1;
+    padding: 10px;
+    height: 50vh;
+    overflow-y: auto;
+}
+
+.joined-clubs-title {
+    color: #e0e0e0;
+    font-size: 2em;
+    margin-top: 0px;
+    margin-left: 10px;
+}
+
+.explore-clubs-button {
+    background: rgba(0, 50, 80, 0.8);
+    border: 1px solid rgba(51, 240, 255, 0.25);
+    border-radius: 40px;
+    position: absolute;
+    top: 35px;
+    right: 50px;
+    padding: 12px 20px;
+    color: #e0e0e0;
+    font-weight: 600;
+    box-shadow: 0 0 4px rgba(51, 240, 255, 0.15);
+    backdrop-filter: blur(5px);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.explore-clubs-button:hover {
+    background: rgba(0, 70, 120, 0.9);
+    box-shadow: 0 0 6px rgba(51, 240, 255, 0.2);
 }
 
 #joined-clubs-container {
-    border: 1px solid black;
-    border-radius: px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     overflow-y: scroll;
     margin: 10px;
     max-height: 15vh;
     padding-left: 18px;
+    border-radius: 6px;
 }
 
 #joined-clubs-container::-webkit-scrollbar {
-    width: 2px;
+    width: 8px;
 }
 
 #joined-clubs-container::-webkit-scrollbar-track {
-    background: rgba(73, 73, 73, 0.15);
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 10px;
 }
 
 #joined-clubs-container::-webkit-scrollbar-thumb {
-    background: rgba(8, 8, 8, 0.4);
+    background: rgba(0, 200, 255, 0.4);
     border-radius: 10px;
 }
 
 #joined-clubs-container::-webkit-scrollbar-thumb:hover {
-    background: rgba(165, 159, 159, 0.6);
-}
-
-.explore-clubs-button:hover {
-    background-color: rgb(165, 172, 172);
-}
-
-.joined-clubs-section {
-    height: 20vh;
-}
-
-.user-calendar-container {
-    padding: 10px;
-    height: 45vh;
-    overflow: scroll;
+    background: rgba(0, 200, 255, 0.6);
 }
 
 #calendar {
-    background: rgba(255, 255, 255, 0.95);
-    overflow: auto;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    background: rgba(55, 60, 100, 0.95);
+    width: 90%;
+    max-height: 70vh;
+    margin: 0 auto;
+    overflow-y: auto;
+    border-radius: 8px;
+    border: 1px solid rgba(51, 240, 255, 0.25);
+    padding: 10px;
 }
 
 #calendar-header {
@@ -128,95 +149,74 @@
 #calendar-header button {
     padding: 4px 8px;
     border-radius: 6px;
-    border: 1px solid #aaa;
-    background: #f4f4f4;
+    border: 1px solid rgba(51, 240, 255, 0.25);
+    background: rgba(30, 50, 80, 0.95);
+    color: #f0f0f0;
     cursor: pointer;
     margin-bottom: 10px;
-}
-
-
-.day-number {
-    font-weight: 600;
-}
-
-.calendar-day {
-    vertical-align: top;
-    overflow: auto;
-    height: 40px;
-    width: 90px;
-    padding: 10px;
-}
-
-.day-number {
-    font-weight: bold;
-}
-
-.calendar-event {
-    margin-top: 2px;
-    padding: 2px;
-    border-radius: 3px;
-    font-size: 12px;
-    white-space: nowrap;
-    /* keep events on one line so scroll appears */
-}
-
-
-.calendar-title {
-    margin: 0px;
 }
 
 .calendar-table {
     border-collapse: collapse;
     border-spacing: 0;
-    table-layout: fixed;
     width: 100%;
-    height: 100%;
-    margin-left: auto;
-    margin-right: auto;
+    table-layout: fixed;
 }
 
 .calendar-table th,
 .calendar-table td {
-    padding: 5px;
-    /* remove internal padding */
-    margin: 0;
-    /* remove external spacing */
-    border: 1px solid #000;
-    /* keeps visible lines without gaps */
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     vertical-align: top;
+    color: #f0f0f0;
 }
 
-.log-out {
-    font-size: 20px;
+.calendar-day {
+    height: auto;
+    min-height: 50px;
+    padding: 5px;
+    overflow-y: auto;
+    background: rgba(50, 55, 90, 0.85);
+    border-radius: 4px;
 }
 
-.user-feed-container {
-    overflow-y: scroll;
+.day-number {
+    font-weight: bold;
+    color: #ffffff;
 }
 
-.post-container * {
-    font-family: 'Montserrat', sans-serif;
+.calendar-event {
+    display: block;
+    margin-top: 4px;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-size: 12px;
+    white-space: normal;
+    background: rgba(0, 90, 160, 0.7);
+    color: #f0f0f0;
 }
 
-.post-container {
+.dashboard-page-container .post-container {
     padding: 1vw;
     margin: 3vh 0;
-    background-color: rgb(220, 220, 220);
+    background: rgba(45, 50, 80, 0.95);
+    border-left: 3px solid #33f0ff;
     border-radius: 15px;
-    box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
 }
 
-.post-header {
+.dashboard-page-container .post-header {
     display: flex;
     justify-content: space-between;
 }
 
-.post-title {
-    font-size: 3.0vh;
-}
-
-.user-feed{
-    text-align: center;
-    font-size: 1.5rem;
+.dashboard-page-container .post-title {
+    font-size: 2.5rem;
     font-weight: 600;
+    color: #e0e0e0;
+    border-bottom: 2px solid rgba(51, 240, 255, 0.4);
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+    text-shadow: 0 0 4px rgba(0, 200, 255, 0.15);
+    letter-spacing: 0.5px;
 }
