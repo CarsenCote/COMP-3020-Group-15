@@ -617,7 +617,6 @@ class DashboardTemplate extends Template {
         const user = window.App.State.user;
         const userEvents = user.getEvents();
         const userClubs = user.getClubs();
-        //console.log(userClubs);
         const userPosts = user.getPosts();
 
         const name = user.firstName + " " + user.lastName;
@@ -636,11 +635,16 @@ class DashboardTemplate extends Template {
 
         const userFeed = $('.user-feed-container');
 
-        console.log(posts);
+        posts.sort((a, b) => {
+            const [aDayStr, aMonthStr, aYearStr] = a.date.split("-");
+            const [bDayStr, bMonthStr, bYearStr] = b.date.split("-");
 
-        // need to look into this ?
-        //posts.sortByDateDesc();
-        //console.log(posts);
+            const aDateString = String(Number(aYearStr)) + "-" + String(Number(aMonthStr)) + "-" + String(Number(aDayStr));
+            const bDateString = String(Number(bYearStr)) + "-" + String(Number(bMonthStr)) + "-" + String(Number(bDayStr));
+
+            return new Date(bDateString) - new Date(aDateString);
+        });
+
         for (var postIndex = 0; postIndex < posts.length; postIndex++) {
             const post = posts[postIndex];
             const newPostHtml = $('#post-template').html();
