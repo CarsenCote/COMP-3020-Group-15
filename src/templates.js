@@ -142,8 +142,8 @@ class CategoriesTemplate extends Template {
             bottom: '-105px',
             left: '50%',
             transform: 'translateX(-50%)',
-            width: '50vw',
-            height: '50vh',
+            width: '55vw',
+            height: '45vh',
             zIndex: 5,
             pointerEvents: 'none',
             visibility: 'hidden'
@@ -154,8 +154,8 @@ class CategoriesTemplate extends Template {
             bottom: '0',
             left: '50%',
             transform: 'translateX(-50%)',
-            width: '50vw',
-            height: '40vh',
+            width: '55vw',
+            height: '45vh',
             background: 'radial-gradient(ellipse at center, #fff9d6 0%, #fff1a8 10%, #ffd54d 25%, #ffb300 40%, #e69100 55%, rgba(230, 145, 0, 0.7) 65%, rgba(230, 145, 0, 0.4) 75%, rgba(230, 145, 0, 0.2) 85%, transparent 95%)',
             borderRadius: '50% 50% 0 0 / 100% 100% 0 0',
             filter: 'blur(2px)'
