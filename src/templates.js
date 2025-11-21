@@ -142,8 +142,8 @@ class CategoriesTemplate extends Template {
             bottom: '-105px',
             left: '50%',
             transform: 'translateX(-50%)',
-            width: '900px',
-            height: '400px',
+            width: '50vw',
+            height: '50vh',
             zIndex: 5,
             pointerEvents: 'none',
             visibility: 'hidden'
@@ -154,8 +154,8 @@ class CategoriesTemplate extends Template {
             bottom: '0',
             left: '50%',
             transform: 'translateX(-50%)',
-            width: '950px',
-            height: '400px',
+            width: '50vw',
+            height: '40vh',
             background: 'radial-gradient(ellipse at center, #fff9d6 0%, #fff1a8 10%, #ffd54d 25%, #ffb300 40%, #e69100 55%, rgba(230, 145, 0, 0.7) 65%, rgba(230, 145, 0, 0.4) 75%, rgba(230, 145, 0, 0.2) 85%, transparent 95%)',
             borderRadius: '50% 50% 0 0 / 100% 100% 0 0',
             filter: 'blur(2px)'
@@ -254,7 +254,6 @@ class ClubSelectTemplate extends Template {
     visibleClubs;
     visibleElements;
     totalVisibleClubs;
-    totalVisibleElements;
     currentlyNavigating = false;
     wheelInitialized = false;
 
@@ -268,8 +267,7 @@ class ClubSelectTemplate extends Template {
 
     setup() {
         this.categoryClubs = this.getCategoryClubs();
-        this.totalVisibleClubs = Math.min(5, this.categoryClubs.length);
-        this.totalVisibleElements = this.totalVisibleClubs + 2;
+        this.totalVisibleClubs = Math.min(7, this.categoryClubs.length);
         super.setup();
     }
 
@@ -299,18 +297,7 @@ class ClubSelectTemplate extends Template {
         const categories = window.App.Categories;
         const currentCategory = categories.find(cat => cat.id === this.categoryId);
         const categoryName = currentCategory ? currentCategory.name : 'Clubs';
-
-        // Add navigation arrows and sun container
-        $('.clubs-select-container').prepend(`
-            <div class="nav-arrow left">‹</div>
-            <div class="nav-arrow right">›</div>
-            <div class="sun-container">
-                <div class="sun-glow"></div>
-                <div class="sun"></div>
-                <div class="sun-title">${categoryName}</div>
-
-            </div>
-        `);
+        $('.sun-title').text(categoryName);
 
          $('.sun-container, .sun, .sun-glow, .sun-title').show();
 
@@ -408,32 +395,29 @@ class ClubSelectTemplate extends Template {
         var visibleClubIndex = 0;
 
         const fullRotationAngle = -210;
-        const angleIncrement = fullRotationAngle / this.totalVisibleElements;
+        const angleIncrement = fullRotationAngle / this.totalVisibleClubs;
 
         // Calculate radius based on viewport dimensions (use smaller dimension for better fit)
-        const radiusFromWheel = Math.max(window.innerWidth, window.innerHeight) * 0.40;
+        const radiusFromWheel = Math.max(window.innerWidth) * 0.40;
 
-        for (var element = 0; element < this.totalVisibleElements; element++) {
+        for (var element = 0; element < this.totalVisibleClubs; element++) {
 
             const clubHtml = $('#club-bubble-template').html();
             const newClub = $(clubHtml);
 
-            if ((element != 0) && (element != (this.totalVisibleElements - 1))) {
-
-                const clubData = visibleClubs[visibleClubIndex++];
-                newClub.attr('id', clubData.id)
-                newClub.find('.club-name').text(clubData.name);
-                newClub.find('.club-description').text(clubData.description);
+            const clubData = visibleClubs[visibleClubIndex++];
+            newClub.attr('id', clubData.id)
+            newClub.find('.club-name').text(clubData.name);
+            newClub.find('.club-description').text(clubData.description);
 
                 
-                this.applyPlanetStyle(newClub, clubData);
-            }
+            this.applyPlanetStyle(newClub, clubData);
 
             const angle = element * angleIncrement * (Math.PI / 180); // Convert to radians
             const xPos = radiusFromWheel * Math.cos(angle);
             const yPos = radiusFromWheel * Math.sin(angle);
 
-            const isCenterElement = element == Math.floor(this.totalVisibleElements / 2);
+            const isCenterElement = element == Math.floor(this.totalVisibleClubs / 2);
             if (isCenterElement) {
                 newClub.addClass('center-club');
             }
