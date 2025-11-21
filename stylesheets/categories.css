@@ -119,3 +119,53 @@
         transform: rotate(360deg) scale(108%);
     }
 }
+.category-transition-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.category-transition-element {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* Remove the category gradient - we'll set it via JS */
+    filter: drop-shadow(0 0 12px rgba(255, 180, 0, 0.35));
+    transform-origin: center;
+    overflow: hidden;
+    transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    /* Allow all properties to transition smoothly */
+    will-change: transform, width, height, left, top, filter, opacity;
+}
+
+.category-transition-icon {
+    width: 60%;
+    height: 60%;
+    transition: opacity 0.4s ease;
+}
+
+.category-transition-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 120%;
+    text-align: center;
+    margin: 4%;
+    transition: opacity 0.3s ease;
+}
+
+/* Galaxy orbits fade quickly */
+.category-galaxy-img {
+    transition: opacity 0.2s ease;
+}
+
+/* Categories and title fade slower */
+#categories-container, .categories-title, .category {
+    transition: opacity 0.4s ease;
+}
+
