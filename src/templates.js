@@ -698,7 +698,7 @@ class ClubPageTemplate extends Template {
             $('.members-container').css({
                 maxHeight: this.membersMenuCollapsed ? `` : `100%`,
                 visibility: this.membersMenuCollapsed ? `` : `visible`,
-                transition: `0.2s ease`
+                transition: `0.3s ease`
             })
         });
 
