@@ -108,7 +108,7 @@
 
 .event-element-container::-webkit-scrollbar-thumb:hover,
 .post-element-container::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(128, 128, 128, 0.5);
 }
 
 #posts {
