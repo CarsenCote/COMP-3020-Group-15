@@ -141,6 +141,11 @@ class AppState {
         else if (template == DASHBOARD_TEMPLATE) {
             $('#home-button').css('visibility', 'hidden');
         }
+        else if (template == SIGNIN_TEMPLATE) {
+            this.previousTemplates = [];
+            this.user = null;
+            $('#back-button').css('visibility', 'hidden');
+        }
 
         // Change the size of the home button on the blackhole screen to be larger.
         if (template == BLACKHOLE_TEMPLATE) {
