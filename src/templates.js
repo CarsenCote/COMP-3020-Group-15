@@ -86,10 +86,8 @@ class CategoriesTemplate extends Template {
     animateCategoryTransition(clickedCategory, categoryId) {
         console.log('Starting animation for category:', categoryId);
         
-        // Prevent multiple clicks during animation
         $('.category').off('click');
         
-        // Get category data
         const categories = window.App.Categories;
         let category = categories.find(cat => cat.id == categoryId);
         
@@ -99,86 +97,118 @@ class CategoriesTemplate extends Template {
             return;
         }
 
-        // Get positions and dimensions - ACCOUNT FOR SCROLL POSITION
         const categoryRect = clickedCategory[0].getBoundingClientRect();
         const scrollY = window.pageYOffset || document.documentElement.scrollTop;
         
-        // Create transition container
         const transitionContainer = $('<div class="category-transition-container"></div>');
         $('body').append(transitionContainer);
         
-        // Create transition element
+        // Create transition element with gradient overlay
         const transitionElement = $(`
             <div class="category-transition-element">
+                <div class="gradient-overlay"></div>
                 <img class="category-transition-icon" src="${clickedCategory.find('.category-img').attr('src')}" alt="${category.name}">
                 <div class="category-transition-name">${category.name}</div>
             </div>
         `);
-        
+
         transitionContainer.append(transitionElement);
         
-        // Set initial position and size - USE ABSOLUTE POSITION (including scroll)
         const initialSize = categoryRect.width;
         
+        // Configure main container - NO BACKGROUND HERE
         transitionElement.css({
             width: `${initialSize}px`,
             height: `${initialSize}px`,
             left: `${categoryRect.left}px`,
-            top: `${categoryRect.top + scrollY}px`, // ADD SCROLL OFFSET
+            top: `${categoryRect.top + scrollY}px`,
             opacity: 1,
-            background: 'radial-gradient(ellipse at center, #fff9d6 0%, #fff1a8 10%, #ffd54d 25%, #ffb300 40%, #e69100 55%, rgba(230, 145, 0, 0.7) 65%, rgba(230, 145, 0, 0.4) 75%, rgba(230, 145, 0, 0.2) 85%, transparent 95%)',
-            borderRadius: '50% 50% 0 0 / 100% 100% 0 0',
-            filter: 'blur(1px)'
+            borderRadius: '50%',
+            position: 'relative',
+            overflow: 'hidden',
+            background: 'transparent' // No background on main element
+        });
+
+        // USE THE EXACT SAME GRADIENT FROM START TO FINISH
+        const sunGradient = `radial-gradient(ellipse at 50% 70%,
+            #fff9d6 0%,
+            #fff1a8 10%,
+            #ffd54d 25%,
+            #ffb300 40%,
+            #e69100 55%,
+            rgba(230, 145, 0, 0.7) 65%,
+            rgba(230, 145, 0, 0.4) 75%,
+            rgba(230, 145, 0, 0.2) 85%,
+            transparent 95%)`;
+
+        // Set gradient overlay with the FINAL gradient from the start
+        transitionElement.find('.gradient-overlay').css({
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            background: sunGradient, // Use the same gradient throughout
+            borderRadius: '50%',
+            filter: 'blur(1px)',
+            pointerEvents: 'none'
         });
         
-        // Fade out background elements
         $('.category').css({ opacity: 0, transition: 'opacity 0.6s ease-out' });
         $('.category-galaxy-img').css({ opacity: 0, transition: 'opacity 0.5s ease-out' });
         $('.categories-title').css({ opacity: 0, transition: 'opacity 0.6s ease-out' });
         
-        // CREATE ACTUAL SUN ELEMENT TO GET EXACT POSITION
-        const tempSunContainer = $('<div class="sun-container"></div>').css({
-            position: 'absolute',
-            bottom: '-105px',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            width: '55vw',
-            height: '45vh',
-            zIndex: 5,
-            pointerEvents: 'none',
-            visibility: 'hidden'
-        });
+        // Get the EXACT position and dimensions of the existing sun
+        const existingSun = $('.sun');
+        let finalWidth, finalHeight, finalLeft, finalTop;
         
-        const tempSun = $('<div class="sun"></div>').css({
-            position: 'absolute',
-            bottom: '0',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            width: '55vw',
-            height: '45vh',
-            background: 'radial-gradient(ellipse at center, #fff9d6 0%, #fff1a8 10%, #ffd54d 25%, #ffb300 40%, #e69100 55%, rgba(230, 145, 0, 0.7) 65%, rgba(230, 145, 0, 0.4) 75%, rgba(230, 145, 0, 0.2) 85%, transparent 95%)',
-            borderRadius: '50% 50% 0 0 / 100% 100% 0 0',
-            filter: 'blur(2px)'
-        });
-        
-        tempSunContainer.append(tempSun);
-        $('body').append(tempSunContainer);
-        
-        // Get the EXACT position of the sun element
-        const sunRect = tempSun[0].getBoundingClientRect();
-        console.log('Actual sun position:', sunRect.left, sunRect.top, sunRect.width, sunRect.height);
-        
-        // Use the exact measured position - sun is always at bottom of viewport
-        const finalWidth = sunRect.width;
-        const finalHeight = sunRect.height;
-        const finalLeft = sunRect.left;
-        const finalTop = sunRect.top + scrollY; // ADD SCROLL OFFSET TO SUN TOO
-        
-        // Remove temporary sun
-        tempSunContainer.remove();
+        if (existingSun.length > 0) {
+            const sunRect = existingSun[0].getBoundingClientRect();
+            finalWidth = sunRect.width;
+            finalHeight = sunRect.height;
+            finalLeft = sunRect.left;
+            finalTop = sunRect.top + scrollY;
+        } else {
+            // Fallback: create temp sun to get dimensions
+            const tempSunContainer = $('<div class="sun-container"></div>').css({
+                position: 'absolute',
+                bottom: '-105px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                width: '55vw',
+                height: '45vh',
+                zIndex: 5,
+                pointerEvents: 'none',
+                visibility: 'hidden'
+            });
+            
+            const tempSun = $('<div class="sun"></div>').css({
+                position: 'absolute',
+                bottom: '0',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                width: '55vw',
+                height: '45vh',
+                background: sunGradient, // Same gradient
+                borderRadius: '50% 50% 0 0 / 100% 100% 0 0',
+                filter: 'blur(2px)'
+            });
+            
+            tempSunContainer.append(tempSun);
+            $('body').append(tempSunContainer);
+            
+            const sunRect = tempSun[0].getBoundingClientRect();
+            finalWidth = sunRect.width;
+            finalHeight = sunRect.height;
+            finalLeft = sunRect.left;
+            finalTop = sunRect.top + scrollY;
+            
+            tempSunContainer.remove();
+        }
         
         console.log('Category start position:', categoryRect.top + scrollY);
         console.log('Sun target position:', finalTop);
+        console.log('Sun dimensions:', finalWidth, 'x', finalHeight);
         
         // PHASE 1: Quick fade out of content
         setTimeout(() => {
@@ -187,29 +217,49 @@ class CategoriesTemplate extends Template {
                 transition: 'opacity 0.3s ease'
             });
         }, 50);
-        
-        // PHASE 2: Smooth expansion to exact measured sun position (0.8s)
+
+        // PHASE 2: Expand to sun position and size
         setTimeout(() => {
             transitionElement.css({
-                transition: 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                transition: 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                 width: `${finalWidth}px`,
-                height: `${finalHeight}px`,
+                height: `${finalWidth}px`,
                 left: `${finalLeft}px`,
                 top: `${finalTop}px`,
-                filter: 'blur(2px)'
+                borderRadius: '50%'
             });
             
+            // Gradually increase blur to match final sun
+            transitionElement.find('.gradient-overlay').css({
+                transition: 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                filter: 'blur(1.5px)' // Intermediate blur
+            });
         }, 100);
+
+        // PHASE 3: Transform to half-sun shape with final appearance
+        setTimeout(() => {
+            transitionElement.css({
+                transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                height: `${finalHeight}px`,
+                borderRadius: '50% 50% 0 0 / 100% 100% 0 0'
+            });
+            
+            // Final appearance - SAME GRADIENT, just shape change
+            transitionElement.find('.gradient-overlay').css({
+                transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                borderRadius: '50% 50% 0 0 / 100% 100% 0 0',
+                filter: 'blur(2px)' // Final blur
+                // NO background change - it's been consistent the whole time
+            });
+        }, 600);
         
         // Complete transition and navigate
         setTimeout(() => {
             transitionContainer.remove();
             window.App.State.changeNextTemplate(window.App.Templates.CLUB_SELECT[categoryId]);
-        }, 900);
+        }, 1000); 
     }
-
         
-    
 
 
     setupElements() {
@@ -660,6 +710,19 @@ class ClubPageTemplate extends Template {
         const clubPageContainer = $('#club-page-container');
         clubPageContainer.find('.club-name').text(club.name);
         clubPageContainer.find('.about-us-header-description').text(club.description);
+
+        
+        if (club.colors && club.colors.length >= 3) {
+            $('.club-page-background').css({
+                background: `radial-gradient(circle at center,
+                    ${club.colors[0]} 0%,
+                    ${club.colors[1]} 30%,
+                    ${club.colors[2]} 60%,
+                    #0a0a1a 90%
+                )`
+            });
+        }
+
 
         const clubPosts = window.App.Posts.filter((post) => {
             return this.clubId == post.clubId;
