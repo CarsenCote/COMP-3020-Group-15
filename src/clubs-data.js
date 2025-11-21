@@ -908,5 +908,163 @@ const CLUBS_DATA = [
                 "slug": "social-networking"
             }
         ]
+    },
+    {
+        "id": 65,
+        "name": "Indigenous Students' Association",
+        "slug": "indigenous-students-association",
+        "description": "A student group for indigenous students at the University of Manitoba",
+        "categories": [
+            {
+                "slug": "governance-advocacy"
+            },
+            {
+                "slug": "cultural-international"
+            }
+        ]
     }
 ]
+
+
+
+// Space colors palette
+
+const spaceColors = [
+    // Cheerful Blues
+    ['#6EC6FF', '#42A5F5', '#1E88E5'], // Bright sky
+    ['#81D4FA', '#4FC3F7', '#29B6F6'], // Happy blue
+    ['#80DEEA', '#4DD0E1', '#26C6DA'], // Playful cyan
+    ['#90CAF9', '#64B5F6', '#42A5F5'], // Soft electric
+
+    // Playful Purples
+    ['#B39DDB', '#9575CD', '#7E57C2'], // Fun lavender
+    ['#CE93D8', '#BA68C8', '#AB47BC'], // Bright lilac
+    ['#D1C4E9', '#B39DDB', '#9575CD'], // Soft violet
+    ['#E1BEE7', '#CE93D8', '#BA68C8'], // Happy purple
+
+    // Fresh Greens
+    ['#A5D6A7', '#81C784', '#66BB6A'], // Minty green
+    ['#C5E1A5', '#AED581', '#9CCC65'], // Lime fresh
+    ['#E8F5E8', '#C8E6C9', '#A5D6A7'], // Spring green
+    ['#DCEDC8', '#C5E1A5', '#AED581'], // Zesty lime
+
+    // Happy Pinks
+    ['#F8BBD0', '#F48FB1', '#F06292'], // Bubblegum
+    ['#FFCDD2', '#EF9A9A', '#E57373'], // Coral pink
+    ['#FCE4EC', '#F8BBD0', '#F48FB1'], // Cotton candy
+    ['#FFE0E6', '#FFB6C1', '#FF91A4'], // Rosy glow
+
+    // Sunny Yellows
+    ['#FFE082', '#FFD54F', '#FFCA28'], // Golden hour
+    ['#FFF59D', '#FFF176', '#FFEE58'], // Lemon drop
+    ['#FFECB3', '#FFE082', '#FFD54F'], // Warm sunshine
+    ['#FFF8E1', '#FFECB3', '#FFE082'], // Soft glow
+
+    // Fun Oranges
+    ['#FFCC80', '#FFB74D', '#FFA726'], // Peach fun
+    ['#FFE0B2', '#FFCC80', '#FFB74D'], // Sunset orange
+    ['#FFD180', '#FFAB40', '#FF9100'], // Bright coral
+    ['#FFECB3', '#FFE082', '#FFD54F'], // Amber glow
+
+    // Teal Joy
+    ['#80CBC4', '#4DB6AC', '#26A69A'], // Fresh teal
+    ['#B2DFDB', '#80CBC4', '#4DB6AC'], // Ocean breeze
+    ['#E0F2F1', '#B2DFDB', '#80CBC4'], // Seafoam
+    ['#A7FFEB', '#64FFDA', '#1DE9B6'], // Mint teal
+
+    // Cohesive Combos
+    ['#6EC6FF', '#FFD54F', '#A5D6A7'], // Blue-yellow-green
+    ['#B39DDB', '#FFD54F', '#6EC6FF'], // Purple-yellow-blue
+    ['#A5D6A7', '#B39DDB', '#FFD54F'], // Green-purple-yellow
+    ['#FFCC80', '#6EC6FF', '#A5D6A7'], // Orange-blue-green
+
+    // Fun Gradients
+    ['#FFD54F', '#FFCC80', '#B39DDB'], // Yellow-orange-purple
+    ['#6EC6FF', '#A5D6A7', '#FFD54F'], // Blue-green-yellow
+    ['#B39DDB', '#6EC6FF', '#FFCC80'], // Purple-blue-orange
+    ['#A5D6A7', '#FFCC80', '#6EC6FF'], // Green-orange-blue
+
+    // Playful Singles
+    ['#FFD54F', '#FFB74D', '#FFA726'], // Sunny gradient
+    ['#6EC6FF', '#42A5F5', '#1E88E5'], // Ocean gradient
+    ['#B39DDB', '#9575CD', '#7E57C2'], // Purple gradient
+    ['#A5D6A7', '#81C784', '#66BB6A'], // Green gradient
+
+    // Soft Mints & Aquas
+    ['#88E8D6', '#5CD4BD', '#36C1A8'], // Mint jelly
+    ['#97F2F3', '#6CEBEC', '#48E1E2'], // Pool blue
+    ['#B2EBF2', '#81D4FA', '#4FC3F7'], // Sky mist
+    ['#A7FFEB', '#64FFDA', '#1DE9B6'], // Aqua fresh
+
+    // Gentle Oranges & Peaches
+    ['#FFCCBC', '#FFAB91', '#FF8A65'], // Peach smoothie
+    ['#FFE0B2', '#FFCC80', '#FFB74D'], // Apricot dream
+    ['#FFD7C4', '#FFB899', '#FF9B6A'], // Coral kiss
+    ['#FFECB3', '#FFE082', '#FFD54F'], // Lemon meringue
+
+    // Lavender Dreams
+    ['#E6CFF5', '#D5A8F0', '#C285E8'], // Lavender mist
+    ['#F3E5F5', '#E1BEE7', '#CE93D8'], // Wisteria
+    ['#DAC4F7', '#C9A8F0', '#B88CE8'], // Periwinkle
+    ['#EDE7F6', '#D1C4E9', '#B39DDB'], // Lilac breeze
+
+    // Soft Pinks & Roses
+    ['#FFE4EC', '#FFC2D6', '#FF9EBD'], // Blush pink
+    ['#FCE4EC', '#F8BBD0', '#F48FB1'], // Rose quartz
+    ['#FFE8F0', '#FFD1DC', '#FFB3C8'], // Cotton pink
+    ['#FFDFE8', '#FFC8D8', '#FFADC7'], // Bubble tea
+
+    // Sunny Yellows & Creams
+    ['#FFF9C4', '#FFF59D', '#FFF176'], // Lemon chiffon
+    ['#FFFEEC', '#FFFDD0', '#FFF9AA'], // Sunbeam
+    ['#FFFDE7', '#FFF9C4', '#FFF59D'], // Vanilla cream
+    ['#FFFCEC', '#FFF8D6', '#FFF2B2'], // Buttermilk
+
+    // Seafoam & Ocean
+    ['#C8F4F4', '#9EE7E7', '#7ADADA'], // Seafoam sparkle
+    ['#E0F7FA', '#B2EBF2', '#80DEEA'], // Ocean spray
+    ['#F0FDFD', '#D4F5F5', '#B4ECEC'], // Pool party
+    ['#DCEDC8', '#C5E1A5', '#AED581'], // Lime sea
+
+    // Unexpected Combos
+    ['#FFCC80', '#80DEEA', '#CE93D8'], // Peach-cyan-lavender
+    ['#A5D6A7', '#FFE082', '#90CAF9'], // Green-yellow-blue
+    ['#FFCDD2', '#C5E1A5', '#B39DDB'], // Pink-green-purple
+    ['#FFE0B2', '#80CBC4', '#F8BBD0'], // Orange-teal-pink
+
+    // Playful Trios
+    ['#FFD54F', '#81D4FA', '#AED581'], // Sun-sky-grass
+    ['#CE93D8', '#FFCC80', '#80DEEA'], // Purple-orange-teal
+    ['#F48FB1', '#FFF59D', '#4DB6AC'], // Pink-yellow-teal
+    ['#9575CD', '#FFB74D', '#A5D6A7'], // Purple-orange-green
+
+    // Gradient Mixes
+    ['#FFE082', '#FFCC80', '#F48FB1'], // Yellow-orange-pink
+    ['#81D4FA', '#AED581', '#FFD54F'], // Blue-green-yellow
+    ['#CE93D8', '#80DEEA', '#FFCC80'], // Purple-teal-orange
+    ['#F8BBD0', '#FFF59D', '#80CBC4'], // Pink-yellow-teal
+
+    // Fresh Singles
+    ['#FFCC80', '#FFB74D', '#FFA726'], // Orange sherbet
+    ['#81D4FA', '#4FC3F7', '#29B6F6'], // Sky blue
+    ['#AED581', '#9CCC65', '#8BC34A'], // Apple green
+    ['#F48FB1', '#F06292', '#EC407A'], // Berry pink
+
+    // Random Gems
+    ['#FFE0B2', '#A5D6A7', '#90CAF9'], // Cream-green-blue
+    ['#FFF59D', '#F8BBD0', '#80DEEA'], // Yellow-pink-cyan
+    ['#D1C4E9', '#FFE082', '#80CBC4'], // Lavender-yellow-teal
+    ['#FFCDD2', '#C5E1A5', '#B39DDB'], // Rose-mint-lilac
+];
+
+function getBalancedRandomColors() {
+    const shuffled = [...spaceColors].sort(() => Math.random() - 0.5);
+    return shuffled[0];
+}
+
+// Shuffle clubs too for extra randomness
+const shuffledClubs = [...CLUBS_DATA].sort(() => Math.random() - 0.5);
+
+shuffledClubs.forEach(club => {
+    club.colors = getBalancedRandomColors();
+});

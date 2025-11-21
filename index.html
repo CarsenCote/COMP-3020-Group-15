@@ -30,7 +30,7 @@
         </div>
         <div class="nav-button" id="home-button">
             <img class="nav-button-img" src="./public/home.png" draggable="false">
-            <p class="nav-button-title">Home</p>
+            <p class="nav-button-title">Dashboard</p>
         </div>
     </div>
 
@@ -98,15 +98,23 @@
         <img class="category-galaxy-img" src="./public/galaxy.png">
     </div>
     
-</script>
+</script> 
 
 <!--Clubs Select Screen Template-->
 <script id="club-select-template" type="text/template">
     <link rel="stylesheet" href="./stylesheets/clubs.css">
     <div class="clubs-select-container">
+        <div class="nav-arrow left">‹</div>
+        <div class="nav-arrow right">›</div>
         <p class="clubs-title">Select a club to learn more</p>
         <div class="clubs-wheel" id="clubs-container">
             <!--Clubs will be dynamically added here as orbiting circles-->
+        </div>
+        <!-- ADD SUN HERE -->
+        <div class="sun-container">
+            <div class="sun-glow"></div>
+            <div class="sun"></div>
+            <div class="sun-title">Student Clubs & Organizations</div>
         </div>
     </div>
 </script>
@@ -119,10 +127,14 @@
     </div>
 </script>
 
+
 <!--Clubs Page Screen Template-->
 <script id="club-page-template" type="text/template">
     <link rel="stylesheet" href="./stylesheets/clubspage.css">
-    <div id="club-page-container">
+    <div class="club-page-wrapper">
+        <div class="club-page-background"></div>
+        <div class="club-page-overlay"></div>
+        <div id="club-page-container">
 
         <header class="club-header">
             <h1 class="club-name"></h1>
