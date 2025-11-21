@@ -146,8 +146,6 @@
 .calendar-day{
     vertical-align: top;
     overflow: auto;
-    
-    
 }
 
 .day-number {
@@ -172,7 +170,7 @@
     border-collapse: collapse;
     border-spacing: 0;
     table-layout: fixed;   /* Every column same width */
-    width: 45vw;
+    width: 53vw;
 }
 
 .calendar-table th,
