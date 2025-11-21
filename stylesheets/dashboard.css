@@ -2,6 +2,10 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+.calendar-container-title {
+    margin-left: 2vw;
+}
+
 .dashboard-page-container {
     display: grid;
     grid-template-columns: 45% 45%;
