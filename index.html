@@ -252,6 +252,7 @@
     </div>
 </script>
 
+
 <script id="calendar-template", type="text/template">
     <div id="calendar">
         <div id="calendar-header">
@@ -260,8 +261,23 @@
             <button id="next-month">&gt;</button>
         </div>
 
-        <div class="calendar-grid">
-    
-        </div>
+        <table class="calendar-table">
+        <thead>
+            <tr>
+            <th>Sun</th>
+            <th>Mon</th>
+            <th>Tue</th>
+            <th>Wed</th>
+            <th>Thu</th>
+            <th>Fri</th>
+            <th>Sat</th>
+            </tr>
+        </thead>
+
+        <tbody id="calendar-table-body">
+        <!-- JS will fill in all the <tr><td> here -->
+        </tbody>
+
+        </table>
     </div>
 </script>

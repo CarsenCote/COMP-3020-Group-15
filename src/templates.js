@@ -338,6 +338,9 @@ class ClubSelectTemplate extends Template {
 
 class DashboardTemplate extends Template {
     dashboardElements;
+    currentMonth; 
+    currentYear; 
+    eventsByDate = {}; 
 
     constructor(templateId) {
         super(templateId);
@@ -410,15 +413,111 @@ class DashboardTemplate extends Template {
     displayCalendar(){
         const user = window.App.State.user; 
         const dictEvents = user.getEvents();
-        const calendarContainer = $('.user-calendar-container')
+        
         console.log(dictEvents)
-        const calendarHtml = $("#calendar-template").html();
-        calendarContainer.append($(calendarHtml))
+        const calendarHtml = $('#calendar-template').html();
+        const calendarContainer = $('.user-calendar-container');
+        calendarContainer.append(calendarHtml)
+
+        const today = new Date();
+        this.currentMonth = today.getMonth();   
+        this.currentYear = today.getFullYear();
+        this.eventsByDate = this.buildEventsByDates(dictEvents);
+
+        this.renderCalendar()
+
+        $('#prev-month').on('click', () => {
+            this.currentMonth--;
+            if (this.currentMonth < 0) {
+                this.currentMonth = 11;
+                this.currentYear--;
+            }
+            this.renderCalendar();
+        });
+
+        $('#next-month').on('click', () => {
+            this.currentMonth++;
+            if (this.currentMonth > 11) {
+                this.currentMonth = 0;
+                this.currentYear++;
+            }
+            this.renderCalendar();
+        });
     }
 
-    
+    buildEventsByDates(dictEvents){
+        const map = {}; 
+        if(dictEvents.length == 0){
+            return map
+        }
+        for(let index = 0; index < dictEvents.length; index++){
+            const [dayStr, monthStr, yearStr] = dictEvents[index].date.split("-");
+            const title = dictEvents[index].title;
+            const day = Number(dayStr);
+            const month = Number(monthStr);
+            const year = Number(yearStr);
 
-    
+            const key = year + "-" + String(month).padStart(2, "0") + "-" + String(day).padStart(2, "0"); // YYYY-MM-DD
+
+            if (!map[key]) {
+                map[key] = [];
+            }
+
+            map[key].push(title);
+        }
+        return map; 
+    }
+
+    renderCalendar(){
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const year = this.currentYear;
+        const month = this.currentMonth;
+        
+        $('#calendar-title').text(`${monthNames[month]} ${year}`);
+
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonths = new Date(year, month + 1, 0).getDate();
+
+        const tbody = $('#calendar-table-body');
+        tbody.empty();
+
+        let row = $('<tr></tr>');
+        let cellCount = 0;
+
+        for(let i = 0; i < firstDay; i++){
+            row.append("<td></td>");
+            cellCount++;
+        }
+
+        for(let day = 1; day <= daysInMonths; day++){
+            const dateKey = year + "-" + String(month + 1).padStart(2, "0") + "-" + String(day).padStart(2, "0");
+            const cell = $('<td class="calendar-day"></td>');                 
+            cell.append(`<div class="day-number">${day}</div>`);
+
+            if(this.eventsByDate[dateKey]){
+                const events = this.eventsByDate[dateKey];
+                for (let ev of events) {
+                    cell.append(`<div class="calendar-event">${ev}</div>`);
+                }
+            }
+
+            row.append(cell);
+            cellCount++;
+
+            if (cellCount === 7) {
+                tbody.append(row);
+                row = $('<tr></tr>');
+                cellCount = 0;
+            }
+        }
+
+        if (cellCount > 0) {
+            for (let i = cellCount; i < 7; i++) {
+                row.append("<td></td>");
+            }
+            tbody.append(row);
+        }
+    }
 }
 
 
