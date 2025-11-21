@@ -75,7 +75,7 @@ class CategoriesTemplate extends Template {
     setupEventListeners() {
         // Use a regular function but store 'this' reference
         const self = this;
-        
+
         $('.category').on('click', function () {
             var categoryId = $(this).attr("id");
             console.log('Raw category ID from click:', categoryId, 'Type:', typeof categoryId);
@@ -85,12 +85,12 @@ class CategoriesTemplate extends Template {
 
     animateCategoryTransition(clickedCategory, categoryId) {
         console.log('Starting animation for category:', categoryId);
-        
+
         $('.category').off('click');
-        
+
         const categories = window.App.Categories;
         let category = categories.find(cat => cat.id == categoryId);
-        
+
         if (!category) {
             console.error('Category not found in data. Clicked ID:', categoryId);
             window.App.State.changeNextTemplate(window.App.Templates.CLUB_SELECT[categoryId]);
@@ -99,10 +99,10 @@ class CategoriesTemplate extends Template {
 
         const categoryRect = clickedCategory[0].getBoundingClientRect();
         const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-        
+
         const transitionContainer = $('<div class="category-transition-container"></div>');
         $('body').append(transitionContainer);
-        
+
         // Create transition element with gradient overlay
         const transitionElement = $(`
             <div class="category-transition-element">
@@ -113,9 +113,9 @@ class CategoriesTemplate extends Template {
         `);
 
         transitionContainer.append(transitionElement);
-        
+
         const initialSize = categoryRect.width;
-        
+
         // Configure main container - NO BACKGROUND HERE
         transitionElement.css({
             width: `${initialSize}px`,
@@ -153,15 +153,15 @@ class CategoriesTemplate extends Template {
             filter: 'blur(1px)',
             pointerEvents: 'none'
         });
-        
+
         $('.category').css({ opacity: 0, transition: 'opacity 0.6s ease-out' });
         $('.category-galaxy-img').css({ opacity: 0, transition: 'opacity 0.5s ease-out' });
         $('.categories-title').css({ opacity: 0, transition: 'opacity 0.6s ease-out' });
-        
+
         // Get the EXACT position and dimensions of the existing sun
         const existingSun = $('.sun');
         let finalWidth, finalHeight, finalLeft, finalTop;
-        
+
         if (existingSun.length > 0) {
             const sunRect = existingSun[0].getBoundingClientRect();
             finalWidth = sunRect.width;
@@ -181,7 +181,7 @@ class CategoriesTemplate extends Template {
                 pointerEvents: 'none',
                 visibility: 'hidden'
             });
-            
+
             const tempSun = $('<div class="sun"></div>').css({
                 position: 'absolute',
                 bottom: '0',
@@ -193,23 +193,23 @@ class CategoriesTemplate extends Template {
                 borderRadius: '50% 50% 0 0 / 100% 100% 0 0',
                 filter: 'blur(2px)'
             });
-            
+
             tempSunContainer.append(tempSun);
             $('body').append(tempSunContainer);
-            
+
             const sunRect = tempSun[0].getBoundingClientRect();
             finalWidth = sunRect.width;
             finalHeight = sunRect.height;
             finalLeft = sunRect.left;
             finalTop = sunRect.top + scrollY;
-            
+
             tempSunContainer.remove();
         }
-        
+
         console.log('Category start position:', categoryRect.top + scrollY);
         console.log('Sun target position:', finalTop);
         console.log('Sun dimensions:', finalWidth, 'x', finalHeight);
-        
+
         // PHASE 1: Quick fade out of content
         setTimeout(() => {
             transitionElement.find('.category-transition-name, .category-transition-icon').css({
@@ -228,7 +228,7 @@ class CategoriesTemplate extends Template {
                 top: `${finalTop}px`,
                 borderRadius: '50%'
             });
-            
+
             // Gradually increase blur to match final sun
             transitionElement.find('.gradient-overlay').css({
                 transition: 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
@@ -243,7 +243,7 @@ class CategoriesTemplate extends Template {
                 height: `${finalHeight}px`,
                 borderRadius: '50% 50% 0 0 / 100% 100% 0 0'
             });
-            
+
             // Final appearance - SAME GRADIENT, just shape change
             transitionElement.find('.gradient-overlay').css({
                 transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
@@ -252,20 +252,20 @@ class CategoriesTemplate extends Template {
                 // NO background change - it's been consistent the whole time
             });
         }, 600);
-        
+
         // Complete transition and navigate
         setTimeout(() => {
             transitionContainer.remove();
             window.App.State.changeNextTemplate(window.App.Templates.CLUB_SELECT[categoryId]);
-        }, 1000); 
+        }, 1000);
     }
-        
+
 
 
     setupElements() {
         const categories = window.App.Categories;
         console.log('Setting up categories with data:', categories);
-        
+
         for (var i = 0; i < categories.length; i++) {
             const category = categories[i];
             console.log('Creating category element:', category.id, category.name);
@@ -279,11 +279,11 @@ class CategoriesTemplate extends Template {
             newCategory.find('.category-name').text(category.name);
             newCategory.find('.category-description').text(category.description);
             newCategory.find('.category-img').attr('src', `./public/category-icons/${category.slug}.png`);
-            
+
             // Append the new category element
             $('#categories-container').append(newCategory);
         }
-        
+
         console.log('Finished setting up categories. Total:', $('.category').length);
     }
 }
@@ -349,7 +349,7 @@ class ClubSelectTemplate extends Template {
         const categoryName = currentCategory ? currentCategory.name : 'Clubs';
         $('.sun-title').text(categoryName);
 
-         $('.sun-container, .sun, .sun-glow, .sun-title').show();
+        $('.sun-container, .sun, .sun-glow, .sun-title').show();
 
         // Initially hide the clubs wheel
         $('.clubs-wheel').hide();
@@ -364,7 +364,7 @@ class ClubSelectTemplate extends Template {
 
     navigate(direction) {
 
-        if(this.currentlyNavigating){
+        if (this.currentlyNavigating) {
             return;
         }
 
@@ -385,7 +385,7 @@ class ClubSelectTemplate extends Template {
         const ROTATION_ANGLE = (direction == ClubSelectTemplate.LEFT) ? 30 : -30;
 
         this.currentlyNavigating = true;
-        
+
         $('.club-name, .club-description').css({
             opacity: 0,
             transition: `${CLUB_FADE_TIME}ms ease`,
@@ -460,7 +460,7 @@ class ClubSelectTemplate extends Template {
             newClub.find('.club-name').text(clubData.name);
             newClub.find('.club-description').text(clubData.description);
 
-                
+
             this.applyPlanetStyle(newClub, clubData);
 
             const angle = element * angleIncrement * (Math.PI / 180); // Convert to radians
@@ -493,11 +493,11 @@ class ClubSelectTemplate extends Template {
             // Fade in the clubs with staggered delay (only on first load)
             $('.club').css('opacity', 0);
             setTimeout(() => {
-                $('.club').each(function(index) {
-                    $(this).delay(index * 80).animate({opacity: 1}, 400);
+                $('.club').each(function (index) {
+                    $(this).delay(index * 80).animate({ opacity: 1 }, 400);
                 });
             }, 100);
-            
+
             this.wheelInitialized = true;
         }
 
@@ -543,7 +543,7 @@ class ClubSelectTemplate extends Template {
         return visibleClubs;
     }
 
-     applyPlanetStyle(clubElement, clubData) {
+    applyPlanetStyle(clubElement, clubData) {
         const colors = clubData.colors;
 
         clubElement.css({
@@ -598,16 +598,17 @@ class ClubSelectTemplate extends Template {
 
 class DashboardTemplate extends Template {
     dashboardElements;
-    currentMonth; 
-    currentYear; 
-    eventsByDate = {}; 
+    currentMonth;
+    currentYear;
+    eventsByDate = {};
 
     constructor(templateId) {
         super(templateId);
     }
 
     setupEventListeners() {
-
+        this.eventListnerExploreMore();
+        this.eventListenerLogout();
     }
 
     setupElements() {
@@ -624,37 +625,43 @@ class DashboardTemplate extends Template {
         // display the user's name in the .user-name element of user-name-container div
         userNameHtml.find('.user-name-text').text(name);
 
-
-        this.displayJoinedClub()
-        this.displayCalendar()
-        this.eventListnerExploreMore()
-        this.eventListenerLogout()
+        this.setupPosts(userPosts);
+        this.displayJoinedClub();
+        this.displayCalendar(userEvents);
     }
 
     setupPosts(posts) {
 
+        const userFeed = $('.user-feed-container');
+
+        console.log(posts);
+        for (var postIndex = 0; postIndex < posts.length; postIndex++) {
+            const post = posts[postIndex];
+            const newPostHtml = $('#post-template').html();
+            const newPost = $(newPostHtml);
+            newPost.find('.post-title').text(post.title);
+            newPost.find('.post-content').text(post.content);
+            newPost.find('.post-date').text(post.date);
+
+            userFeed.append(newPost);
+        }
     }
 
-    setupEvents(events) {
-
-    }
-
-    displayJoinedClub(){
-        const user = window.App.State.user; 
+    displayJoinedClub() {
+        const user = window.App.State.user;
         const joinedClubContainer = $('#joined-clubs-container');
-        const dictClubs = user.getClubs(); 
-        console.log(dictClubs)
+        const dictClubs = user.getClubs();
 
-        if(dictClubs.length > 0){
-            const arrayClubs = []; 
-    
-            for(var index = 0; index < dictClubs.length; index++){
+        if (dictClubs.length > 0) {
+            const arrayClubs = [];
+
+            for (var index = 0; index < dictClubs.length; index++) {
                 const club = dictClubs[index];
                 arrayClubs.push(club.name)
             }
-            arrayClubs.sort(); 
+            arrayClubs.sort();
 
-            for(var index = 0; index < arrayClubs.length; index++){
+            for (var index = 0; index < arrayClubs.length; index++) {
                 const club = arrayClubs[index];
                 const clubHtml = $("#joined-club-template").html();
                 const joinedClub = $(clubHtml)
@@ -663,28 +670,26 @@ class DashboardTemplate extends Template {
                 joinedClubContainer.append(joinedClub);
             }
         }
-        
-        else{
+
+        else {
             $('#joined-clubs-container').css({
                 visibility: 'hidden'
             });
         }
-        
+
     }
 
-    displayCalendar(){
-        const user = window.App.State.user; 
-        const dictEvents = user.getEvents();
-        
-        console.log(dictEvents)
+    displayCalendar(userEvents) {
+        const user = window.App.State.user;
+
         const calendarHtml = $('#calendar-template').html();
         const calendarContainer = $('.user-calendar-container');
         calendarContainer.append(calendarHtml)
 
         const today = new Date();
-        this.currentMonth = today.getMonth();   
+        this.currentMonth = today.getMonth();
         this.currentYear = today.getFullYear();
-        this.eventsByDate = this.buildEventsByDates(dictEvents);
+        this.eventsByDate = this.buildEventsByDates(userEvents);
 
         this.renderCalendar()
 
@@ -707,14 +712,14 @@ class DashboardTemplate extends Template {
         });
     }
 
-    buildEventsByDates(dictEvents){
-        const map = {}; 
-        if(dictEvents.length == 0){
+    buildEventsByDates(events) {
+        const map = {};
+        if (events.length == 0) {
             return map
         }
-        for(let index = 0; index < dictEvents.length; index++){
-            const [dayStr, monthStr, yearStr] = dictEvents[index].date.split("-");
-            const title = dictEvents[index].title;
+        for (let index = 0; index < events.length; index++) {
+            const [dayStr, monthStr, yearStr] = events[index].date.split("-");
+            const title = events[index].title;
             const day = Number(dayStr);
             const month = Number(monthStr);
             const year = Number(yearStr);
@@ -727,14 +732,14 @@ class DashboardTemplate extends Template {
 
             map[key].push(title);
         }
-        return map; 
+        return map;
     }
 
-    renderCalendar(){
+    renderCalendar() {
         const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         const year = this.currentYear;
         const month = this.currentMonth;
-        
+
         $('#calendar-title').text(`${monthNames[month]} ${year}`);
 
         const firstDay = new Date(year, month, 1).getDay();
@@ -746,17 +751,17 @@ class DashboardTemplate extends Template {
         let row = $('<tr></tr>');
         let cellCount = 0;
 
-        for(let i = 0; i < firstDay; i++){
+        for (let i = 0; i < firstDay; i++) {
             row.append("<td></td>");
             cellCount++;
         }
 
-        for(let day = 1; day <= daysInMonths; day++){
+        for (let day = 1; day <= daysInMonths; day++) {
             const dateKey = year + "-" + String(month + 1).padStart(2, "0") + "-" + String(day).padStart(2, "0");
-            const cell = $('<td class="calendar-day"></td>');                 
+            const cell = $('<td class="calendar-day"></td>');
             cell.append(`<div class="day-number">${day}</div>`);
 
-            if(this.eventsByDate[dateKey]){
+            if (this.eventsByDate[dateKey]) {
                 const events = this.eventsByDate[dateKey];
                 for (let ev of events) {
                     cell.append(`<div class="calendar-event">${ev}</div>`);
@@ -781,14 +786,14 @@ class DashboardTemplate extends Template {
         }
     }
 
-    eventListnerExploreMore(){ 
-        $('.explore-clubs-button').on('click', function(){
+    eventListnerExploreMore() {
+        $('.explore-clubs-button').on('click', function () {
             window.App.State.changeNextTemplate(window.App.Templates.CATEGORIES);
         })
     }
 
-    eventListenerLogout(){
-        $('.log-out').on('click', function(){
+    eventListenerLogout() {
+        $('.log-out').on('click', function () {
             window.App.State.changeNextTemplate(window.App.Templates.SIGNIN);
         })
     }
@@ -809,7 +814,7 @@ class ClubPageTemplate extends Template {
     }
 
     setupEventListeners() {
-        
+
         const user = window.App.State.user;
 
         // Join / Leave button click callbacks
@@ -829,18 +834,17 @@ class ClubPageTemplate extends Template {
         })
 
         const addRemoveEventButtons = $('.add-remove-event-button');
-        
-        for(var buttonIndex = 0 ; buttonIndex<addRemoveEventButtons.length ; buttonIndex++)
-        {
+
+        for (var buttonIndex = 0; buttonIndex < addRemoveEventButtons.length; buttonIndex++) {
             const addRemoveButton = $(addRemoveEventButtons[buttonIndex]);
-            addRemoveButton.on('click', ()=> {
+            addRemoveButton.on('click', () => {
 
                 const eventId = addRemoveButton.parents('.event-container').attr('id');
 
-                if(addRemoveButton.hasClass('add-event-button')){
+                if (addRemoveButton.hasClass('add-event-button')) {
                     user.addEvent(eventId);
                     addRemoveButton.removeClass('add-event-button');
-                } else if(addRemoveButton.hasClass('remove-event-button')) {
+                } else if (addRemoveButton.hasClass('remove-event-button')) {
                     user.leaveEvent(eventId);
                     addRemoveButton.removeClass('remove-event-button');
                 }
@@ -848,7 +852,7 @@ class ClubPageTemplate extends Template {
             })
         }
 
-        
+
 
         // Member menu collapsable button
         const membersMenuButton = $('#members-button')
@@ -874,7 +878,7 @@ class ClubPageTemplate extends Template {
         clubPageContainer.find('.club-name').text(club.name);
         clubPageContainer.find('.about-us-header-description').text(club.description);
 
-        
+
         if (club.colors && club.colors.length >= 3) {
             $('.club-page-background').css({
                 background: `radial-gradient(circle at center,
@@ -932,9 +936,8 @@ class ClubPageTemplate extends Template {
     setupAddRemoveEventButtons() {
         const user = window.App.State.user;
         const addRemoveEventButtons = $('.add-remove-event-button');
-        
-        for(var i = 0; i < addRemoveEventButtons.length; i++)
-        {
+
+        for (var i = 0; i < addRemoveEventButtons.length; i++) {
             const addRemoveButton = $(addRemoveEventButtons[i]);
             const eventId = addRemoveButton.parents('.event-container').attr('id');
             const userInEvent = user.inEvent(eventId);
@@ -985,10 +988,10 @@ class ClubPageTemplate extends Template {
             const newMember = $(memberHtml);
 
             const memberImg = newMember.find('.member-img');
-            if(member.clubs.find((club) => {
+            if (member.clubs.find((club) => {
                 return club.id == this.clubId && club.admin;
             })) {
-                memberImg.css('display','block');
+                memberImg.css('display', 'block');
             }
 
             newMember.find('.member-name').text(`${member.fname} ${member.lname}`);

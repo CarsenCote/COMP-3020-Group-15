@@ -1,10 +1,10 @@
 .dashboard-page-container {
     display: grid;
-    grid-template-columns: auto auto; 
+    grid-template-columns: auto auto;
     grid-template-rows: 1fr 1fr 4fr;
     gap: 4%;
     padding: 5%;
-    height: calc(100vh - 80px);
+    height: 100vh;
     box-sizing: border-box;
 }
 
@@ -14,7 +14,7 @@
     background-color: white;
     border-radius: 10px;
     padding: 5%;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .joined-clubs-section {
@@ -70,11 +70,11 @@
     color: white;
 }
 
-#joined-clubs-container{
+#joined-clubs-container {
     border: 1px solid black;
     border-radius: px;
     overflow-y: scroll;
-    margin: 10px; 
+    margin: 10px;
     max-height: 15vh;
     padding-left: 18px;
 }
@@ -97,7 +97,7 @@
     background: rgba(165, 159, 159, 0.6);
 }
 
-.explore-clubs-button:hover{
+.explore-clubs-button:hover {
     background-color: rgb(165, 172, 172);
 }
 
@@ -105,39 +105,40 @@
     height: 20vh;
 }
 
-.user-calendar-container{
+.user-calendar-container {
     padding: 10px;
-    height: 45vh; 
+    height: 45vh;
     overflow: scroll;
 }
 
 #calendar {
-  background: rgba(255,255,255,0.95);
-  margin-left: 20px;
-  overflow: auto;
+    background: rgba(255, 255, 255, 0.95);
+    margin-left: 20px;
+    overflow: auto;
 }
 
 #calendar-header {
-  gap: 15px;              
-  left: 18vw;
-  font-weight: 600;
+    gap: 15px;
+    left: 18vw;
+    font-weight: 600;
+    justify-self: center;
 }
 
 #calendar-header button {
-  padding: 4px 8px;
-  border-radius: 6px;
-  border: 1px solid #aaa;
-  background: #f4f4f4;
-  cursor: pointer;
-  margin-bottom: 10px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid #aaa;
+    background: #f4f4f4;
+    cursor: pointer;
+    margin-bottom: 10px;
 }
 
 
 .day-number {
-  font-weight: 600;
+    font-weight: 600;
 }
 
-.calendar-day{
+.calendar-day {
     vertical-align: top;
     overflow: auto;
     height: 40px;
@@ -154,31 +155,59 @@
     padding: 2px;
     border-radius: 3px;
     font-size: 12px;
-    white-space: nowrap;   /* keep events on one line so scroll appears */
+    white-space: nowrap;
+    /* keep events on one line so scroll appears */
 }
 
 
-.calendar-title{
+.calendar-title {
     margin: 0px;
 }
 
 .calendar-table {
     border-collapse: collapse;
     border-spacing: 0;
-    table-layout: fixed;   /* Every column same width */
-    width: 45vw;
+    table-layout: fixed;
+    /* Every column same width */
+    width: auto;
 }
 
 .calendar-table th,
 .calendar-table td {
-    padding: 5px;        /* remove internal padding */
-    margin: 0;         /* remove external spacing */
-    border: 1px solid #000;   /* keeps visible lines without gaps */
+    padding: 5px;
+    /* remove internal padding */
+    margin: 0;
+    /* remove external spacing */
+    border: 1px solid #000;
+    /* keeps visible lines without gaps */
     vertical-align: top;
 }
 
-.log-out{
+.log-out {
     font-size: 20px;
 }
 
+.user-feed-container {
+    overflow-y: scroll;
+}
 
+.post-container * {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.post-container {
+    padding: 1vw;
+    margin: 3vh 0;
+    background-color: rgb(220, 220, 220);
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.5);
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-title {
+    font-size: 3.0vh;
+}

@@ -88,13 +88,10 @@ class User {
     getPosts() {
         const userPosts = window.App.Posts.filter((post) => {
             const postClubId = post.clubId;
-            for (var club = 0; club < this.joinedClubs.length; club++) {
-                if (postClubId == this.joinedClubs[club]) {
-                    return true;
-                }
-            }
-            return false;
+            const userInClub = this.inClub(postClubId)
+            return userInClub;
         });
+
         return userPosts;
     }
 }
