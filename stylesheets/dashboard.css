@@ -43,7 +43,10 @@
 .joined-clubs-section {
     grid-row: 1 / 3;
     grid-column: 1;
-    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: auto; /* scroll if too many clubs */
 }
 
 .user-name-container {
@@ -66,7 +69,7 @@
     grid-row: 2 / end;
     grid-column: 2;
     height: 65vh;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .user-calendar-container {
@@ -75,13 +78,14 @@
     padding: 10px;
     height: 50vh;
     overflow-y: auto;
+    overflow-x: auto;
 }
 
 .joined-clubs-title {
     color: #e0e0e0;
     font-size: 2em;
-    margin-top: 0px;
     margin-left: 10px;
+    margin-bottom: 10px;
 }
 
 .explore-clubs-button {
@@ -106,38 +110,72 @@
 }
 
 #joined-clubs-container {
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    overflow-y: scroll;
-    margin: 10px;
-    max-height: 15vh;
-    padding-left: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* space between items */
+    overflow-y: auto;
+    padding: 10px;
     border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(50, 55, 90, 0.1); /* make container mostly transparent */
+    backdrop-filter: blur(4px); /* optional frosted effect */
 }
 
+.joined-club {
+    background: rgba(60, 65, 100, 0.5);
+    padding: 12px 16px;/* Perfect middle ground */
+    margin: 9px 0;
+    border-radius: 12px;
+    border: 1px solid rgba(51, 240, 255, 0.3);
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    color: #f0f0f0;
+    font-weight: 500;
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 30px; /* Balanced height */
+    display: flex;
+    align-items: center;
+}
+
+/* Text styling - less bold and better sized */
+.joined-club .club-name {
+    color: #f8f8f8 !important;
+    font-weight: 500; /* Medium weight instead of bold */
+    font-size: 1.1em; /* Comfortable text size */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    margin: 0;
+    line-height: 1.4;
+}
+
+
+/* Scrollbar styling */
 #joined-clubs-container::-webkit-scrollbar {
-    width: 8px;
+    width: 4px;
 }
-
 #joined-clubs-container::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.05);
     border-radius: 10px;
 }
-
 #joined-clubs-container::-webkit-scrollbar-thumb {
     background: rgba(0, 200, 255, 0.4);
     border-radius: 10px;
 }
-
 #joined-clubs-container::-webkit-scrollbar-thumb:hover {
     background: rgba(0, 200, 255, 0.6);
 }
 
+
 #calendar {
     background: rgba(55, 60, 100, 0.95);
-    width: 90%;
-    max-height: 70vh;
+    width: 100%; /* fill the container width */
+    max-height: 65vh;
     margin: 0 auto;
-    overflow-y: auto;
+    overflow-y: auto; /* scroll vertically for multiple days/events */
+    overflow-x: auto; /* scroll horizontally only if necessary */
     border-radius: 8px;
     border: 1px solid rgba(51, 240, 255, 0.25);
     padding: 10px;
@@ -163,8 +201,8 @@
 .calendar-table {
     border-collapse: collapse;
     border-spacing: 0;
-    width: 100%;
-    table-layout: fixed;
+    width: 100%; /* fit container */
+    table-layout: auto; /* allow cells to adjust if content requires */
 }
 
 .calendar-table th,
@@ -173,6 +211,7 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
     vertical-align: top;
     color: #f0f0f0;
+    white-space: normal;
 }
 
 .calendar-day {
@@ -182,6 +221,7 @@
     overflow-y: auto;
     background: rgba(50, 55, 90, 0.85);
     border-radius: 4px;
+    overflow-wrap: break-word;
 }
 
 .day-number {
