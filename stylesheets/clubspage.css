@@ -231,9 +231,14 @@
     display: none;
 }
 
-/* Larger round planet that starts near the top */
+.club-page-wrapper {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
 .club-page-background {
-    position: fixed;
+    position: absolute;
     top: 10vh;
     left: 50%;
     transform: translateX(-50%);
@@ -242,7 +247,6 @@
     border-radius: 50%;
     z-index: -2;
     pointer-events: none;
-    /* Planet-like 3D effects */
     filter: blur(1px) brightness(0.8);
     box-shadow: 
         inset 15px 15px 50px rgba(255, 255, 255, 0.15),
@@ -251,9 +255,8 @@
         0 0 120px rgba(0, 0, 0, 0.9);
 }
 
-/* Add a subtle space overlay for depth */
 .club-page-overlay {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -267,9 +270,6 @@
     pointer-events: none;
 }
 
-
-
-/* Ensure the club page container has proper z-index */
 #club-page-container {
     margin: 5vh 4vw 0 4vw;
     position: relative;
