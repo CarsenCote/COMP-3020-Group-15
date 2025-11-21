@@ -106,26 +106,19 @@
 }
 
 .user-calendar-container{
-    height: 38vh; 
+    padding: 10px;
+    height: 45vh; 
+    overflow: scroll;
 }
 
 #calendar {
   background: rgba(255,255,255,0.95);
-  border-radius: 12px;
- 
-  max-width: 520px;
-  position: relative;
-  padding-top: 50px;    /* >= header height */
+  margin-left: 20px;
+  overflow: auto;
 }
 
 #calendar-header {
-  position: absolute;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-self: center;
   gap: 15px;              
-  top: 10px;
   left: 18vw;
   font-weight: 600;
 }
@@ -136,6 +129,7 @@
   border: 1px solid #aaa;
   background: #f4f4f4;
   cursor: pointer;
+  margin-bottom: 10px;
 }
 
 
@@ -146,6 +140,9 @@
 .calendar-day{
     vertical-align: top;
     overflow: auto;
+    height: 40px;
+    width: 90px;
+    padding: 10px;
 }
 
 .day-number {
@@ -157,7 +154,6 @@
     padding: 2px;
     border-radius: 3px;
     font-size: 12px;
-    max-width: 70px;
     white-space: nowrap;   /* keep events on one line so scroll appears */
 }
 
@@ -170,7 +166,7 @@
     border-collapse: collapse;
     border-spacing: 0;
     table-layout: fixed;   /* Every column same width */
-    width: 53vw;
+    width: 45vw;
 }
 
 .calendar-table th,
