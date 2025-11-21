@@ -661,6 +661,19 @@ class ClubPageTemplate extends Template {
         clubPageContainer.find('.club-name').text(club.name);
         clubPageContainer.find('.about-us-header-description').text(club.description);
 
+        
+        if (club.colors && club.colors.length >= 3) {
+            $('.club-page-background').css({
+                background: `radial-gradient(circle at center,
+                    ${club.colors[0]} 0%,
+                    ${club.colors[1]} 30%,
+                    ${club.colors[2]} 60%,
+                    #0a0a1a 90%
+                )`
+            });
+        }
+
+
         const clubPosts = window.App.Posts.filter((post) => {
             return this.clubId == post.clubId;
         });
