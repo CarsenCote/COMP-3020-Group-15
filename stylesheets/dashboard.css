@@ -1,6 +1,7 @@
 .dashboard-page-container {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 45% 45%;
+
     grid-template-rows: 1fr 1fr 4fr;
     gap: 4%;
     padding: 5%;
@@ -36,6 +37,8 @@
 .user-feed-container {
     grid-row: 2 / end;
     grid-column: 2;
+        height: 65vh;   
+    overflow-y: scroll;
 }
 
 .joined-clubs-title {
@@ -107,13 +110,14 @@
 
 .user-calendar-container {
     padding: 10px;
-    height: 45vh;
+    height: 50vh;
     overflow: scroll;
 }
 
 #calendar {
     background: rgba(255, 255, 255, 0.95);
-    margin-left: 20px;
+    width: 90%;
+    margin: 0 auto;  
     overflow: auto;
 }
 
@@ -170,6 +174,7 @@
     table-layout: fixed;
     /* Every column same width */
     width: auto;
+     margin: 0 auto;
 }
 
 .calendar-table th,
