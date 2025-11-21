@@ -609,6 +609,7 @@ class DashboardTemplate extends Template {
     setupEventListeners() {
         this.eventListnerExploreMore();
         this.eventListenerLogout();
+        this.eventListenerJoinedClubClick();
     }
 
     setupElements() {
@@ -616,6 +617,7 @@ class DashboardTemplate extends Template {
         const user = window.App.State.user;
         const userEvents = user.getEvents();
         const userClubs = user.getClubs();
+        //console.log(userClubs);
         const userPosts = user.getPosts();
 
         const name = user.firstName + " " + user.lastName;
@@ -635,6 +637,10 @@ class DashboardTemplate extends Template {
         const userFeed = $('.user-feed-container');
 
         console.log(posts);
+
+        // need to look into this ?
+        //posts.sortByDateDesc();
+        //console.log(posts);
         for (var postIndex = 0; postIndex < posts.length; postIndex++) {
             const post = posts[postIndex];
             const newPostHtml = $('#post-template').html();
@@ -657,16 +663,18 @@ class DashboardTemplate extends Template {
 
             for (var index = 0; index < dictClubs.length; index++) {
                 const club = dictClubs[index];
-                arrayClubs.push(club.name)
+                arrayClubs.push(club)
             }
             arrayClubs.sort();
 
             for (var index = 0; index < arrayClubs.length; index++) {
                 const club = arrayClubs[index];
+
                 const clubHtml = $("#joined-club-template").html();
                 const joinedClub = $(clubHtml)
 
-                joinedClub.find('.club-name').text(club)
+                joinedClub.attr('id', club.id)
+                joinedClub.find('.club-name').text(club.name)
                 joinedClubContainer.append(joinedClub);
             }
         }
@@ -795,6 +803,15 @@ class DashboardTemplate extends Template {
     eventListenerLogout() {
         $('.log-out').on('click', function () {
             window.App.State.changeNextTemplate(window.App.Templates.SIGNIN);
+        })
+    }
+
+    eventListenerJoinedClubClick() {
+        // check this works too
+        $('.joined-club').on('click', function () {
+            const clubId = $(this).attr('id');
+            console.log(clubId);
+            window.App.State.changeNextTemplate(window.App.Templates.CLUB_PAGES[clubId]);
         })
     }
 }
