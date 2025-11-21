@@ -75,16 +75,8 @@
 }
 
 .club:hover {
-    box-shadow: 
-        inset -8px -8px 25px rgba(0, 0, 0, 0.7),
-        inset 6px 6px 20px rgba(255, 255, 255, 0.25),
-        0 8px 25px rgba(0, 0, 0, 0.5),
-        0 0 20px rgba(255, 255, 255, 0.1),
-        0 0 0 1px rgba(221, 217, 217, 0.8),     
-        0 0 20px rgba(220, 220, 220, 0.4),      
-        0 0 35px rgba(200, 200, 200, 0.2) !important;    
-    
-    filter: brightness(1.05) !important; 
+    outline-offset: 2px;
+    outline: 4px solid white;
 }
 
 .club-name {
@@ -132,7 +124,7 @@
     transform: translateX(-50%);
     width: 55vw;
     height: 45vh;
-    background: radial-gradient(ellipse at 50% 70%,
+    background: radial-gradient(ellipse at center,     
         #fff9d6 0%,
         #fff1a8 10%,
         #ffd54d 25%,
@@ -152,15 +144,15 @@
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 1250px;
-    height: 420px;
+    width: 1250px; /* Slightly wider */
+    height: 420px; /* Slightly taller */
     background: radial-gradient(ellipse at center, 
-        rgba(255, 215, 0, 0.18) 0%,
-        rgba(255, 215, 0, 0.11) 20%,
-        rgba(255, 140, 0, 0.07) 40%,
-        rgba(255, 140, 0, 0.035) 60%,
-        rgba(255, 140, 0, 0.018) 80%,
-        transparent 92%
+        rgba(255, 215, 0, 0.15) 0%, /* Slightly brighter */
+        rgba(255, 215, 0, 0.09) 20%,
+        rgba(255, 140, 0, 0.06) 40%,
+        rgba(255, 140, 0, 0.03) 60%,
+        rgba(255, 140, 0, 0.015) 80%,
+        transparent 92% /* Slightly extended */
     );
     border-radius: 50% 50% 0 0 / 100% 100% 0 0;
     z-index: 4;
@@ -169,18 +161,20 @@
 
 .sun-title {
     position: absolute;
-    bottom: 50%;
+    bottom: 35%;
     left: 50%;
     transform: translateX(-50%);
-    color: black;
+    width: 20vw;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
     font-family: 'Montserrat', sans-serif;
     text-align: center;
     z-index: 6;
-    font-size: 30px;
-    font-weight: 700;
-   
+    font-size: 20px;
+    font-weight: 600;
 }
-
 
 /* Navigation arrows */
 .nav-arrow {
