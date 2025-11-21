@@ -214,3 +214,9 @@
 .post-title {
     font-size: 3.0vh;
 }
+
+.user-feed{
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
